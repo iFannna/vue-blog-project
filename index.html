@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="describe" content="Vue+SpringBoot" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- 阿里云安全校验服务 -->
+    <script>
+      window.AliyunCaptchaConfig = {
+        region: "cn",
+        prefix: "1afws2",
+      };
+    </script>
+
+    <style>
+      img:is([sizes="auto" i], [sizes^="auto," i]) {
+        contain-intrinsic-size: 3000px 1500px;
+      }
+    </style>
+
+    <style id="global-styles-inline-css">
+      :root {
+      }
+
+      :where(.is-layout-flex) {
+        gap: 0.5em;
+      }
+
+      :where() {
+        gap: 0.5em;
+      }
+
+      body .is-layout-flex {
+        display: flex;
+      }
+
+      .is-layout-flex {
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .is-layout-flex > :is(*, div) {
+        margin: 0;
+      }
+
+      body {
+        display: grid;
+      }
+
+      .is-layout-grid > :is(*, div) {
+        margin: 0;
+      }
+    </style>
+
+    <!-- font-awesome图标库 -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      id="wp-block-library-css"
+      href="src/assets/styles/block-library.css"
+      media="all"
+    />
+    <!--页面整体样式及背景-->
+    <link
+      rel="stylesheet"
+      id="child-style-css"
+      href="src/assets/styles/child-style.css"
+      media="all"
+    />
+    <!--主题样式-->
+    <link
+      rel="stylesheet"
+      id="bloglo-styles-css"
+      href="src/assets/styles/bloglo-styles.css"
+      media="all"
+    />
+    <!--布局样式-->
+    <link
+      rel="stylesheet"
+      id="bloglo-dynamic-styles-css"
+      href="src/assets/styles/bloglo-dynamic-styles.css"
+      media="all"
+    />
+
+    <!-- <link rel="icon" href="/favicon.ico" /> -->
+    <title>赵瑾瑜个人博客</title>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+
+  <script src="src/assets/scripts/bloglo-min.js" id="bloglo-js"></script>
+  <script id="bloglo-js-extra">
+    const bloglo_vars = {
+      "sticky-header": { enabled: false, hide_on: [""] },
+      dark_mode: "",
+      strings: {
+        comments_toggle_show: "Leave a Comment",
+        comments_toggle_hide: "Hide Comments",
+      },
+    };
+  </script>
+</html>
