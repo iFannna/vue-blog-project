@@ -255,8 +255,7 @@ var blogloTriggerEvent = function (e, t) {
     e.dispatchEvent(o)
 };
 !function () {
-    var e = document.querySelector("#bloglo-scroll-top")
-        , t = document.getElementById("page")
+    var t = document.getElementById("page")
         , o = () => {
             var e, t, o;
             document.body.classList.contains("bloglo-is-mobile") || (o = window.innerWidth,
@@ -280,9 +279,6 @@ var blogloTriggerEvent = function (e, t) {
                         }
                     ))
             }
-        }
-        , l = () => {
-            null !== e && (450 < window.pageYOffset || 450 < document.documentElement.scrollTop ? e.classList.add("bloglo-visible") : e.classList.remove("bloglo-visible"))
         }
         , i = () => {
             if (bloglo_vars["sticky-header"].enabled) {
@@ -387,7 +383,6 @@ var blogloTriggerEvent = function (e, t) {
                         document.body.classList.remove("using-keyboard")
                     }
                 )),
-                l(),
                 (() => {
                         const e = new blogloScrollTo({
                             tolerance: null === document.getElementById("wpadminbar") ? 0 : document.getElementById("wpadminbar").getBoundingClientRect().height
@@ -636,10 +631,6 @@ var blogloTriggerEvent = function (e, t) {
     )),
         window.addEventListener("load", (function () {
                 c()
-            }
-        )),
-        window.addEventListener("scroll", (function () {
-                n(l())
             }
         )),
         window.addEventListener("resize", (function () {

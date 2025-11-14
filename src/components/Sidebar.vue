@@ -31,7 +31,7 @@
           </p>
         </div>
         <p style="font-size: 1.6rem">
-          你好！我是赵瑾瑜，一位在读的大学生。该Blog使用Vue+SpringBoot进行独立开发
+          你好！我是赵瑾瑜，一位在读的大学生。该博客使用Vue+SpringBoot进行独立开发
         </p>
         <ul
           class="wp-block-social-links is-style-default is-horizontal is-content-justification-left is-layout-flex wp-container-core-social-links-is-layout-d6c063d9 wp-block-social-links-is-layout-flex"

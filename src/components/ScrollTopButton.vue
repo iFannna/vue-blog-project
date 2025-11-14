@@ -1,10 +1,11 @@
 <template>
-  <!--全局悬浮按钮-->
+  <!-- 全局悬浮按钮：回到顶部 -->
   <a
     href="#"
     id="bloglo-scroll-top"
-    class="bloglo-smooth-scroll"
+    :class="['bloglo-scroll-top', { 'bloglo-visible': isVisible }]"
     title="回到顶部"
+    @click.prevent="scrollToTop"
   >
     <span class="bloglo-scroll-icon" aria-hidden="true">
       <svg
@@ -36,8 +37,56 @@
 <script>
 export default {
   name: "ScrollTopButton",
+  data() {
+    return {
+      isVisible: false,
+      rafId: null,
+    };
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    window.addEventListener("resize", this.onScroll, { passive: true });
+    this.onScroll();
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.onScroll);
+    window.removeEventListener("resize", this.onScroll);
+    if (this.rafId) cancelAnimationFrame(this.rafId);
+  },
+  methods: {
+    onScroll() {
+      if (this.rafId) cancelAnimationFrame(this.rafId);
+      this.rafId = requestAnimationFrame(() => {
+        const y =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop ||
+          0;
+        this.isVisible = y > 450;
+      });
+    },
+    scrollToTop() {
+      try {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } catch (_) {
+        // Fallback for older browsers
+        const step = () => {
+          const pos =
+            document.documentElement.scrollTop ||
+            document.body.scrollTop ||
+            0;
+          if (pos > 0) {
+            window.scrollTo(0, Math.floor(pos - pos / 8));
+            requestAnimationFrame(step);
+          }
+        };
+        requestAnimationFrame(step);
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
+
 </style>

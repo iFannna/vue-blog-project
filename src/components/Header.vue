@@ -86,7 +86,7 @@
             class="bloglo-header-widgets bloglo-header-element bloglo-widget-location-right"
           >
             <div
-              class="bloglo-header-widget__socials bloglo-header-widget bloglo-hide-mobile-tablet"
+              class="bloglo-header-widget__socials bloglo-header-widget bloglo-all"
             >
               <div class="bloglo-widget-wrapper">
                 <nav class="bloglo-social-nav minimal-fill bloglo-large">
@@ -249,7 +249,7 @@
             </div>
 
             <div
-              class="bloglo-header-widget__darkmode bloglo-header-widget bloglo-hide-mobile-tablet"
+              class="bloglo-header-widget__darkmode bloglo-header-widget bloglo-all"
             >
               <div class="bloglo-widget-wrapper">
                 <label
@@ -263,7 +263,7 @@
             </div>
 
             <div
-              class="bloglo-header-widget__search bloglo-header-widget bloglo-hide-mobile-tablet"
+              class="bloglo-header-widget__search bloglo-header-widget bloglo-all"
             >
               <div class="bloglo-widget-wrapper">
                 <div aria-haspopup="true">

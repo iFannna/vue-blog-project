@@ -64,7 +64,7 @@
                             href="作者博客链接"
                             rel="author"
                           >
-                            <span class="author-name"> 某位作家 </span>
+                            <span class="author-name"> 赵瑾瑜 </span>
                           </a>
                         </span>
                       </span>
@@ -117,7 +117,7 @@
                 <div
                   class="quote-post-bg"
                   style="
-                    background-image: url('https://demo.peregrine-themes.com/bloglo/blogmate/wp-content/uploads/sites/12/2024/01/StockSnap_EEICSYKUYZ.jpg');
+                    background-image: url('');
                   "
                 ></div>
 
@@ -133,12 +133,10 @@
                   </svg>
                   <h3>
                     <p>
-                      The best and the most beautiful things in the world cannot
-                      be seen or even touched - they must be felt with the
-                      heart.
+                      年少轻狂一定要拥有那份志在必得的勇气
                     </p>
                   </h3>
-                  <div class="author">Mar Bustos</div>
+                  <div class="author">瑾瑜</div>
                 </div>
               </div>
             </div>
