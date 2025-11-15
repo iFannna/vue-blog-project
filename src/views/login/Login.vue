@@ -64,6 +64,11 @@ const goToRegister = () => {
   router.push("/register");
 };
 
+// 返回首页
+const goToHome = () => {
+  router.push("/");
+};
+
 // 初始化主题
 onMounted(() => {
   const darkmode = localStorage.getItem("darkmode");
@@ -194,7 +199,7 @@ onMounted(() => {
 
 <style scoped>
 .bloglo-darkmode-container{
-  margin-top: 8px;
+  margin-top: 6px;
 }
 /* ==================== 登录页面容器 ==================== */
 .login-page-wrapper {
