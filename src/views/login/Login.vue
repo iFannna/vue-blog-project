@@ -224,7 +224,7 @@ onMounted(() => {
   z-index: 1000;
 }
 
-/* 主题切换按钮圆形容器样式 - 缩小尺寸 */
+/* 主题切换按钮圆形容器样式 */
 .login-theme-toggle .bloglo-header-widget {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
@@ -274,15 +274,14 @@ onMounted(() => {
   cursor: pointer;
 }
 
-/* 调整主题切换图标大小 - 月亮图标 */
+/* 调整主题切换图标大小 */
 .login-theme-toggle .bloglo-darkmode-toogle {
   --size: 1.6rem !important;
 }
 
-/* 深色模式 - 太阳图标（保持原大小或稍微调整） */
 [data-theme="dark"] .login-theme-toggle .bloglo-darkmode-toogle {
-  --size: 1.7rem !important;  /* 调大一点，让太阳更明显 */
-  transform: scale(0.75);      /* 保持原有的缩放比例 */
+  --size: 1.4rem !important;
+  transform: scale(0.75);
 }
 
 /* ==================== 返回首页按钮 ==================== */
@@ -294,7 +293,7 @@ onMounted(() => {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #fff;
-  padding: 13px 20px;
+  padding: 12px 20px;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -326,6 +325,7 @@ onMounted(() => {
   max-width: 450px;
   transition: all 0.3s ease;
   z-index: 1;
+  position: relative;
 }
 
 /* 深色模式卡片 */
@@ -488,8 +488,60 @@ onMounted(() => {
   color: rgba(255, 255, 255, 0.7);
 }
 
+/* 统一浅色和深色模式的 checkbox 样式 */
 .remember-me input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  border: 2px solid #d0d0d0;
+  border-radius: 3px;
+  background-color: #fff;
   cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.remember-me input[type="checkbox"]:hover {
+  border-color: #7289da;
+}
+
+.remember-me input[type="checkbox"]:checked {
+  background: linear-gradient(135deg, #7289da, #9b6cdc);
+  border-color: #7289da;
+}
+
+.remember-me input[type="checkbox"]:checked::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* 深色主题下的 checkbox 调整 */
+[data-theme="dark"] .remember-me input[type="checkbox"] {
+  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .remember-me input[type="checkbox"]:hover {
+  border-color: #667eea;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .remember-me input[type="checkbox"]:checked {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-color: #667eea;
 }
 
 .forgot-password {
@@ -691,14 +743,14 @@ onMounted(() => {
   }
   
   [data-theme="dark"] .login-theme-toggle .bloglo-darkmode-toogle {
-    --size: 1.4rem !important;  /* 平板端太阳图标 */
+    --size: 1.3rem !important;
     transform: scale(0.75);
   }
   
   .back-home-btn {
     top: 15px;
     left: 15px;
-    padding: 11px 14px;
+    padding: 10px 14px;
     font-size: 13px;
   }
 }
@@ -727,15 +779,123 @@ onMounted(() => {
   }
   
   [data-theme="dark"] .login-theme-toggle .bloglo-darkmode-toogle {
-    --size: 1.4rem !important;  /* 移动端太阳图标 */
+    --size: 1.2rem !important;
     transform: scale(0.75);
   }
-
+  
   .back-home-btn {
-    top: 15px;
-    left: 15px;
-    padding: 18px 14px;
-    font-size: 13px;
+    padding: 7px 14px;
+    font-size: 12px;
+  }
+}
+
+/* ==================== 小高度屏幕适配 ==================== */
+@media (max-height: 600px) {
+  .login-page-wrapper {
+    padding: 75px 20px 20px;
+    align-items: flex-start;
+  }
+  
+  .login-card {
+    margin-top: 0;
+    padding: 25px 40px;
+  }
+  
+  .login-header {
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .divider {
+    margin: 15px 0 15px;
+  }
+  
+  .social-login {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-height: 500px) {
+  .login-page-wrapper {
+    padding: 70px 15px 15px;
+    min-height: auto;
+  }
+  
+  .login-card {
+    padding: 20px 35px;
+  }
+  
+  .login-title {
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+  
+  .login-subtitle {
+    font-size: 12px;
+  }
+  
+  .login-header {
+    margin-bottom: 15px;
+  }
+  
+  .form-group {
+    margin-bottom: 12px;
+  }
+  
+  .custom-input {
+    padding: 12px 14px;
+  }
+  
+  .remember-forgot {
+    margin-bottom: 15px;
+  }
+  
+  .login-btn {
+    padding: 12px;
+  }
+  
+  .divider,
+  .social-login {
+    display: none;
+  }
+  
+  .register-link {
+    margin-top: 15px;
+  }
+  
+  .back-home-btn {
+    top: 10px;
+    left: 10px;
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  .login-theme-toggle {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .login-theme-toggle .bloglo-header-widget {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-height: 450px) and (orientation: landscape) {
+  .login-page-wrapper {
+    padding: 60px 20px 15px;
+  }
+  
+  .login-card {
+    max-width: 600px;
+    padding: 15px 30px;
+  }
+  
+  .social-login {
+    display: grid;
   }
 }
 </style>
