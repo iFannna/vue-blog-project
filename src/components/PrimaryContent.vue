@@ -109,16 +109,11 @@
           >
             <div class="bloglo-blog-entry-content">
               <div class="entry-content bloglo-entry">
-                <a
-                  href=""
-                  class="quote-link"
-                ></a>
+                <a href="" class="quote-link"></a>
 
                 <div
                   class="quote-post-bg"
-                  style="
-                    background-image: url('');
-                  "
+                  style="background-image: url('')"
                 ></div>
 
                 <div class="quote-inner">
@@ -132,9 +127,7 @@
                     />
                   </svg>
                   <h3>
-                    <p>
-                      年少轻狂一定要拥有那份志在必得的勇气
-                    </p>
+                    <p>年少轻狂一定要拥有那份志在必得的勇气</p>
                   </h3>
                   <div class="author">瑾瑜</div>
                 </div>
@@ -148,8 +141,9 @@
         <nav class="navigation pagination">
           <div class="nav-links">
             <span aria-current="page" class="page-numbers current">1</span>
-            <a class="page-numbers" href="第二页链接">2</a>
-            <a class="page-numbers" href="第三页链接">3</a>
+            <a class="page-numbers page-number" href="第二页链接">2</a>
+            <a class="page-numbers page-number" href="第三页链接">3</a>
+            <a class="page-numbers page-number" href="第三页链接">···</a>
             <a class="next page-numbers" href="下一页链接">
               <button
                 type="button"
@@ -185,4 +179,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.navigation .nav-links .page-number {
+    margin-left: 1rem;
+}
+</style>

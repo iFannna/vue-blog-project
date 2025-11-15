@@ -2168,7 +2168,7 @@ input:-webkit-autofill {
     min-width: 2rem;
     -webkit-appearance: none;
     -moz-appearance: none;
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 .bloglo-input-supported input[type="checkbox"] + label, .bloglo-input-supported input[type="radio"] + label {
@@ -2209,8 +2209,8 @@ input:-webkit-autofill {
 }
 
 .bloglo-input-supported input[type="checkbox"]:focus, .bloglo-input-supported input[type="checkbox"]:hover {
-    -webkit-box-shadow: inset 0 0 0 0.2rem;
-    box-shadow: inset 0 0 0 0.2rem;
+    -webkit-box-shadow: inset 0 0 0 0;
+    box-shadow: inset 0 0 0 0;
 }
 
 .bloglo-input-supported input[type="checkbox"]:not([id^='wpforms-']):checked {
@@ -2924,7 +2924,7 @@ html[data-theme="dark"] .bloglo-header-widgets .bloglo-header-widget .bloglo-dar
     fill-rule: evenodd;
 }
 
-body header.site-header div:not(.bloglo-header-widget__button) .bloglo-empty-cart svg.bloglo-icon {
+body header div:not(.bloglo-header-widget__button) .bloglo-empty-cart svg.bloglo-icon {
     width: 100%;
     height: 8rem;
     clear: both;
@@ -3459,7 +3459,7 @@ body header.site-header div:not(.bloglo-header-widget__button) .bloglo-empty-car
     background-color: rgba(0, 0, 0, 0);
 }
 
-.bloglo-tsp-header .site-header {
+.bloglo-tsp-header {
     position: relative;
 }
 
@@ -9007,7 +9007,7 @@ input[type="search"]:focus, #comments .comment-actions .reply a:hover, .comment-
 }
 
 .bloglo-input-supported input[type="checkbox"]:focus:hover {
-    box-shadow: inset 0 0 0 0.2rem var(--bloglo-primary);
+    box-shadow: inset 0 0 0 0;
 }
 
 .bloglo-header-widgets .bloglo-cart .bloglo-cart-count, .bloglo-woo-steps .bloglo-step.is-active > span:first-child, .woocommerce div.product form.cart .button, .site-main .woocommerce #respond input#submit, .site-main .woocommerce a.button, .site-main .woocommerce button.button, .site-main .woocommerce input.button, .woocommerce ul.products li.product .onsale, .woocommerce span.onsale, .woocommerce-store-notice, p.demo_store, .woocommerce ul.products li.product .button, .widget.woocommerce .wc-layered-nav-term:hover .count, .widget.woocommerce .product-categories li a:hover ~ .count, .widget.woocommerce .woocommerce-widget-layered-nav-list .woocommerce-widget-layered-nav-list__item.chosen a:before, .woocommerce .widget_rating_filter ul li.chosen a::before, .widget.woocommerce .wc-layered-nav-term.chosen .count, .widget.woocommerce .product-categories li.current-cat > .count, .woocommerce .widget_price_filter .ui-slider .ui-slider-handle, .woocommerce .widget_price_filter .ui-slider .ui-slider-handle:after, .woocommerce .widget_layered_nav_filters ul li a:hover, .woocommerce div.product div.images .woocommerce-product-gallery__trigger:hover:before, .woocommerce #review_form #respond .form-submit input {

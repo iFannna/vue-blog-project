@@ -1,6 +1,6 @@
 <template>
   <!--页头-->
-  <header id="masthead" class="site-header" role="banner">
+  <header id="masthead" class="site-header">
     <div id="bloglo-header">
       <div id="bloglo-header-inner">
         <div class="bloglo-container bloglo-header-container">
@@ -9,18 +9,18 @@
               <a href="" rel="home" class="">
                 <img
                   src="https://java-ai-sau.oss-cn-beijing.aliyuncs.com/Blog.png"
-                  alt="BlogmateHEADER"
+                  alt="Blog"
                   width="330"
                   height="72"
                   class=""
                 />
               </a>
               <h1 class="site-title screen-reader-text">
-                <a href="" rel="home"> Blogmate </a>
+                <a href="" rel="home"> Blog </a>
               </h1>
             </div>
           </div>
-
+          <!-- 移动端菜单 -->
           <span class="bloglo-header-element bloglo-mobile-nav">
             <button
               class="bloglo-hamburger hamburger--spin bloglo-hamburger-bloglo-primary-nav"
@@ -58,7 +58,7 @@
               </ul>
             </nav>
           </span>
-
+          <!-- 电脑端菜单 -->
           <nav
             class="site-navigation main-navigation bloglo-primary-nav bloglo-nav bloglo-header-element"
             role="navigation"
@@ -81,16 +81,18 @@
               </li>
             </ul>
           </nav>
-
+          <!-- 顶部右侧小组件 -->
           <div
             class="bloglo-header-widgets bloglo-header-element bloglo-widget-location-right"
           >
+            <!-- 社交联系方式图标 -->
             <div
               class="bloglo-header-widget__socials bloglo-header-widget bloglo-all"
             >
               <div class="bloglo-widget-wrapper">
                 <nav class="bloglo-social-nav minimal-fill bloglo-large">
                   <ul id="menu-social-menu-default" class="bloglo-socials-menu">
+                    <!-- 脸书 -->
                     <li class="menu-item">
                       <a href="">
                         <span class="facebook">
@@ -121,6 +123,7 @@
                         </span>
                       </a>
                     </li>
+                    <!-- 推特 -->
                     <li class="menu-item">
                       <a href="">
                         <span class="twitter">
@@ -151,6 +154,7 @@
                         </span>
                       </a>
                     </li>
+                    <!-- 纸飞机 -->
                     <li class="menu-item">
                       <a href="">
                         <span class="telegram">
@@ -183,6 +187,7 @@
                         </span>
                       </a>
                     </li>
+                    <!-- Ins -->
                     <li class="menu-item">
                       <a href="">
                         <span class="instagram">
@@ -213,6 +218,7 @@
                         </span>
                       </a>
                     </li>
+                    <!-- 油管 -->
                     <li class="menu-item">
                       <a href="">
                         <span class="youtube">
@@ -247,7 +253,7 @@
                 </nav>
               </div>
             </div>
-
+            <!-- 浅色/深色主题切换图标 -->
             <div
               class="bloglo-header-widget__darkmode bloglo-header-widget bloglo-all"
             >
@@ -261,7 +267,7 @@
                 </label>
               </div>
             </div>
-
+            <!-- 搜索图标 -->
             <div
               class="bloglo-header-widget__search bloglo-header-widget bloglo-all"
             >
@@ -349,16 +355,15 @@
                 </div>
               </div>
             </div>
+            <!-- 登录按钮 -->
             <div
               class="bloglo-header-widget__button bloglo-header-widget bloglo-hide-mobile-tablet"
             >
               <div class="bloglo-widget-wrapper">
                 <a
-                  href="#"
-                  class="btn-small bloglo-btn"
+                  class="btn-small bloglo-btn login-btn"
                   target="_self"
-                  role="button"
-                  ><span>订阅</span></a
+                  ><span>登录</span></a
                 >
               </div>
             </div>
@@ -375,4 +380,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.site-header {
+  width: 100%;
+  height: 8rem;
+  clear: both;
+  position: relative;
+}
+</style>
