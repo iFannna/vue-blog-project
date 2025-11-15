@@ -363,6 +363,7 @@
                 <a
                   class="btn-small bloglo-btn login-btn"
                   target="_self"
+                  href="/login"
                   ><span>登录</span></a
                 >
               </div>

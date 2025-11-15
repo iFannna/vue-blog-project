@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { loginApi } from "@/api/login";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
@@ -19,7 +19,7 @@ const doLogin = async () => {
     if (result.code) {
       ElMessage.success("登录成功");
       localStorage.setItem("loginUser", JSON.stringify(result.data));
-      router.push("/index");
+      router.push("/");
     } else {
       ElMessage.error(result.msg);
     }
@@ -50,12 +50,38 @@ const goToRegister = () => {
 
 // 返回首页
 const goToHome = () => {
-  router.push("/home");
+  router.push("/");
 };
+
+// 初始化主题（确保与现有系统同步）
+onMounted(() => {
+  const darkmode = localStorage.getItem("darkmode");
+  if (darkmode === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+});
 </script>
 
 <template>
+  <div class="login-page-wrapper">
+    <!-- 主题切换按钮 - 使用与主页相同的结构 -->
+    <div class="login-theme-toggle">
+      <div class="bloglo-header-widget__darkmode">
+        <div class="bloglo-widget-wrapper">
+          <label class="bloglo-darkmode" for="login-darkswitch" tabindex="0">
+            <input type="checkbox" id="login-darkswitch" class="active" />
+            <div class="bloglo-darkmode-toogle"></div>
+          </label>
+        </div>
+      </div>
+    </div>
 
+    <!-- 返回首页按钮 -->
+    <button class="back-home-btn" @click="goToHome">
+      <i class="fas fa-arrow-left"></i> 返回首页
+    </button>
     
     <div class="login-card">
       <div class="login-header">
@@ -138,112 +164,183 @@ const goToHome = () => {
         </div>
       </form>
     </div>
+  </div>
 </template>
 
 <style scoped>
-/* 登录卡片 */
+/* ==================== 登录页面容器 ==================== */
+.login-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+/* 深色模式背景 */
+[data-theme="dark"] .login-page-wrapper {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+/* ==================== 主题切换按钮 ==================== */
+.login-theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+/* ==================== 返回首页按钮 ==================== */
+.back-home-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 999;
+}
+
+.back-home-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ==================== 登录卡片 ==================== */
 .login-card {
   background: #fff;
   border-radius: 20px;
-  padding: 30px 50px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 40px 50px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   width: 100%;
   max-width: 450px;
+  transition: all 0.3s ease;
+  z-index: 1;
 }
 
-/* 卡片头部 */
+/* 深色模式卡片 */
+[data-theme="dark"] .login-card {
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+/* ==================== 卡片头部 ==================== */
 .login-header {
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .login-title {
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: 700;
   color: #333;
   margin-bottom: 10px;
   margin-top: 0;
+  transition: color 0.3s ease;
 }
+
+[data-theme="dark"] .login-title {
+  color: #ffffff;
+}
+
 .login-subtitle {
   color: #666;
   font-size: 14px;
   margin: 0;
+  transition: color 0.3s ease;
 }
 
-/* 表单组 */
-.form-group {
-  margin-bottom: 10px;
+[data-theme="dark"] .login-subtitle {
+  color: rgba(255, 255, 255, 0.7);
 }
+
+/* ==================== 表单组 ==================== */
+.form-group {
+  margin-bottom: 20px;
+}
+
 .form-label {
   display: block;
   margin-bottom: 8px;
   color: #333;
   font-weight: 600;
   font-size: 14px;
+  transition: color 0.3s ease;
 }
 
-/* 自定义输入框*/
+[data-theme="dark"] .form-label {
+  color: #ffffff;
+}
+
+/* ==================== 自定义输入框 ==================== */
 .custom-input-wrapper {
   position: relative;
   width: 100%;
 }
+
 .custom-input {
   width: 100%;
-  padding: 15px;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  font-size: 16px;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 15px;
   transition: all 0.3s ease;
   box-sizing: border-box;
   outline: none;
-  appearance: none;
-  -webkit-appearance: none;
-  background: transparent;
+  background: #fff;
+  color: #333;
 }
-.custom-input::-webkit-contacts-auto-fill-button,
-.custom-input::-webkit-credentials-auto-fill-button {
-  display: none !important;
-  visibility: hidden;
-  pointer-events: none;
-  position: absolute;
-  right: 0;
-  height: 0;
-  width: 0;
+
+[data-theme="dark"] .custom-input {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
 }
-.custom-input[type="password"],
-.custom-input[type="text"] {
-  background-image: none !important;
-  -webkit-appearance: none !important;
-  appearance: none !important;
-  padding-right: 40px !important;
+
+.custom-input::placeholder {
+  color: #999;
 }
-.custom-input::-webkit-credentials-auto-fill-button,
-.custom-input::-webkit-contacts-auto-fill-button,
-.custom-input::-webkit-inner-spin-button,
-.custom-input::-webkit-outer-spin-button {
-  display: none !important;
-  visibility: hidden !important;
-  width: 0 !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
+
+[data-theme="dark"] .custom-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
-.custom-input::-ms-reveal,
-.custom-input::-ms-clear {
-  display: none !important;
-  visibility: hidden !important;
-}
+
 .custom-input:focus {
   border-color: #7289da;
-  box-shadow: 0 0 0 2px rgba(114, 137, 218, 0.2);
+  box-shadow: 0 0 0 3px rgba(114, 137, 218, 0.1);
 }
+
+[data-theme="dark"] .custom-input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
 /* 密码输入框 */
 .password-input {
   position: relative;
 }
+
+.password-input .custom-input {
+  padding-right: 45px;
+}
+
 .toggle-password {
   position: absolute;
-  right: 12px;
+  right: 14px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
@@ -252,63 +349,116 @@ const goToHome = () => {
   cursor: pointer;
   font-size: 16px;
   padding: 0;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.3s ease;
 }
 
-/* 记住我与忘记密码 */
+[data-theme="dark"] .toggle-password {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.toggle-password:hover {
+  color: #7289da;
+}
+
+[data-theme="dark"] .toggle-password:hover {
+  color: #667eea;
+}
+
+/* ==================== 记住我与忘记密码 ==================== */
 .remember-forgot {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-size: 14px;
 }
+
 .remember-me {
   display: flex;
   align-items: center;
   gap: 6px;
   color: #666;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
+
+[data-theme="dark"] .remember-me {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.remember-me input[type="checkbox"] {
+  cursor: pointer;
+}
+
 .forgot-password {
   color: #7289da;
   text-decoration: none;
-}
-.forgot-password:hover {
-  text-decoration: underline;
+  transition: all 0.3s ease;
+  font-weight: 500;
 }
 
-/* 登录按钮 */
+[data-theme="dark"] .forgot-password {
+  color: #667eea;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+  color: #5a6fc7;
+}
+
+/* ==================== 登录按钮 ==================== */
 .login-btn {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   background: linear-gradient(135deg, #7289da, #9b6cdc);
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(114, 137, 218, 0.3);
 }
+
 .login-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 15px rgba(114, 137, 218, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(114, 137, 218, 0.4);
   background: linear-gradient(135deg, #677acd, #8c5bc7);
 }
 
-/* 分割线 */
+.login-btn:active {
+  transform: translateY(0);
+}
+
+[data-theme="dark"] .login-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+[data-theme="dark"] .login-btn:hover {
+  background: linear-gradient(135deg, #5568d3, #6a3f8f);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+/* ==================== 分割线 ==================== */
 .divider {
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin: 25px 0 20px;
   position: relative;
   color: #999;
   font-size: 13px;
 }
+
+[data-theme="dark"] .divider {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .divider:before {
   content: '';
   position: absolute;
@@ -316,59 +466,144 @@ const goToHome = () => {
   left: 0;
   right: 0;
   height: 1px;
-  background: #eee;
+  background: #e0e0e0;
   z-index: 1;
 }
+
+[data-theme="dark"] .divider:before {
+  background: rgba(255, 255, 255, 0.15);
+}
+
 .divider span {
   background: #fff;
-  padding: 0 15px;
   position: relative;
   z-index: 2;
 }
 
-/* 社交登录按钮 */
+[data-theme="dark"] .divider span {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ==================== 社交登录按钮 ==================== */
 .social-login {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-bottom: 10px;
+  gap: 12px;
+  margin-bottom: 20px;
 }
+
 .social-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
   background: #fff;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   font-size: 14px;
+  font-weight: 500;
 }
+
+[data-theme="dark"] .social-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
 .social-btn:hover {
   border-color: #7289da;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
+[data-theme="dark"] .social-btn:hover {
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
 .social-btn.wechat {
   color: #07c160;
 }
+
+[data-theme="dark"] .social-btn.wechat {
+  color: #09d569;
+}
+
 .social-btn.qq {
   color: #12b7f5;
 }
 
-/* 注册链接 */
+[data-theme="dark"] .social-btn.qq {
+  color: #1ac0ff;
+}
+
+/* ==================== 注册链接 ==================== */
 .register-link {
   text-align: center;
   color: #666;
   font-size: 14px;
+  transition: color 0.3s ease;
 }
+
+[data-theme="dark"] .register-link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .register-link a {
   color: #7289da;
   text-decoration: none;
   font-weight: 600;
+  transition: color 0.3s ease;
 }
+
+[data-theme="dark"] .register-link a {
+  color: #667eea;
+}
+
 .register-link a:hover {
   text-decoration: underline;
+  color: #5a6fc7;
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 30px 25px;
+    max-width: 100%;
+  }
+  
+  .login-title {
+    font-size: 24px;
+  }
+  
+  .login-theme-toggle {
+    top: 15px;
+    right: 15px;
+  }
+  
+  .back-home-btn {
+    top: 15px;
+    left: 15px;
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-page-wrapper {
+    padding: 15px;
+  }
+  
+  .login-card {
+    padding: 25px 20px;
+    border-radius: 16px;
+  }
+  
+  .social-login {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
