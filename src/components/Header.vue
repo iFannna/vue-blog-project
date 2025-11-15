@@ -37,11 +37,18 @@
               role="navigation"
             >
               <ul class="menu">
+                
                 <li
                   id="menu-item-815"
                   class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-815"
                 >
                   <a href="" aria-current="page"><span>主页</span></a>
+                </li>
+                <li
+                  id="menu-item-816"
+                  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-816"
+                >
+                  <a href="/login"><span>登录</span></a>
                 </li>
                 <li
                   id="menu-item-816"
@@ -262,7 +269,15 @@
                   class="bloglo-darkmode"
                   for="lightdarkswitch"
                   tabindex="0"
-                  ><input type="checkbox" id="lightdarkswitch" class="active" />
+                  @click="toggleTheme"
+                >
+                  <input
+                    type="checkbox"
+                    id="lightdarkswitch"
+                    :checked="isDarkMode"
+                    @change="toggleTheme"
+                    :class="{ active: isDarkMode }"
+                  />
                   <div class="bloglo-darkmode-toogle"></div>
                 </label>
               </div>
@@ -375,10 +390,35 @@
   </header>
 </template>
 
-<script>
-export default {
-  name: "HeaderComponent",
+<script setup>
+import { ref, onMounted } from "vue";
+
+const isDarkMode = ref(false);
+
+// 主题切换函数
+const toggleTheme = () => {
+  isDarkMode.value = !isDarkMode.value;
+
+  if (isDarkMode.value) {
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("darkmode", "dark");
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("darkmode", "light");
+  }
 };
+
+// 初始化主题
+onMounted(() => {
+  const darkmode = localStorage.getItem("darkmode");
+  isDarkMode.value = darkmode === "dark";
+
+  if (isDarkMode.value) {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+});
 </script>
 
 <style scoped>

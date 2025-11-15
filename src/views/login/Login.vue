@@ -12,6 +12,22 @@ let loginForm = ref({
 const showPassword = ref(false);
 const router = useRouter();
 
+// 主题切换
+const isDarkMode = ref(false);
+
+// 主题切换函数
+const toggleTheme = () => {
+  isDarkMode.value = !isDarkMode.value;
+  
+  if (isDarkMode.value) {
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("darkmode", "dark");
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("darkmode", "light");
+  }
+};
+
 // 登录逻辑
 const doLogin = async () => {
   try {
@@ -53,10 +69,12 @@ const goToHome = () => {
   router.push("/");
 };
 
-// 初始化主题（确保与现有系统同步）
+// 初始化主题
 onMounted(() => {
   const darkmode = localStorage.getItem("darkmode");
-  if (darkmode === "dark") {
+  isDarkMode.value = darkmode === "dark";
+  
+  if (isDarkMode.value) {
     document.documentElement.setAttribute("data-theme", "dark");
   } else {
     document.documentElement.setAttribute("data-theme", "light");
@@ -66,21 +84,34 @@ onMounted(() => {
 
 <template>
   <div class="login-page-wrapper">
-    <!-- 主题切换按钮 - 使用与主页相同的结构 -->
+    <!-- 主题切换按钮 - 使用与主页完全相同的结构和样式 -->
     <div class="login-theme-toggle">
-      <div class="bloglo-header-widget__darkmode">
-        <div class="bloglo-widget-wrapper">
-          <label class="bloglo-darkmode" for="login-darkswitch" tabindex="0">
-            <input type="checkbox" id="login-darkswitch" class="active" />
-            <div class="bloglo-darkmode-toogle"></div>
-          </label>
+      <div class="bloglo-header-widgets">
+        <div class="bloglo-header-widget bloglo-header-widget__darkmode">
+          <div class="bloglo-widget-wrapper">
+            <label 
+              class="bloglo-darkmode" 
+              for="login-darkswitch" 
+              tabindex="0"
+              @click="toggleTheme"
+            >
+              <input 
+                type="checkbox" 
+                id="login-darkswitch" 
+                :checked="isDarkMode"
+                @change="toggleTheme"
+                :class="{ 'active': isDarkMode }"
+              />
+              <div class="bloglo-darkmode-toogle"></div>
+            </label>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- 返回首页按钮 -->
     <button class="back-home-btn" @click="goToHome">
-      <i class="fas fa-arrow-left"></i> 返回首页
+      返回首页
     </button>
     
     <div class="login-card">
@@ -185,12 +216,73 @@ onMounted(() => {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
-/* ==================== 主题切换按钮 ==================== */
+/* ==================== 主题切换按钮容器 ==================== */
 .login-theme-toggle {
   position: fixed;
   top: 20px;
   right: 20px;
   z-index: 1000;
+}
+
+/* 主题切换按钮圆形容器样式 - 缩小尺寸 */
+.login-theme-toggle .bloglo-header-widget {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  padding: 0;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  max-height: none;
+}
+
+.login-theme-toggle .bloglo-header-widget:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .login-theme-toggle .bloglo-header-widget {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .login-theme-toggle .bloglo-header-widget:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* 确保内部元素居中 */
+.login-theme-toggle .bloglo-widget-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.login-theme-toggle .bloglo-darkmode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* 调整主题切换图标大小 - 月亮图标 */
+.login-theme-toggle .bloglo-darkmode-toogle {
+  --size: 1.6rem !important;
+}
+
+/* 深色模式 - 太阳图标（保持原大小或稍微调整） */
+[data-theme="dark"] .login-theme-toggle .bloglo-darkmode-toogle {
+  --size: 1.7rem !important;  /* 调大一点，让太阳更明显 */
+  transform: scale(0.75);      /* 保持原有的缩放比例 */
 }
 
 /* ==================== 返回首页按钮 ==================== */
@@ -202,7 +294,7 @@ onMounted(() => {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #fff;
-  padding: 10px 20px;
+  padding: 13px 20px;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -217,6 +309,11 @@ onMounted(() => {
   background: rgba(255, 255, 255, 0.35);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .back-home-btn {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* ==================== 登录卡片 ==================== */
@@ -584,10 +681,24 @@ onMounted(() => {
     right: 15px;
   }
   
+  .login-theme-toggle .bloglo-header-widget {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .login-theme-toggle .bloglo-darkmode-toogle {
+    --size: 1.5rem !important;
+  }
+  
+  [data-theme="dark"] .login-theme-toggle .bloglo-darkmode-toogle {
+    --size: 1.4rem !important;  /* 平板端太阳图标 */
+    transform: scale(0.75);
+  }
+  
   .back-home-btn {
     top: 15px;
     left: 15px;
-    padding: 8px 16px;
+    padding: 11px 14px;
     font-size: 13px;
   }
 }
@@ -604,6 +715,27 @@ onMounted(() => {
   
   .social-login {
     grid-template-columns: 1fr;
+  }
+  
+  .login-theme-toggle .bloglo-header-widget {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .login-theme-toggle .bloglo-darkmode-toogle {
+    --size: 1.4rem !important;
+  }
+  
+  [data-theme="dark"] .login-theme-toggle .bloglo-darkmode-toogle {
+    --size: 1.4rem !important;  /* 移动端太阳图标 */
+    transform: scale(0.75);
+  }
+
+  .back-home-btn {
+    top: 15px;
+    left: 15px;
+    padding: 18px 14px;
+    font-size: 13px;
   }
 }
 </style>
