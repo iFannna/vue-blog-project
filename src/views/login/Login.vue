@@ -4,10 +4,10 @@ import { loginApi } from "@/api/login";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 
-let loginForm = ref({ 
-  account: "", 
+let loginForm = ref({
+  account: "",
   password: "",
-  rememberMe: false
+  rememberMe: false,
 });
 const showPassword = ref(false);
 const router = useRouter();
@@ -18,7 +18,7 @@ const isDarkMode = ref(false);
 // 主题切换函数
 const toggleTheme = () => {
   isDarkMode.value = !isDarkMode.value;
-  
+
   if (isDarkMode.value) {
     document.documentElement.setAttribute("data-theme", "dark");
     localStorage.setItem("darkmode", "dark");
@@ -64,16 +64,11 @@ const goToRegister = () => {
   router.push("/register");
 };
 
-// 返回首页
-const goToHome = () => {
-  router.push("/");
-};
-
 // 初始化主题
 onMounted(() => {
   const darkmode = localStorage.getItem("darkmode");
   isDarkMode.value = darkmode === "dark";
-  
+
   if (isDarkMode.value) {
     document.documentElement.setAttribute("data-theme", "dark");
   } else {
@@ -84,42 +79,42 @@ onMounted(() => {
 
 <template>
   <div class="login-page-wrapper">
-    <!-- 主题切换按钮 - 使用与主页完全相同的结构和样式 -->
-    <div class="login-theme-toggle">
-      <div class="bloglo-header-widgets">
-        <div class="bloglo-header-widget bloglo-header-widget__darkmode">
-          <div class="bloglo-widget-wrapper">
-            <label 
-              class="bloglo-darkmode" 
-              for="login-darkswitch" 
-              tabindex="0"
-              @click="toggleTheme"
-            >
-              <input 
-                type="checkbox" 
-                id="login-darkswitch" 
-                :checked="isDarkMode"
-                @change="toggleTheme"
-                :class="{ 'active': isDarkMode }"
-              />
-              <div class="bloglo-darkmode-toogle"></div>
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 返回首页按钮 -->
-    <button class="back-home-btn" @click="goToHome">
-      返回首页
-    </button>
-    
     <div class="login-card">
       <div class="login-header">
-        <h1 class="login-title">欢迎回来</h1>
+        <!-- 标题和主题切换图标容器 -->
+        <div class="title-with-theme">
+          <!-- 主题切换图标 -->
+          <div class="bloglo-header-widgets">
+            <div class="bloglo-header-widget bloglo-header-widget__darkmode">
+              
+              <div class="bloglo-darkmode-container">
+                <div class="bloglo-widget-wrapper">
+                <label
+                  class="bloglo-darkmode"
+                  for="login-darkswitch"
+                  tabindex="0"
+                  @click="toggleTheme"
+                >
+                  <input
+                    type="checkbox"
+                    id="login-darkswitch"
+                    :checked="isDarkMode"
+                    @change="toggleTheme"
+                    :class="{ active: isDarkMode }"
+                  />
+                  <div class="bloglo-darkmode-toogle"></div>
+                </label>
+              </div>
+              </div>
+            </div>
+          </div>
+          
+          <h1 class="login-title">欢迎回来</h1>
+        </div>
+        
         <p class="login-subtitle">登录您的账户，继续创意之旅</p>
       </div>
-      
+
       <form @submit.prevent="doLogin">
         <!-- 邮箱/用户名输入框 -->
         <div class="form-group">
@@ -131,10 +126,10 @@ onMounted(() => {
               placeholder="请输入邮箱或用户名"
               class="custom-input"
               required
-            >
+            />
           </div>
         </div>
-        
+
         <!-- 密码输入框 -->
         <div class="form-group">
           <label class="form-label">密码</label>
@@ -145,51 +140,50 @@ onMounted(() => {
               placeholder="请输入密码"
               class="custom-input"
               required
-            >
-            <button 
-              type="button" 
-              class="toggle-password" 
+            />
+            <button
+              type="button"
+              class="toggle-password"
               @click="togglePassword"
             >
               <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
             </button>
           </div>
         </div>
-        
+
         <div class="remember-forgot">
           <label class="remember-me">
-            <input 
-              type="checkbox" 
-              v-model="loginForm.rememberMe"
-            > 记住我
+            <input type="checkbox" v-model="loginForm.rememberMe" /> 记住我
           </label>
-          <a href="#" class="forgot-password" @click.prevent="forgotPassword">忘记密码？</a>
+          <a href="#" class="forgot-password" @click.prevent="forgotPassword"
+            >忘记密码？</a
+          >
         </div>
-        
+
         <!-- 登录按钮 -->
         <button type="submit" class="login-btn">登录</button>
-        
+
         <div class="divider">
           <span>或使用以下方式登录</span>
         </div>
-        
+
         <div class="social-login">
-          <button 
-            type="button" 
+          <button
+            type="button"
             class="social-btn wechat"
             @click="socialLogin('微信')"
           >
             <i class="fab fa-weixin"></i> 微信
           </button>
-          <button 
-            type="button" 
+          <button
+            type="button"
             class="social-btn qq"
             @click="socialLogin('QQ')"
           >
             <i class="fab fa-qq"></i> QQ
           </button>
         </div>
-        
+
         <div class="register-link">
           还没有账户？ <a href="#" @click.prevent="goToRegister">立即注册</a>
         </div>
@@ -199,6 +193,9 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.bloglo-darkmode-container{
+  margin-top: 8px;
+}
 /* ==================== 登录页面容器 ==================== */
 .login-page-wrapper {
   min-height: 100vh;
@@ -208,7 +205,6 @@ onMounted(() => {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 20px;
   position: relative;
-  transition: background 0.3s ease;
 }
 
 /* 深色模式背景 */
@@ -216,104 +212,6 @@ onMounted(() => {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
-/* ==================== 主题切换按钮容器 ==================== */
-.login-theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-}
-
-/* 主题切换按钮圆形容器样式 */
-.login-theme-toggle .bloglo-header-widget {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  padding: 0;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  max-height: none;
-}
-
-.login-theme-toggle .bloglo-header-widget:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-[data-theme="dark"] .login-theme-toggle .bloglo-header-widget {
-  background: rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-[data-theme="dark"] .login-theme-toggle .bloglo-header-widget:hover {
-  background: rgba(0, 0, 0, 0.4);
-}
-
-/* 确保内部元素居中 */
-.login-theme-toggle .bloglo-widget-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-.login-theme-toggle .bloglo-darkmode {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  cursor: pointer;
-}
-
-/* 调整主题切换图标大小 */
-.login-theme-toggle .bloglo-darkmode-toogle {
-  --size: 1.6rem !important;
-}
-
-[data-theme="dark"] .login-theme-toggle .bloglo-darkmode-toogle {
-  --size: 1.4rem !important;
-  transform: scale(0.75);
-}
-
-/* ==================== 返回首页按钮 ==================== */
-.back-home-btn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  z-index: 999;
-}
-
-.back-home-btn:hover {
-  background: rgba(255, 255, 255, 0.35);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-[data-theme="dark"] .back-home-btn {
-  background: rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.2);
-}
 
 /* ==================== 登录卡片 ==================== */
 .login-card {
@@ -338,15 +236,23 @@ onMounted(() => {
 /* ==================== 卡片头部 ==================== */
 .login-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+/* 标题和主题切换图标容器 */
+.title-with-theme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* 图标和标题之间的间距 */
+  margin-bottom: 10px;
 }
 
 .login-title {
   font-size: 28px;
   font-weight: 700;
   color: #333;
-  margin-bottom: 10px;
-  margin-top: 0;
+  margin: 0;
   transition: color 0.3s ease;
 }
 
@@ -517,7 +423,7 @@ onMounted(() => {
 }
 
 .remember-me input[type="checkbox"]:checked::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 4px;
   top: 1px;
@@ -609,7 +515,7 @@ onMounted(() => {
 }
 
 .divider:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 0;
@@ -718,184 +624,30 @@ onMounted(() => {
 }
 
 /* ==================== 响应式设计 ==================== */
+
 @media (max-width: 768px) {
   .login-card {
     padding: 30px 25px;
     max-width: 100%;
   }
-  
+
   .login-title {
     font-size: 24px;
   }
-  
-  .login-theme-toggle {
-    top: 15px;
-    right: 15px;
-  }
-  
-  .login-theme-toggle .bloglo-header-widget {
-    width: 38px;
-    height: 38px;
-  }
-  
-  .login-theme-toggle .bloglo-darkmode-toogle {
-    --size: 1.5rem !important;
-  }
-  
-  [data-theme="dark"] .login-theme-toggle .bloglo-darkmode-toogle {
-    --size: 1.3rem !important;
-    transform: scale(0.75);
-  }
-  
-  .back-home-btn {
-    top: 15px;
-    left: 15px;
-    padding: 10px 14px;
-    font-size: 13px;
-  }
+
 }
 
 @media (max-width: 480px) {
-  .login-page-wrapper {
-    padding: 15px;
-  }
-  
+
   .login-card {
     padding: 25px 20px;
     border-radius: 16px;
   }
-  
+
   .social-login {
     grid-template-columns: 1fr;
   }
-  
-  .login-theme-toggle .bloglo-header-widget {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .login-theme-toggle .bloglo-darkmode-toogle {
-    --size: 1.4rem !important;
-  }
-  
-  [data-theme="dark"] .login-theme-toggle .bloglo-darkmode-toogle {
-    --size: 1.2rem !important;
-    transform: scale(0.75);
-  }
-  
-  .back-home-btn {
-    padding: 7px 14px;
-    font-size: 12px;
-  }
+
 }
 
-/* ==================== 小高度屏幕适配 ==================== */
-@media (max-height: 600px) {
-  .login-page-wrapper {
-    padding: 75px 20px 20px;
-    align-items: flex-start;
-  }
-  
-  .login-card {
-    margin-top: 0;
-    padding: 25px 40px;
-  }
-  
-  .login-header {
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .divider {
-    margin: 15px 0 15px;
-  }
-  
-  .social-login {
-    margin-bottom: 15px;
-  }
-}
-
-@media (max-height: 500px) {
-  .login-page-wrapper {
-    padding: 70px 15px 15px;
-    min-height: auto;
-  }
-  
-  .login-card {
-    padding: 20px 35px;
-  }
-  
-  .login-title {
-    font-size: 22px;
-    margin-bottom: 5px;
-  }
-  
-  .login-subtitle {
-    font-size: 12px;
-  }
-  
-  .login-header {
-    margin-bottom: 15px;
-  }
-  
-  .form-group {
-    margin-bottom: 12px;
-  }
-  
-  .custom-input {
-    padding: 12px 14px;
-  }
-  
-  .remember-forgot {
-    margin-bottom: 15px;
-  }
-  
-  .login-btn {
-    padding: 12px;
-  }
-  
-  .divider,
-  .social-login {
-    display: none;
-  }
-  
-  .register-link {
-    margin-top: 15px;
-  }
-  
-  .back-home-btn {
-    top: 10px;
-    left: 10px;
-    padding: 6px 12px;
-    font-size: 11px;
-  }
-  
-  .login-theme-toggle {
-    top: 10px;
-    right: 10px;
-  }
-  
-  .login-theme-toggle .bloglo-header-widget {
-    width: 34px;
-    height: 34px;
-  }
-}
-
-@media (max-height: 450px) and (orientation: landscape) {
-  .login-page-wrapper {
-    padding: 60px 20px 15px;
-  }
-  
-  .login-card {
-    max-width: 600px;
-    padding: 15px 30px;
-  }
-  
-  .social-login {
-    display: grid;
-  }
-}
 </style>
