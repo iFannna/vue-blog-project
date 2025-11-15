@@ -201,6 +201,20 @@ onMounted(() => {
 .bloglo-darkmode-container{
   margin-top: 6px;
 }
+/* 调整主题切换图标大小 */
+.bloglo-darkmode {
+  transform: scale(1.5); /* 放大1.2倍,可以根据需要调整 */
+}
+/* 浅色模式 - 月亮图标 */
+.bloglo-darkmode-toogle {
+  color: #a5b2ed !important; /* 紫蓝色 */
+}
+
+/* 深色模式 - 太阳图标 */
+[data-theme="dark"] .bloglo-darkmode-toogle {
+  color: #fc6668 !important; /* 橙色 */
+}
+
 /* ==================== 登录页面容器 ==================== */
 .login-page-wrapper {
   min-height: 100vh;
