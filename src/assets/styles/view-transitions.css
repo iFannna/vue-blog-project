@@ -1,0 +1,33 @@
+/* ==================== View Transitions API 圆形扩散动画 ==================== */
+
+/* 禁用默认的交叉淡入淡出动画 */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+/* 确保新旧内容不会混合 */
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+
+/* 旧内容（当前主题）保持在原位 */
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+/* 新内容（新主题）在上层，将被裁剪成圆形 */
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* 禁用默认的过渡组动画 */
+::view-transition-group(root) {
+  animation-duration: 0s;
+}
+
+/* 确保过渡期间内容可见 */
+::view-transition-image-pair(root) {
+  isolation: auto;
+}

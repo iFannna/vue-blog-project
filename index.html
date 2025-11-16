@@ -54,6 +54,28 @@
       }
     </style>
 
+    <!-- ⭐ 添加这段 View Transitions 样式 -->
+    <style>
+        /* View Transitions API 圆形扩散动画 */
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+          animation: none;
+          mix-blend-mode: normal;
+        }
+  
+        ::view-transition-old(root) {
+          z-index: 1;
+        }
+  
+        ::view-transition-new(root) {
+          z-index: 9999;
+        }
+  
+        ::view-transition-group(root) {
+          animation-duration: 0s;
+        }
+      </style>
+
     <!-- font-awesome图标库 -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"

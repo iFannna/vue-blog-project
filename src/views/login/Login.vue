@@ -15,8 +15,63 @@ const router = useRouter();
 // 主题切换
 const isDarkMode = ref(false);
 
-// 主题切换函数
-const toggleTheme = () => {
+// 主题切换函数 - 真正的圆形扩散动画
+let themeToggleTimer = null;
+const toggleTheme = async (event) => {
+  if (themeToggleTimer) return;
+  
+  event.preventDefault();
+  event.stopPropagation();
+  
+  // 检查浏览器是否支持 View Transitions API
+  if (!document.startViewTransition) {
+    applyThemeChange();
+    return;
+  }
+
+  // 获取点击位置
+  const x = event.clientX;
+  const y = event.clientY;
+
+  // 计算到屏幕四个角的距离，取最大值作为扩散半径
+  const endRadius = Math.hypot(
+    Math.max(x, window.innerWidth - x),
+    Math.max(y, window.innerHeight - y)
+  );
+
+  // 启动 View Transition
+  const transition = document.startViewTransition(async () => {
+    applyThemeChange();
+  });
+
+  // 等待过渡准备就绪，然后自定义动画
+  transition.ready.then(() => {
+    // 为新页面添加圆形扩散动画
+    const clipPath = [
+      `circle(0px at ${x}px ${y}px)`,
+      `circle(${endRadius}px at ${x}px ${y}px)`
+    ];
+
+    document.documentElement.animate(
+      {
+        clipPath: clipPath
+      },
+      {
+        duration: 800,
+        easing: 'ease-in-out',
+        pseudoElement: '::view-transition-new(root)'
+      }
+    );
+  });
+  
+  // 防抖处理
+  themeToggleTimer = setTimeout(() => {
+    themeToggleTimer = null;
+  }, 800);
+};
+
+// 应用主题变更
+const applyThemeChange = () => {
   isDarkMode.value = !isDarkMode.value;
 
   if (isDarkMode.value) {
@@ -28,8 +83,15 @@ const toggleTheme = () => {
   }
 };
 
-// 登录逻辑
+// 登录逻辑 - 添加防抖
+let loginTimer = null;
 const doLogin = async () => {
+  if (loginTimer) return;
+  
+  loginTimer = setTimeout(() => {
+    loginTimer = null;
+  }, 1000);
+  
   try {
     const result = await loginApi(loginForm.value);
     if (result.code) {
@@ -104,7 +166,6 @@ onMounted(() => {
                     type="checkbox"
                     id="login-darkswitch"
                     :checked="isDarkMode"
-                    @change="toggleTheme"
                     :class="{ active: isDarkMode }"
                   />
                   <div class="bloglo-darkmode-toogle"></div>
@@ -198,21 +259,43 @@ onMounted(() => {
 </template>
 
 <style scoped>
+
 .bloglo-darkmode-container{
   margin-top: 6px;
 }
 /* 调整主题切换图标大小 */
 .bloglo-darkmode {
-  transform: scale(1.5); /* 放大1.2倍,可以根据需要调整 */
+  transform: scale(1.5);
+  cursor: pointer;
+  /* 增加点击区域 */
+  padding: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/* 隐藏原生 checkbox */
+.bloglo-darkmode input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
 /* 浅色模式 - 月亮图标 */
 .bloglo-darkmode-toogle {
-  color: #a5b2ed !important; /* 紫蓝色 */
+  color: #a5b2ed !important;
+  transition: transform 0.3s ease;
+}
+
+.bloglo-darkmode:active .bloglo-darkmode-toogle {
+  transform: scale(0.9);
 }
 
 /* 深色模式 - 太阳图标 */
 [data-theme="dark"] .bloglo-darkmode-toogle {
-  color: #fc6668 !important; /* 橙色 */
+  color: #fc6668 !important;
 }
 
 /* ==================== 登录页面容器 ==================== */
@@ -240,16 +323,15 @@ onMounted(() => {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   width: 100%;
   max-width: 450px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
   z-index: 1;
   position: relative;
 }
 
-/* 深色模式卡片 */
+/* 深色模式卡片 - 优化后的版本 */
 [data-theme="dark"] .login-card {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
 }
 
 /* ==================== 卡片头部 ==================== */
@@ -263,7 +345,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px; /* 图标和标题之间的间距 */
+  gap: 10px;
   margin-bottom: 10px;
 }
 
@@ -320,11 +402,12 @@ onMounted(() => {
   border: 2px solid #e0e0e0;
   border-radius: 12px;
   font-size: 15px;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box;
   outline: none;
   background: #fff;
   color: #333;
+  -webkit-tap-highlight-color: transparent;
 }
 
 [data-theme="dark"] .custom-input {
@@ -370,13 +453,14 @@ onMounted(() => {
   color: #999;
   cursor: pointer;
   font-size: 16px;
-  padding: 0;
-  width: 24px;
-  height: 24px;
+  padding: 8px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 [data-theme="dark"] .toggle-password {
@@ -389,6 +473,15 @@ onMounted(() => {
 
 [data-theme="dark"] .toggle-password:hover {
   color: #667eea;
+}
+
+@media (hover: none) {
+  .toggle-password:hover {
+    color: #999;
+  }
+  [data-theme="dark"] .toggle-password:hover {
+    color: rgba(255, 255, 255, 0.5);
+  }
 }
 
 /* ==================== 记住我与忘记密码 ==================== */
@@ -407,13 +500,13 @@ onMounted(() => {
   color: #666;
   cursor: pointer;
   transition: color 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 [data-theme="dark"] .remember-me {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* 统一浅色和深色模式的 checkbox 样式 */
 .remember-me input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
@@ -427,9 +520,10 @@ onMounted(() => {
   background-color: #fff;
   cursor: pointer;
   position: relative;
-  transition: all 0.3s ease;
+  transition: background 0.2s ease, border-color 0.2s ease;
   flex-shrink: 0;
   margin: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .remember-me input[type="checkbox"]:hover {
@@ -453,7 +547,6 @@ onMounted(() => {
   transform: rotate(45deg);
 }
 
-/* 深色主题下的 checkbox 调整 */
 [data-theme="dark"] .remember-me input[type="checkbox"] {
   border-color: rgba(255, 255, 255, 0.4);
   background-color: rgba(255, 255, 255, 0.1);
@@ -472,8 +565,9 @@ onMounted(() => {
 .forgot-password {
   color: #7289da;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 0.2s ease;
   font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
 }
 
 [data-theme="dark"] .forgot-password {
@@ -496,14 +590,15 @@ onMounted(() => {
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 15px rgba(114, 137, 218, 0.3);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .login-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(114, 137, 218, 0.4);
-  background: linear-gradient(135deg, #677acd, #8c5bc7);
 }
 
 .login-btn:active {
@@ -516,8 +611,13 @@ onMounted(() => {
 }
 
 [data-theme="dark"] .login-btn:hover {
-  background: linear-gradient(135deg, #5568d3, #6a3f8f);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+@media (hover: none) {
+  .login-btn:hover {
+    transform: none;
+  }
 }
 
 /* ==================== 分割线 ==================== */
@@ -552,10 +652,11 @@ onMounted(() => {
   background: #fff;
   position: relative;
   z-index: 2;
+  padding: 0 10px;
 }
 
 [data-theme="dark"] .divider span {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 /* ==================== 社交登录按钮 ==================== */
@@ -576,9 +677,11 @@ onMounted(() => {
   border-radius: 12px;
   background: #fff;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   font-size: 14px;
   font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 [data-theme="dark"] .social-btn {
@@ -596,6 +699,12 @@ onMounted(() => {
 [data-theme="dark"] .social-btn:hover {
   border-color: #667eea;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+@media (hover: none) {
+  .social-btn:hover {
+    transform: none;
+  }
 }
 
 .social-btn.wechat {
@@ -630,7 +739,8 @@ onMounted(() => {
   color: #7289da;
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 [data-theme="dark"] .register-link a {
@@ -653,7 +763,14 @@ onMounted(() => {
   .login-title {
     font-size: 24px;
   }
-
+  
+  .login-page-wrapper {
+    background: #667eea;
+  }
+  
+  [data-theme="dark"] .login-page-wrapper {
+    background: #1a1a2e;
+  }
 }
 
 @media (max-width: 480px) {
@@ -667,6 +784,14 @@ onMounted(() => {
     grid-template-columns: 1fr;
   }
 
+}
+
+@media (max-width: 768px) {
+  .login-btn,
+  .social-btn,
+  .toggle-password {
+    will-change: transform;
+  }
 }
 
 </style>
