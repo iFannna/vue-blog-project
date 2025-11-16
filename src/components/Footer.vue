@@ -201,7 +201,7 @@
                           focusable="false"
                         >
                           <path
-                            d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"
+                            d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 16.9 22 12c0-5.5-4.5-10-10-10z"
                           ></path>
                         </svg>
                         <span class="wp-block-social-link-label"
@@ -267,7 +267,7 @@
                           focusable="false"
                         >
                           <path
-                            d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"
+                            d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 3.98 4.5 3.443 1.036-0.145 2.052-0.651 2.697-1.443 0.407-0.521 0.683-1.145 0.767-1.803 0.151-1.531 0.057-3.073 0.073-4.604 0.025-5.32-0.011-10.64 0.020-15.96z"
                           />
                         </svg>
                         <span class="wp-block-social-link-label"
@@ -316,4 +316,209 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+/* ==================== 深色主题适配 ==================== */
+
+/* 页脚背景 - 使用更高优先级 */
+[data-theme="dark"] #colophon.site-footer {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  transition: background-color 0.3s ease;
+}
+
+/* 页脚内容区域背景 */
+[data-theme="dark"] #bloglo-footer {
+  background-color: transparent !important;
+}
+
+/* 页脚容器背景 */
+[data-theme="dark"] #bloglo-footer .bloglo-container {
+  background-color: transparent !important;
+}
+
+/* Widget 标题 */
+[data-theme="dark"] #colophon .widget-title,
+[data-theme="dark"] #colophon .h4.widget-title,
+[data-theme="dark"] #colophon .wp-block-heading,
+[data-theme="dark"] #colophon h6 {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* 文章标题链接 */
+[data-theme="dark"] #colophon .wp-block-latest-posts__post-title {
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] #colophon .wp-block-latest-posts__post-title:hover {
+  color: #667eea !important;
+}
+
+/* 作者和日期信息 */
+[data-theme="dark"] #colophon .wp-block-latest-posts__post-author,
+[data-theme="dark"] #colophon .wp-block-latest-posts__post-date {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* 分类列表 */
+[data-theme="dark"] #colophon .wp-block-categories-list a,
+[data-theme="dark"] #colophon .cat-item a {
+  color: rgba(255, 255, 255, 0.8) !important;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] #colophon .wp-block-categories-list a:hover,
+[data-theme="dark"] #colophon .cat-item a:hover {
+  color: #667eea !important;
+}
+
+[data-theme="dark"] #colophon .wp-block-categories-list span,
+[data-theme="dark"] #colophon .cat-item span {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* 菜单链接 */
+[data-theme="dark"] #colophon .menu a,
+[data-theme="dark"] #colophon .menu-item a {
+  color: rgba(255, 255, 255, 0.8) !important;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] #colophon .menu a:hover,
+[data-theme="dark"] #colophon .menu-item a:hover {
+  color: #667eea !important;
+}
+
+/* 联系信息文本 - 使用最高优先级覆盖内联样式 */
+[data-theme="dark"] #colophon .has-black-color.has-text-color,
+[data-theme="dark"] #colophon p.has-black-color.has-text-color {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme="dark"] #colophon .has-black-color.has-text-color strong,
+[data-theme="dark"] #colophon p.has-black-color.has-text-color strong {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* 邮箱和电话链接 */
+[data-theme="dark"] #colophon .has-black-color.has-text-color a,
+[data-theme="dark"] #colophon p.has-black-color.has-text-color a {
+  color: rgba(255, 255, 255, 0.7) !important;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] #colophon .has-black-color.has-text-color a:hover,
+[data-theme="dark"] #colophon p.has-black-color.has-text-color a:hover {
+  color: #667eea !important;
+}
+
+/* 社交媒体链接 */
+[data-theme="dark"] #colophon .wp-block-social-links .wp-block-social-link a,
+[data-theme="dark"] #colophon .wp-block-social-link-anchor {
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] #colophon .wp-block-social-links .wp-block-social-link a:hover,
+[data-theme="dark"] #colophon .wp-block-social-link-anchor:hover {
+  color: #ffffff !important;
+}
+
+/* 社交媒体图标 SVG */
+[data-theme="dark"] #colophon .wp-block-social-links svg {
+  fill: rgba(255, 255, 255, 0.9) !important;
+  transition: fill 0.3s ease;
+}
+
+[data-theme="dark"] #colophon .wp-block-social-links a:hover svg {
+  fill: #ffffff !important;
+}
+
+/* 社交媒体标签文字 */
+[data-theme="dark"] #colophon .wp-block-social-link-label {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* 版权区域 */
+[data-theme="dark"] #bloglo-copyright {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: background-color 0.3s ease;
+}
+
+/* 版权文字 */
+[data-theme="dark"] #bloglo-copyright .bloglo-copyright-widget__text,
+[data-theme="dark"] #bloglo-copyright .bloglo-copyright-widget__text span {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* 版权链接 */
+[data-theme="dark"] #bloglo-copyright .bloglo-copyright-widget__text a {
+  color: rgba(255, 255, 255, 0.8) !important;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] #bloglo-copyright .bloglo-copyright-widget__text a:hover {
+  color: #667eea !important;
+}
+
+/* Widget 容器 */
+[data-theme="dark"] #colophon .bloglo-footer-widget {
+  background-color: transparent !important;
+}
+
+/* 图片在深色模式下的优化 */
+[data-theme="dark"] #colophon .wp-block-latest-posts__featured-image img {
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+[data-theme="dark"] #colophon .wp-block-latest-posts__featured-image img:hover {
+  opacity: 1;
+}
+
+/* 分隔线 */
+[data-theme="dark"] #colophon .fw-separator {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 列表项 */
+[data-theme="dark"] #colophon .has-dates li,
+[data-theme="dark"] #colophon .has-author li {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Widget 块 */
+[data-theme="dark"] #colophon .widget_block {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* 通用段落文字 */
+[data-theme="dark"] #colophon.site-footer p {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* 通用链接 */
+[data-theme="dark"] #colophon.site-footer a:not(.wp-block-social-link-anchor) {
+  color: rgba(255, 255, 255, 0.8) !important;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] #colophon.site-footer a:not(.wp-block-social-link-anchor):hover {
+  color: #667eea !important;
+}
+
+/* 列容器背景 */
+[data-theme="dark"] #colophon .wp-block-column,
+[data-theme="dark"] #colophon .wp-block-columns {
+  background-color: transparent !important;
+}
+
+/* 列表样式 */
+[data-theme="dark"] #colophon ul {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+[data-theme="dark"] #colophon li {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+</style>
