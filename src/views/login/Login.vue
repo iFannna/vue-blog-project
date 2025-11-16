@@ -146,6 +146,36 @@ onMounted(() => {
 
 <template>
   <div class="login-page-wrapper">
+    <!-- 运动的几何图形背景 -->
+    <div class="waves-background">
+      <div class="squares">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+      </div>
+      <div class="triangles">
+        <div class="triangle"></div>
+        <div class="triangle"></div>
+        <div class="triangle"></div>
+        <div class="triangle"></div>
+        <div class="triangle"></div>
+      </div>
+      <div class="circles">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+    </div>
+    
     <div class="login-card">
       <div class="login-header">
         <!-- 标题和主题切换图标容器 -->
@@ -260,6 +290,219 @@ onMounted(() => {
 
 <style scoped>
 
+/* ==================== 运动的几何图形背景 ==================== */
+.waves-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.waves-background .circle,
+.waves-background .triangle,
+.waves-background .square {
+  position: absolute;
+  bottom: -100px;
+  width: 40px;
+  height: 40px;
+  background: #fc6668;
+  border-radius: 5px;
+  opacity: 0.15;
+  animation: rise 10s infinite ease-in;
+}
+
+[data-theme="dark"] .waves-background .circle,
+[data-theme="dark"] .waves-background .triangle,
+[data-theme="dark"] .waves-background .square {
+  background: #fc6668;
+  opacity: 0.2;
+}
+
+/* 正方形动画 */
+.waves-background .square:nth-child(1) {
+  width: 40px;
+  height: 40px;
+  left: 10%;
+  animation-duration: 8s;
+}
+
+.waves-background .square:nth-child(2) {
+  width: 20px;
+  height: 20px;
+  left: 20%;
+  animation-duration: 5s;
+  animation-delay: 1s;
+}
+
+.waves-background .square:nth-child(3) {
+  width: 50px;
+  height: 50px;
+  left: 35%;
+  animation-duration: 7s;
+  animation-delay: 2s;
+}
+
+.waves-background .square:nth-child(4) {
+  width: 80px;
+  height: 80px;
+  left: 50%;
+  animation-duration: 11s;
+  animation-delay: 0s;
+}
+
+.waves-background .square:nth-child(5) {
+  width: 35px;
+  height: 35px;
+  left: 55%;
+  animation-duration: 6s;
+  animation-delay: 1s;
+}
+
+.waves-background .square:nth-child(6) {
+  width: 45px;
+  height: 45px;
+  left: 65%;
+  animation-duration: 8s;
+  animation-delay: 3s;
+}
+
+.waves-background .square:nth-child(7) {
+  width: 90px;
+  height: 90px;
+  left: 70%;
+  animation-duration: 12s;
+  animation-delay: 2s;
+}
+
+.waves-background .square:nth-child(8) {
+  width: 25px;
+  height: 25px;
+  left: 80%;
+  animation-duration: 6s;
+  animation-delay: 2s;
+}
+
+.waves-background .square:nth-child(9) {
+  width: 15px;
+  height: 15px;
+  left: 70%;
+  animation-duration: 5s;
+  animation-delay: 1s;
+}
+
+.waves-background .square:nth-child(10) {
+  width: 90px;
+  height: 90px;
+  left: 25%;
+  animation-duration: 10s;
+  animation-delay: 4s;
+}
+
+/* 三角形样式 */
+.waves-background .triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.waves-background .triangle:nth-child(1) {
+  width: 20px;
+  height: 22px;
+  left: 50%;
+  animation-delay: 0s;
+}
+
+.waves-background .triangle:nth-child(2) {
+  width: 30px;
+  height: 28px;
+  left: 25%;
+  animation-delay: 12s;
+}
+
+.waves-background .triangle:nth-child(3) {
+  width: 30px;
+  height: 28px;
+  left: 80%;
+  animation-delay: 4s;
+}
+
+.waves-background .triangle:nth-child(4) {
+  width: 40px;
+  height: 38px;
+  left: 30%;
+  animation-delay: 18s;
+}
+
+.waves-background .triangle:nth-child(5) {
+  width: 50px;
+  height: 40px;
+  left: 70%;
+  animation-delay: 1s;
+}
+
+/* 圆形样式 */
+.waves-background .circle {
+  border-radius: 100%;
+}
+
+.waves-background .circle:nth-child(1) {
+  width: 22px;
+  height: 20px;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.waves-background .circle:nth-child(2) {
+  width: 84px;
+  height: 80px;
+  left: 45%;
+  animation-delay: 12s;
+}
+
+.waves-background .circle:nth-child(3) {
+  width: 53px;
+  height: 50px;
+  left: 90%;
+  animation-delay: 4s;
+}
+
+.waves-background .circle:nth-child(4) {
+  width: 53px;
+  height: 50px;
+  left: 60%;
+  animation-delay: 18s;
+}
+
+.waves-background .circle:nth-child(5) {
+  width: 43px;
+  height: 40px;
+  left: 90%;
+  animation-delay: 1s;
+}
+
+/* 上升动画 */
+@keyframes rise {
+  0% {
+    bottom: -100px;
+    transform: translateX(0) rotate(0deg);
+    opacity: 0.15;
+  }
+
+  50% {
+    transform: translate(100px, 0) rotate(180deg);
+    opacity: 0.15;
+  }
+
+  100% {
+    bottom: 1080px;
+    transform: translateX(-200px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+
 .bloglo-darkmode-container{
   margin-top: 6px;
 }
@@ -267,8 +510,6 @@ onMounted(() => {
 .bloglo-darkmode {
   transform: scale(1.5);
   cursor: pointer;
-  /* 增加点击区域 */
-  padding: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -283,20 +524,13 @@ onMounted(() => {
   pointer-events: none;
 }
 
-/* 浅色模式 - 月亮图标 */
-.bloglo-darkmode-toogle {
-  color: #a5b2ed !important;
-  transition: transform 0.3s ease;
-}
+
 
 .bloglo-darkmode:active .bloglo-darkmode-toogle {
   transform: scale(0.9);
 }
 
-/* 深色模式 - 太阳图标 */
-[data-theme="dark"] .bloglo-darkmode-toogle {
-  color: #fc6668 !important;
-}
+
 
 /* ==================== 登录页面容器 ==================== */
 .login-page-wrapper {
@@ -304,34 +538,42 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #fff9f3;
   padding: 20px;
   position: relative;
+  overflow: hidden;
 }
 
 /* 深色模式背景 */
 [data-theme="dark"] .login-page-wrapper {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: #333333;
 }
 
 
 /* ==================== 登录卡片 ==================== */
 .login-card {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 20px;
   padding: 40px 50px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 60px rgba(252, 102, 104, 0.15);
   width: 100%;
   max-width: 450px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 1;
   position: relative;
+  border: 1px solid rgba(252, 102, 104, 0.1);
+  backdrop-filter: blur(20px);
 }
 
-/* 深色模式卡片 - 优化后的版本 */
+.login-card:hover {
+  box-shadow: 0 25px 70px rgba(252, 102, 104, 0.2);
+}
+
+/* 深色模式卡片 */
 [data-theme="dark"] .login-card {
   background: rgba(0, 0, 0, 0.5);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border-color: rgba(190, 190, 190, 0.2);
 }
 
 /* ==================== 卡片头部 ==================== */
@@ -352,7 +594,7 @@ onMounted(() => {
 .login-title {
   font-size: 28px;
   font-weight: 700;
-  color: #333;
+  color: #333333;
   margin: 0;
   transition: color 0.3s ease;
 }
@@ -362,7 +604,7 @@ onMounted(() => {
 }
 
 .login-subtitle {
-  color: #666;
+  color: #94979e;
   font-size: 14px;
   margin: 0;
   transition: color 0.3s ease;
@@ -380,7 +622,7 @@ onMounted(() => {
 .form-label {
   display: block;
   margin-bottom: 8px;
-  color: #333;
+  color: #333333;
   font-weight: 600;
   font-size: 14px;
   transition: color 0.3s ease;
@@ -399,14 +641,14 @@ onMounted(() => {
 .custom-input {
   width: 100%;
   padding: 14px 16px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid #ffe7d2;
   border-radius: 12px;
   font-size: 15px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   box-sizing: border-box;
   outline: none;
-  background: #fff;
-  color: #333;
+  background: rgba(255, 255, 255, 0.9);
+  color: #212121;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -417,7 +659,7 @@ onMounted(() => {
 }
 
 .custom-input::placeholder {
-  color: #999;
+  color: #b2bec3;
 }
 
 [data-theme="dark"] .custom-input::placeholder {
@@ -425,13 +667,13 @@ onMounted(() => {
 }
 
 .custom-input:focus {
-  border-color: #7289da;
-  box-shadow: 0 0 0 3px rgba(114, 137, 218, 0.1);
+  border-color: #fc6668;
+  box-shadow: 0 0 0 3px rgba(252, 102, 104, 0.1);
 }
 
 [data-theme="dark"] .custom-input:focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  border-color: #fc6668;
+  box-shadow: 0 0 0 3px rgba(252, 102, 104, 0.2);
 }
 
 /* 密码输入框 */
@@ -450,7 +692,7 @@ onMounted(() => {
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: #999;
+  color: #94979e;
   cursor: pointer;
   font-size: 16px;
   padding: 8px;
@@ -468,16 +710,16 @@ onMounted(() => {
 }
 
 .toggle-password:hover {
-  color: #7289da;
+  color: #fc6668;
 }
 
 [data-theme="dark"] .toggle-password:hover {
-  color: #667eea;
+  color: #fc6668;
 }
 
 @media (hover: none) {
   .toggle-password:hover {
-    color: #999;
+    color: #94979e;
   }
   [data-theme="dark"] .toggle-password:hover {
     color: rgba(255, 255, 255, 0.5);
@@ -497,7 +739,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #666;
+  color: #94979e;
   cursor: pointer;
   transition: color 0.3s ease;
   -webkit-tap-highlight-color: transparent;
@@ -515,7 +757,7 @@ onMounted(() => {
   height: 16px;
   min-width: 16px;
   min-height: 16px;
-  border: 2px solid #d0d0d0;
+  border: 2px solid #ffe7d2;
   border-radius: 3px;
   background-color: #fff;
   cursor: pointer;
@@ -527,12 +769,12 @@ onMounted(() => {
 }
 
 .remember-me input[type="checkbox"]:hover {
-  border-color: #7289da;
+  border-color: #fc6668;
 }
 
 .remember-me input[type="checkbox"]:checked {
-  background: linear-gradient(135deg, #7289da, #9b6cdc);
-  border-color: #7289da;
+  background: #fc6668;
+  border-color: #fc6668;
 }
 
 .remember-me input[type="checkbox"]:checked::before {
@@ -553,17 +795,17 @@ onMounted(() => {
 }
 
 [data-theme="dark"] .remember-me input[type="checkbox"]:hover {
-  border-color: #667eea;
+  border-color: #fc6668;
   background-color: rgba(255, 255, 255, 0.15);
 }
 
 [data-theme="dark"] .remember-me input[type="checkbox"]:checked {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-color: #667eea;
+  background: #fc6668;
+  border-color: #fc6668;
 }
 
 .forgot-password {
-  color: #7289da;
+  color: #fc6668;
   text-decoration: none;
   transition: color 0.2s ease;
   font-weight: 500;
@@ -571,34 +813,35 @@ onMounted(() => {
 }
 
 [data-theme="dark"] .forgot-password {
-  color: #667eea;
+  color: #fc6668;
 }
 
 .forgot-password:hover {
   text-decoration: underline;
-  color: #5a6fc7;
+  color: #ff4c60;
 }
 
 /* ==================== 登录按钮 ==================== */
 .login-btn {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(135deg, #7289da, #9b6cdc);
+  background: #fc6668;
   color: #fff;
   border: none;
   border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 15px rgba(114, 137, 218, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 0 4px 15px rgba(252, 102, 104, 0.3);
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
 
 .login-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(114, 137, 218, 0.4);
+  box-shadow: 0 6px 20px rgba(252, 102, 104, 0.4);
+  background: #ff4c60;
 }
 
 .login-btn:active {
@@ -606,12 +849,13 @@ onMounted(() => {
 }
 
 [data-theme="dark"] .login-btn {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  background: #fc6668;
+  box-shadow: 0 4px 15px rgba(252, 102, 104, 0.4);
 }
 
 [data-theme="dark"] .login-btn:hover {
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 6px 20px rgba(252, 102, 104, 0.5);
+  background: #ff4c60;
 }
 
 @media (hover: none) {
@@ -625,7 +869,7 @@ onMounted(() => {
   text-align: center;
   margin: 25px 0 20px;
   position: relative;
-  color: #999;
+  color: #b2bec3;
   font-size: 13px;
 }
 
@@ -640,7 +884,7 @@ onMounted(() => {
   left: 0;
   right: 0;
   height: 1px;
-  background: #e0e0e0;
+  background: #ffe7d2;
   z-index: 1;
 }
 
@@ -649,10 +893,10 @@ onMounted(() => {
 }
 
 .divider span {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.85);
   position: relative;
   z-index: 2;
-  padding: 0 10px;
+
 }
 
 [data-theme="dark"] .divider span {
@@ -673,9 +917,9 @@ onMounted(() => {
   justify-content: center;
   gap: 8px;
   padding: 12px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid #ffe7d2;
   border-radius: 12px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   font-size: 14px;
@@ -691,14 +935,14 @@ onMounted(() => {
 }
 
 .social-btn:hover {
-  border-color: #7289da;
+  border-color: #fc6668;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(252, 102, 104, 0.2);
 }
 
 [data-theme="dark"] .social-btn:hover {
-  border-color: #667eea;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+  border-color: #fc6668;
+  box-shadow: 0 4px 12px rgba(252, 102, 104, 0.3);
 }
 
 @media (hover: none) {
@@ -726,7 +970,7 @@ onMounted(() => {
 /* ==================== 注册链接 ==================== */
 .register-link {
   text-align: center;
-  color: #666;
+  color: #94979e;
   font-size: 14px;
   transition: color 0.3s ease;
 }
@@ -736,7 +980,7 @@ onMounted(() => {
 }
 
 .register-link a {
-  color: #7289da;
+  color: #fc6668;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.2s ease;
@@ -744,12 +988,12 @@ onMounted(() => {
 }
 
 [data-theme="dark"] .register-link a {
-  color: #667eea;
+  color: #fc6668;
 }
 
 .register-link a:hover {
   text-decoration: underline;
-  color: #5a6fc7;
+  color: #ff4c60;
 }
 
 /* ==================== 响应式设计 ==================== */
@@ -765,11 +1009,11 @@ onMounted(() => {
   }
   
   .login-page-wrapper {
-    background: #667eea;
+    background: #fff9f3;
   }
   
   [data-theme="dark"] .login-page-wrapper {
-    background: #1a1a2e;
+    background: #333333;
   }
 }
 
