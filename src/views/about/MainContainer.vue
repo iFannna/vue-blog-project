@@ -14,4 +14,6 @@ import YouMayLike from "@/components/YouMayLike.vue";
 import Breadcrumbs from "@/components/Breadcrumbs.vue";
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
