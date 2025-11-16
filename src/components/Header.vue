@@ -94,7 +94,7 @@
           >
             <!-- 社交联系方式图标 -->
             <div
-              class="bloglo-header-widget__socials bloglo-header-widget bloglo-all"
+              class="bloglo-header-widget__socials bloglo-header-widget bloglo-hide-mobile"
             >
               <div class="bloglo-widget-wrapper">
                 <nav class="bloglo-social-nav minimal-fill bloglo-large">
