@@ -1,6 +1,6 @@
 <script setup>
 import Header from "@/components/Header.vue";
-import MainContainer from "@/views/home/MainContainer.vue";
+import MainContainer from "@/views/about/MainContainer.vue";
 import Footer from "@/components/Footer.vue";
 import ScrollTopButton from "@/components/ScrollTopButton.vue";
 import WavesBackground from "@/components/WavesBackground.vue";

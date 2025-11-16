@@ -54,7 +54,7 @@
                   id="menu-item-816"
                   class="menu-item menu-item-type-post_type menu-item-object-page menu-item-816"
                 >
-                  <a href=""><span>关于</span></a>
+                  <a href="/about"><span>关于</span></a>
                 </li>
                 <li
                   id="menu-item-829"
@@ -79,7 +79,7 @@
               <li
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-816"
               >
-                <a href=""><span>关于</span></a>
+                <a href="/about"><span>关于</span></a>
               </li>
               <li
                 class="menu-item menu-item-type-post_type menu-item-object-page menu-item-829"
@@ -475,19 +475,5 @@ onMounted(() => {
 
 <style scoped>
 
-.site-header {
-  width: 100%;
-  height: 8rem;
-  clear: both;
-  position: relative;
-}
 
-/* 隐藏 checkbox，只通过 label 的 @click 触发 */
-.bloglo-darkmode input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-}
 </style>

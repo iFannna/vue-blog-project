@@ -1,7 +1,7 @@
 <template>
   <!--主要内容-->
   <div id="primary" class="content-area">
-    <main id="content" class="site-content" role="main">
+    <main id="content" class="site-content">
       <!--文章列表-->
       <div class="bloglo-flex-row g-4">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -173,10 +173,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "PrimaryContent",
-};
+<script setup>
 </script>
 
 <style scoped>
