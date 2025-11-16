@@ -25,7 +25,7 @@
               class="trail-item trail-begin"
             >
               <a
-                href="https://demo.peregrine-themes.com/bloglo/blogmate/"
+                href="/"
                 rel="home"
                 itemprop="item"
                 ><span itemprop="name">Home</span></a

@@ -24,17 +24,13 @@
           <span class="bloglo-header-element bloglo-mobile-nav">
             <button
               class="bloglo-hamburger hamburger--spin bloglo-hamburger-bloglo-primary-nav"
-              aria-controls="bloglo-primary-nav"
-              type="button"
             >
               <span class="hamburger-box">
                 <span class="hamburger-inner"></span>
               </span>
             </button>
-
             <nav
               class="site-navigation main-navigation bloglo-primary-nav bloglo-nav bloglo-header-element"
-              role="navigation"
             >
               <ul class="menu">
                 
@@ -42,7 +38,7 @@
                   id="menu-item-815"
                   class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-815"
                 >
-                  <a href="" aria-current="page"><span>主页</span></a>
+                  <a href="" ><span>主页</span></a>
                 </li>
                 <li
                   id="menu-item-816"
@@ -71,20 +67,14 @@
             role="navigation"
           >
             <ul class="menu">
-              <li
-                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-815"
-              >
-                <a href="" aria-current="page"><span>主页</span></a>
+              <li :class="getMenuItemClass('/')">
+              <router-link to="/"><span>主页</span></router-link>
               </li>
-              <li
-                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-816"
-              >
-                <a href="/about"><span>关于</span></a>
+              <li :class="getMenuItemClass('/about')">
+              <router-link to="/about"><span>关于</span></router-link>
               </li>
-              <li
-                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-829"
-              >
-                <a href=""><span>联系</span></a>
+              <li :class="getMenuItemClass('/contact')">
+              <router-link to="/contact"><span>联系</span></router-link>
               </li>
             </ul>
           </nav>
@@ -397,8 +387,29 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-
+import { useRoute } from "vue-router";
+const route = useRoute();
 const isDarkMode = ref(false);
+
+const getMenuItemClass = (path, isHome = false) => {
+  const baseClasses = [
+    'menu-item',
+    'menu-item-type-post_type',
+    'menu-item-object-page'
+  ];
+  
+  if (isHome) {
+    baseClasses.push('menu-item-type-custom', 'menu-item-object-custom', 'menu-item-home');
+  }
+  
+  // 当前路由匹配时，添加高亮类名
+  if (route.path === path) {
+    baseClasses.push('current-menu-item', 'current_page_item');
+  }
+  
+  return baseClasses;
+};
+
 
 // 主题切换函数 - 真正的圆形扩散动画
 const toggleTheme = async (event) => {
@@ -472,6 +483,8 @@ onMounted(() => {
   }
 });
 </script>
+
+
 
 <style scoped>
 
