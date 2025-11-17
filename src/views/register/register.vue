@@ -305,11 +305,6 @@ const submitRegister = async () => {
   }
 };
 
-// 第三方注册提示
-const socialRegister = (platform) => {
-  ElMessage.info(`${platform}注册功能即将开放！`);
-};
-
 // 主题切换函数 - 真正的圆形扩散动画
 let themeToggleTimer = null;
 const toggleTheme = async (event) => {
@@ -610,29 +605,6 @@ onMounted(() => {
 
         <!-- 注册按钮 -->
         <button type="submit" class="register-btn">注册</button>
-
-        <!-- 分割线 -->
-        <div class="divider">
-          <span>或使用以下方式注册</span>
-        </div>
-
-        <!-- 社交注册 -->
-        <div class="social-register">
-          <button
-            type="button"
-            class="social-btn wechat"
-            @click="socialRegister('微信')"
-          >
-            <i class="fab fa-weixin"></i> 微信
-          </button>
-          <button
-            type="button"
-            class="social-btn qq"
-            @click="socialRegister('QQ')"
-          >
-            <i class="fab fa-qq"></i> QQ
-          </button>
-        </div>
 
         <!-- 前往登录 -->
         <div class="login-link">
@@ -1255,114 +1227,13 @@ onMounted(() => {
   }
 }
 
-/* ==================== 分割线 ==================== */
-.divider {
-  text-align: center;
-  margin: 25px 0 20px;
-  position: relative;
-  color: #b2bec3;
-  font-size: 13px;
-}
-
-[data-theme="dark"] .divider {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.divider:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: #ffe7d2;
-  z-index: 1;
-}
-
-[data-theme="dark"] .divider:before {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.divider span {
-  background: rgba(255, 255, 255, 0.85);
-  position: relative;
-  z-index: 2;
-}
-
-[data-theme="dark"] .divider span {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-/* ==================== 社交注册按钮 ==================== */
-.social-register {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.social-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px;
-  border: 2px solid #ffe7d2;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.9);
-  cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  font-size: 14px;
-  font-weight: 500;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
-
-[data-theme="dark"] .social-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-}
-
-.social-btn:hover {
-  border-color: #fc6668;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(252, 102, 104, 0.2);
-}
-
-[data-theme="dark"] .social-btn:hover {
-  border-color: #fc6668;
-  box-shadow: 0 4px 12px rgba(252, 102, 104, 0.3);
-}
-
-@media (hover: none) {
-  .social-btn:hover {
-    transform: none;
-  }
-}
-
-.social-btn.wechat {
-  color: #07c160;
-}
-
-[data-theme="dark"] .social-btn.wechat {
-  color: #09d569;
-}
-
-.social-btn.qq {
-  color: #12b7f5;
-}
-
-[data-theme="dark"] .social-btn.qq {
-  color: #1ac0ff;
-}
-
 /* ==================== 前往登录链接 ==================== */
 .login-link {
   text-align: center;
   color: #94979e;
   font-size: 14px;
   transition: color 0.3s ease;
+  margin-top: 25px;
 }
 
 [data-theme="dark"] .login-link {
@@ -1548,15 +1419,10 @@ onMounted(() => {
     padding: 25px 20px;
     border-radius: 16px;
   }
-
-  .social-register {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 768px) {
   .register-btn,
-  .social-btn,
   .toggle-password {
     will-change: transform;
   }

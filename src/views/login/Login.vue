@@ -111,11 +111,6 @@ const togglePassword = () => {
   showPassword.value = !showPassword.value;
 };
 
-// 第三方登录提示
-const socialLogin = (platform) => {
-  ElMessage.info(`${platform}登录功能即将开放！`);
-};
-
 // 忘记密码提示
 const forgotPassword = () => {
   ElMessage.info("密码重置功能即将开放！");
@@ -258,27 +253,6 @@ onMounted(() => {
 
         <!-- 登录按钮 -->
         <button type="submit" class="login-btn">登录</button>
-
-        <div class="divider">
-          <span>或使用以下方式登录</span>
-        </div>
-
-        <div class="social-login">
-          <button
-            type="button"
-            class="social-btn wechat"
-            @click="socialLogin('微信')"
-          >
-            <i class="fab fa-weixin"></i> 微信
-          </button>
-          <button
-            type="button"
-            class="social-btn qq"
-            @click="socialLogin('QQ')"
-          >
-            <i class="fab fa-qq"></i> QQ
-          </button>
-        </div>
 
         <div class="register-link">
           还没有账户？ <a href="#" @click.prevent="goToRegister">立即注册</a>
@@ -554,7 +528,7 @@ onMounted(() => {
 .login-card {
   background: rgba(255, 255, 255, 0.85);
   border-radius: 20px;
-  padding: 40px 50px;
+  padding: 80px 40px;
   box-shadow: 0 20px 60px rgba(252, 102, 104, 0.15);
   width: 100%;
   max-width: 450px;
@@ -864,115 +838,13 @@ onMounted(() => {
   }
 }
 
-/* ==================== 分割线 ==================== */
-.divider {
-  text-align: center;
-  margin: 25px 0 20px;
-  position: relative;
-  color: #b2bec3;
-  font-size: 13px;
-}
-
-[data-theme="dark"] .divider {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.divider:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: #ffe7d2;
-  z-index: 1;
-}
-
-[data-theme="dark"] .divider:before {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.divider span {
-  background: rgba(255, 255, 255, 0.85);
-  position: relative;
-  z-index: 2;
-
-}
-
-[data-theme="dark"] .divider span {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-/* ==================== 社交登录按钮 ==================== */
-.social-login {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.social-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px;
-  border: 2px solid #ffe7d2;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.9);
-  cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  font-size: 14px;
-  font-weight: 500;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-}
-
-[data-theme="dark"] .social-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-}
-
-.social-btn:hover {
-  border-color: #fc6668;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(252, 102, 104, 0.2);
-}
-
-[data-theme="dark"] .social-btn:hover {
-  border-color: #fc6668;
-  box-shadow: 0 4px 12px rgba(252, 102, 104, 0.3);
-}
-
-@media (hover: none) {
-  .social-btn:hover {
-    transform: none;
-  }
-}
-
-.social-btn.wechat {
-  color: #07c160;
-}
-
-[data-theme="dark"] .social-btn.wechat {
-  color: #09d569;
-}
-
-.social-btn.qq {
-  color: #12b7f5;
-}
-
-[data-theme="dark"] .social-btn.qq {
-  color: #1ac0ff;
-}
-
 /* ==================== 注册链接 ==================== */
 .register-link {
   text-align: center;
   color: #94979e;
   font-size: 14px;
   transition: color 0.3s ease;
+  margin-top: 25px;
 }
 
 [data-theme="dark"] .register-link {
@@ -1024,15 +896,10 @@ onMounted(() => {
     border-radius: 16px;
   }
 
-  .social-login {
-    grid-template-columns: 1fr;
-  }
-
 }
 
 @media (max-width: 768px) {
   .login-btn,
-  .social-btn,
   .toggle-password {
     will-change: transform;
   }
