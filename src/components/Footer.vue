@@ -59,8 +59,7 @@
                     <div
                       class="wp-block-latest-posts__featured-image alignleft"
                     >
-                      <a
-                        href=""
+                      <a href=""
                         ><img
                           loading="lazy"
                           decoding="async"
@@ -72,9 +71,7 @@
                           style="max-width: 75px; max-height: 75px"
                       /></a>
                     </div>
-                    <a
-                      class="wp-block-latest-posts__post-title"
-                      href=""
+                    <a class="wp-block-latest-posts__post-title" href=""
                       >Mar Bustos</a
                     >
                     <div class="wp-block-latest-posts__post-author">
@@ -291,19 +288,22 @@
             <div
               class="bloglo-copyright-widget__text bloglo-copyright-widget bloglo-all"
             >
-              <span
-                >Copyright 2025 &mdash; 赵瑾瑜的个人博客. All rights reserved.
-                <a
-                  href=""
-                  class="imprint"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >瑾瑜</a
-                ></span
+              <span>Copyright 2025 &mdash; 赵瑾瑜的个人博客.</span>
+            </div>
+          </div>
+          <div class="col-xs-12 center-xs col-md flex-basis-auto end-md">
+            <div
+              class="bloglo-copyright-widget__text bloglo-copyright-widget bloglo-all"
+            >
+              <a
+                href="http://beian.miit.gov.cn/"
+                class="imprint"
+                target="_blank"
+                rel="noopener noreferrer"
+                >赣ICP备2025076466号-1</a
               >
             </div>
           </div>
-          <div class="col-xs-12 center-xs col-md flex-basis-auto end-md"></div>
         </div>
       </div>
     </div>
@@ -418,7 +418,11 @@ export default {
   transition: all 0.3s ease;
 }
 
-[data-theme="dark"] #colophon .wp-block-social-links .wp-block-social-link a:hover,
+[data-theme="dark"]
+  #colophon
+  .wp-block-social-links
+  .wp-block-social-link
+  a:hover,
 [data-theme="dark"] #colophon .wp-block-social-link-anchor:hover {
   color: #ffffff !important;
 }
@@ -503,7 +507,9 @@ export default {
   transition: color 0.3s ease;
 }
 
-[data-theme="dark"] #colophon.site-footer a:not(.wp-block-social-link-anchor):hover {
+[data-theme="dark"]
+  #colophon.site-footer
+  a:not(.wp-block-social-link-anchor):hover {
   color: #667eea !important;
 }
 

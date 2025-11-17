@@ -4,7 +4,6 @@
     <div class="bloglo-container">
       <PrimaryContent />
     </div>
-    <YouMayLike />
   </div>
 </template>
 

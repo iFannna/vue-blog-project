@@ -38,7 +38,7 @@
                   id="menu-item-815"
                   class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-815"
                 >
-                  <a href="" ><span>主页</span></a>
+                  <a href="/" ><span>主页</span></a>
                 </li>
                 <li
                   id="menu-item-816"

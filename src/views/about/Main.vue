@@ -287,10 +287,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <!-- END .entry-content -->
+        </div> 
       </article>
-      <!-- #post-720 -->
     </main>
   </div>
 </template>
@@ -298,7 +296,7 @@
 <script setup></script>
 
 <style scoped>
-.navigation .nav-links .page-number {
-  margin-left: 1rem;
+.content-area {
+  padding-right: 0 !important;
 }
 </style>
