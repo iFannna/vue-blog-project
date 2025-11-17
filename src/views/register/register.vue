@@ -268,15 +268,15 @@ const startCountdown = () => {
 
 // 打开验证码对话框
 const openVerificationDialog = () => {
-  const isUsernameValid = validateUsername();
-  const isEmailValid = validateEmail();
-  const isPasswordValid = validatePassword();
-  const isConfirmPasswordValid = validateConfirmPassword();
-  const isAgreeTermsValid = validateAgreeTerms();
+  // const isUsernameValid = validateUsername();
+  // const isEmailValid = validateEmail();
+  // const isPasswordValid = validatePassword();
+  // const isConfirmPasswordValid = validateConfirmPassword();
+  // const isAgreeTermsValid = validateAgreeTerms();
 
-  if (!(isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && isAgreeTermsValid)) {
-    return;
-  }
+  // if (!(isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && isAgreeTermsValid)) {
+  //   return;
+  // }
   
   dialogVisible.value = true;
 };
@@ -304,6 +304,7 @@ const submitRegister = async () => {
     ElMessage.error("注册失败，请检查网络连接");
   }
 };
+
 
 // 主题切换函数 - 真正的圆形扩散动画
 let themeToggleTimer = null;
@@ -605,7 +606,6 @@ onMounted(() => {
 
         <!-- 注册按钮 -->
         <button type="submit" class="register-btn">注册</button>
-
         <!-- 前往登录 -->
         <div class="login-link">
           已有账户？
@@ -618,12 +618,17 @@ onMounted(() => {
     <ElDialog
       v-model="dialogVisible"
       title="邮箱验证"
-      :close-on-click-modal="false"
-      :destroy-on-close="true"
+      :width="440"
+      :close-on-click-modal="true"
+      :show-close=false
+      center
+      draggable
       class="verification-dialog"
     >
       <div class="dialog-content">
-        <p>请输入发送到 {{ registerForm.email }} 的验证码</p>
+        <div class="dialog-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
         
         <div class="verification-input-group">
           <input
@@ -639,7 +644,7 @@ onMounted(() => {
             class="get-code-btn"
             :disabled="countdown > 0"
           >
-            {{ countdown > 0 ? `${countdown}s后重新获取` : '获取验证码' }}
+            {{ countdown > 0 ? `${countdown}s` : '获取验证码' }}
           </button>
         </div>
         
@@ -649,12 +654,14 @@ onMounted(() => {
       </div>
       
       <template #footer>
-        <button class="dialog-btn cancel-btn" @click="dialogVisible = false">
-          取消
-        </button>
-        <button class="dialog-btn confirm-btn" @click="submitRegister">
-          注册
-        </button>
+        <div class="dialog-footer">
+          <button class="dialog-btn cancel-btn" @click="dialogVisible = false">
+            取消
+          </button>
+          <button class="dialog-btn confirm-btn" @click="submitRegister">
+            确认注册
+          </button>
+        </div>
       </template>
     </ElDialog>
   </div>
@@ -1188,6 +1195,7 @@ onMounted(() => {
 .register-btn {
   width: 100%;
   padding: 14px;
+  margin-bottom: 20px;
   background: #fc6668;
   color: #fff;
   border: none;
@@ -1227,13 +1235,51 @@ onMounted(() => {
   }
 }
 
+/* ==================== 分割线 ==================== */
+.divider {
+  text-align: center;
+  margin: 25px 0 20px;
+  position: relative;
+  color: #b2bec3;
+  font-size: 13px;
+}
+
+[data-theme="dark"] .divider {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.divider:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #ffe7d2;
+  z-index: 1;
+}
+
+[data-theme="dark"] .divider:before {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.divider span {
+  background: rgba(255, 255, 255, 0.85);
+  position: relative;
+  z-index: 2;
+}
+
+[data-theme="dark"] .divider span {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+
 /* ==================== 前往登录链接 ==================== */
 .login-link {
   text-align: center;
   color: #94979e;
   font-size: 14px;
   transition: color 0.3s ease;
-  margin-top: 25px;
 }
 
 [data-theme="dark"] .login-link {
@@ -1310,88 +1356,215 @@ onMounted(() => {
   min-height: 17px;
 }
 
-/* ==================== 验证码对话框样式 ==================== */
-.verification-dialog {
-  --el-dialog-width: 400px;
+/* ==================== 验证码对话框样式（优化版） ==================== */
+:deep(.verification-dialog) {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+:deep(.verification-dialog .el-dialog__header) {
+  background: linear-gradient(135deg, #fc6668 0%, #ff8a80 100%);
+  padding: 20px;
+  margin: 0;
+  text-align: center;
+}
+
+:deep(.verification-dialog .el-dialog__title) {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+
+
+:deep(.verification-dialog .el-dialog__body) {
+  padding: 30px;
+  background: white;
+}
+
+:deep(.verification-dialog .el-dialog__footer) {
+  padding: 0 30px 30px;
+  background: white;
+}
+
+[data-theme="dark"] :deep(.verification-dialog .el-dialog__body) {
+  background: #2a2a2a;
+}
+
+[data-theme="dark"] :deep(.verification-dialog .el-dialog__footer) {
+  background: #2a2a2a;
 }
 
 .dialog-content {
-  padding: 10px 0;
+  text-align: center;
 }
 
-.dialog-content p {
-  color: #666;
-  margin-bottom: 20px;
+.dialog-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, #fc6668 0%, #ff8a80 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(252, 102, 104, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(252, 102, 104, 0);
+  }
+}
+
+.dialog-tip {
   font-size: 14px;
+  color: #666;
+  margin: 10px 0 5px;
+}
+
+[data-theme="dark"] .dialog-tip {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dialog-email {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fc6668;
+  margin: 5px 0;
+}
+
+.dialog-hint {
+  font-size: 12px;
+  color: #999;
+  margin: 5px 0 25px;
+}
+
+[data-theme="dark"] .dialog-hint {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .verification-input-group {
   display: flex;
   gap: 10px;
-  align-items: center;
+  margin-top: 20px;
+  align-items: stretch;
 }
 
 .verification-input {
   flex: 1;
-  padding: 12px 15px;
+  padding: 12px 0px;
   border: 2px solid #ffe7d2;
-  border-radius: 8px;
-  font-size: 16px;
-  outline: none;
-  transition: border-color 0.3s;
+  border-radius: 10px;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  min-height: 4.5rem !important;
 }
 
 .verification-input:focus {
+  outline: none;
   border-color: #fc6668;
+  box-shadow: 0 0 0 3px rgba(252, 102, 104, 0.1);
+}
+
+[data-theme="dark"] .verification-input {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .verification-input:focus {
+  border-color: #fc6668;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .get-code-btn {
-  padding: 12px 20px;
-  background: #fc6668;
+  padding: 0px 20px;
+  background: linear-gradient(135deg, #fc6668 0%, #ff8a80 100%);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
   white-space: nowrap;
-}
 
-.get-code-btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
 }
 
 .get-code-btn:hover:not(:disabled) {
-  background: #ff4c60;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(252, 102, 104, 0.4);
+}
+
+.get-code-btn:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+  transform: none;
+}
+
+[data-theme="dark"] .get-code-btn:disabled {
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
 .dialog-btn {
-  padding: 8px 20px;
-  border-radius: 6px;
-  font-size: 14px;
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  border: none;
+  min-width: 100px;
 }
 
 .cancel-btn {
   background: #f5f5f5;
   color: #666;
-  border: none;
-  margin-right: 10px;
 }
 
 .cancel-btn:hover {
   background: #e8e8e8;
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .cancel-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] .cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .confirm-btn {
-  background: #fc6668;
+  background: linear-gradient(135deg, #fc6668 0%, #ff8a80 100%);
   color: white;
-  border: none;
+  box-shadow: 0 4px 12px rgba(252, 102, 104, 0.3);
 }
 
 .confirm-btn:hover {
-  background: #ff4c60;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(252, 102, 104, 0.4);
 }
 
 /* ==================== 响应式设计 ==================== */
@@ -1419,6 +1592,7 @@ onMounted(() => {
     padding: 25px 20px;
     border-radius: 16px;
   }
+
 }
 
 @media (max-width: 768px) {
