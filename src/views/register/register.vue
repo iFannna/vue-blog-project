@@ -188,17 +188,14 @@ const initCaptcha = () => {
       element: "#register-captcha-element",
       button: "#get-code-button", // 与按钮id匹配
       success: async (captchaVerifyParam) => {
-        console.log('验证码验证成功', captchaVerifyParam);
         registerForm.value.captchaParams = captchaVerifyParam;
         await sendRegisterCode();
       },
       fail: function (result) {
-        console.error('验证码验证失败', result);
         ElMessage.error("安全验证失败，请重试");
       },
       getInstance: function (instance) {
         captcha.value = instance;
-        console.log('验证码实例初始化成功');
       },
       slideStyle: {
         width: 360,
@@ -218,11 +215,9 @@ const loadCaptchaScript = () => {
     script.type = 'text/javascript';
     script.src = 'https://o.alicdn.com/captcha-frontend/aliyunCaptcha/AliyunCaptcha.js';
     script.onload = () => {
-      console.log('阿里云验证码JS加载完成');
       captchaScriptLoaded.value = true;
     };
     script.onerror = () => {
-      console.error('阿里云验证码JS加载失败');
       ElMessage.error('验证码加载失败，请刷新页面重试');
     };
     document.head.appendChild(script);
@@ -250,7 +245,6 @@ const sendRegisterCode = async () => {
       ElMessage.error(response.msg || "验证码发送失败");
     }
   } catch (error) {
-    console.error("发送验证码错误:", error);
     ElMessage.error("发送验证码失败，请稍后重试");
   }
 };
@@ -268,15 +262,15 @@ const startCountdown = () => {
 
 // 打开验证码对话框
 const openVerificationDialog = () => {
-  // const isUsernameValid = validateUsername();
-  // const isEmailValid = validateEmail();
-  // const isPasswordValid = validatePassword();
-  // const isConfirmPasswordValid = validateConfirmPassword();
-  // const isAgreeTermsValid = validateAgreeTerms();
+  const isUsernameValid = validateUsername();
+  const isEmailValid = validateEmail();
+  const isPasswordValid = validatePassword();
+  const isConfirmPasswordValid = validateConfirmPassword();
+  const isAgreeTermsValid = validateAgreeTerms();
 
-  // if (!(isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && isAgreeTermsValid)) {
-  //   return;
-  // }
+  if (!(isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && isAgreeTermsValid)) {
+    return;
+  }
   
   dialogVisible.value = true;
 };
@@ -300,7 +294,6 @@ const submitRegister = async () => {
       ElMessage.error(response.msg || "注册失败，请稍后重试");
     }
   } catch (error) {
-    console.error("注册错误:", error);
     ElMessage.error("注册失败，请检查网络连接");
   }
 };

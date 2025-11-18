@@ -33,14 +33,15 @@
               class="site-navigation main-navigation bloglo-primary-nav bloglo-nav bloglo-header-element"
             >
               <ul class="menu">
-                
                 <li
                   id="menu-item-815"
                   class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-815"
                 >
-                  <a href="/" ><span>主页</span></a>
+                  <a href="/"><span>主页</span></a>
                 </li>
+                <!-- 移动端登录按钮：未登录显示，已登录隐藏 -->
                 <li
+                  v-if="!userInfo"
                   id="menu-item-816"
                   class="menu-item menu-item-type-post_type menu-item-object-page menu-item-816"
                 >
@@ -68,13 +69,13 @@
           >
             <ul class="menu">
               <li :class="getMenuItemClass('/')">
-              <router-link to="/"><span>主页</span></router-link>
+                <router-link to="/"><span>主页</span></router-link>
               </li>
               <li :class="getMenuItemClass('/about')">
-              <router-link to="/about"><span>关于</span></router-link>
+                <router-link to="/about"><span>关于</span></router-link>
               </li>
               <li :class="getMenuItemClass('/contact')">
-              <router-link to="/contact"><span>联系</span></router-link>
+                <router-link to="/contact"><span>联系</span></router-link>
               </li>
             </ul>
           </nav>
@@ -365,8 +366,9 @@
                 </div>
               </div>
             </div>
-            <!-- 登录按钮 -->
+            <!-- 登录按钮/用户头像：未登录显示登录按钮，已登录显示头像 -->
             <div
+              v-if="!userInfo"
               class="bloglo-header-widget__button bloglo-header-widget bloglo-hide-mobile-tablet"
             >
               <div class="bloglo-widget-wrapper">
@@ -378,6 +380,126 @@
                 >
               </div>
             </div>
+            <!-- 用户头像及下拉菜单 -->
+            <div
+              v-else
+              class="bloglo-header-widget__avatar bloglo-header-widget bloglo-all"
+            >
+              <div class="bloglo-widget-wrapper">
+                <!-- 头像容器：点击触发下拉菜单 -->
+                <div
+                  class="avatar-container"
+                  @click="toggleDropdown"
+                  @blur="isDropdownOpen = false"
+                  tabindex="0"
+                >
+                  <img
+                    :src="userInfo.avatar || defaultAvatar"
+                    alt="用户头像"
+                    class="user-avatar"
+                  />
+                </div>
+
+                <!-- 下拉菜单：默认隐藏，点击头像后显示 -->
+                <div v-if="isDropdownOpen" class="user-dropdown-menu">
+                  <!-- 头部信息 -->
+                  <div class="dropdown-header">
+                    <div class="dropdown-header-inner">
+                      <div class="dropdown-avatar-container">
+                      <img
+                        :src="userInfo.avatar || defaultAvatar"
+                        alt="用户头像"
+                        class="user-avatar"
+                      />
+                    </div>
+                    </div>
+                    <div class="dropdown-header-inner">
+                      <div class="dropdown-name">{{ userInfo.name }}</div>
+                      <div class="dropdown-username">
+                        {{ userInfo.username }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropdown-divider"></div>
+
+                  <!-- 菜单项列表 -->
+                  <ul class="dropdown-menu-list">
+                    <li class="dropdown-menu-item">
+                      <button @click="goToProfile">
+                        <svg
+                          class="dropdown-icon"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                          />
+                        </svg>
+                        Profile
+                      </button>
+                    </li>
+
+                    <li class="dropdown-menu-item">
+                      <button @click="goToStars">
+                        <svg
+                          class="dropdown-icon"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                          />
+                        </svg>
+                        Stars
+                      </button>
+                    </li>
+
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-menu-item">
+                      <button @click="goToSettings">
+                        <svg
+                          class="dropdown-icon"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                          />
+                        </svg>
+                        Settings
+                      </button>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li class="dropdown-menu-item">
+                      <button @click="logout">
+                        <svg
+                          class="dropdown-icon"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M10 9h4V6h3l1 1l-1 1h-3v3zm10 11V4.98C19.94 4.4 19.11 4 18 4h-6v2h5.99l.01 14c0 1.1.9 2 2 2zM4 6h2v12H4zm4 3h2v2H8zm0-6h2v2H8zm0 9h2v2H8z"
+                          />
+                        </svg>
+                        Sign out
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -387,35 +509,51 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
+const router = useRouter();
 const isDarkMode = ref(false);
+const userInfo = ref(null);
+const isDropdownOpen = ref(false); // 控制下拉菜单显示隐藏
+// 默认头像
+const defaultAvatar =
+  "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png";
 
+// 获取菜单样式类
 const getMenuItemClass = (path, isHome = false) => {
   const baseClasses = [
-    'menu-item',
-    'menu-item-type-post_type',
-    'menu-item-object-page'
+    "menu-item",
+    "menu-item-type-post_type",
+    "menu-item-object-page",
   ];
-  
+
   if (isHome) {
-    baseClasses.push('menu-item-type-custom', 'menu-item-object-custom', 'menu-item-home');
+    baseClasses.push(
+      "menu-item-type-custom",
+      "menu-item-object-custom",
+      "menu-item-home"
+    );
   }
-  
+
   // 当前路由匹配时，添加高亮类名
   if (route.path === path) {
-    baseClasses.push('current-menu-item', 'current_page_item');
+    baseClasses.push("current-menu-item", "current_page_item");
   }
-  
+
   return baseClasses;
 };
 
+// 切换下拉菜单显示状态
+const toggleDropdown = (e) => {
+  e.stopPropagation(); // 阻止事件冒泡
+  isDropdownOpen.value = !isDropdownOpen.value;
+};
 
-// 主题切换函数 - 真正的圆形扩散动画
+// 主题切换函数 - 圆形扩散动画
 const toggleTheme = async (event) => {
   event.preventDefault();
   event.stopPropagation();
-  
+
   // 检查浏览器是否支持 View Transitions API
   if (!document.startViewTransition) {
     applyThemeChange();
@@ -442,17 +580,17 @@ const toggleTheme = async (event) => {
     // 为新页面添加圆形扩散动画
     const clipPath = [
       `circle(0px at ${x}px ${y}px)`,
-      `circle(${endRadius}px at ${x}px ${y}px)`
+      `circle(${endRadius}px at ${x}px ${y}px)`,
     ];
 
     document.documentElement.animate(
       {
-        clipPath: clipPath
+        clipPath: clipPath,
       },
       {
         duration: 1000,
-        easing: 'ease-in-out',
-        pseudoElement: '::view-transition-new(root)'
+        easing: "ease-in-out",
+        pseudoElement: "::view-transition-new(root)",
       }
     );
   });
@@ -471,22 +609,210 @@ const applyThemeChange = () => {
   }
 };
 
-// 初始化主题
+// 初始化用户信息
+const initUserInfo = () => {
+  try {
+    const loginUser = localStorage.getItem("loginUser");
+    if (loginUser) {
+      userInfo.value = JSON.parse(loginUser);
+    }
+  } catch (error) {
+    console.error("获取用户信息失败:", error);
+    userInfo.value = null;
+  }
+};
+
+// 菜单项跳转逻辑
+const goToProfile = () => {
+  // 示例：router.push('/profile')
+  console.log("前往个人主页");
+  isDropdownOpen.value = false;
+};
+const goToRepositories = () => {
+  console.log("前往代码仓库");
+  isDropdownOpen.value = false;
+};
+const goToStars = () => {
+  console.log("前往收藏");
+  isDropdownOpen.value = false;
+};
+const goToGists = () => {
+  console.log("前往Gists");
+  isDropdownOpen.value = false;
+};
+const goToSettings = () => {
+  console.log("前往设置");
+  isDropdownOpen.value = false;
+};
+
+// 退出登录
+const logout = () => {
+  localStorage.removeItem("loginUser");
+  userInfo.value = null;
+  isDropdownOpen.value = false; // 关闭下拉菜单
+};
+
+// 初始化主题和用户信息
 onMounted(() => {
+  // 初始化主题
   const darkmode = localStorage.getItem("darkmode");
   isDarkMode.value = darkmode === "dark";
-
   if (isDarkMode.value) {
     document.documentElement.setAttribute("data-theme", "dark");
   } else {
     document.documentElement.setAttribute("data-theme", "light");
   }
+
+  // 初始化用户信息
+  initUserInfo();
+
+  // 点击文档其他区域关闭下拉菜单
+  document.addEventListener("click", () => {
+    isDropdownOpen.value = false;
+  });
 });
 </script>
 
-
-
 <style scoped>
+/* 头像样式 */
+.avatar-container {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
 
+/* 亮光层：默认隐藏，无初始动画 */
+.avatar-container::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transform: rotate(45deg);
+  opacity: 0; /* 默认隐藏 */
+  z-index: 1;
+}
 
+/* hover 时触发：放大+一次性亮光动画 */
+.avatar-container:hover {
+  transform: scale(1.08);
+}
+.avatar-container:hover::after {
+  animation: lightFlash 1s ease-in-out; /* 一闪而过，速度可调 */
+}
+
+/* 一闪而过动画：扫过+快速消失 */
+@keyframes lightFlash {
+  0% {
+    transform: rotate(45deg) translateX(-100%);
+    opacity: 1;
+  } /* 开始显示 */
+  100% {
+    transform: rotate(45deg) translateX(100%);
+    opacity: 0;
+  } /* 结束隐藏 */
+}
+
+.dropdown-avatar-container {
+
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.user-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
+}
+
+/* 下拉菜单样式 */
+.user-dropdown-menu {
+  position: absolute;
+  top: 80%;
+  right: 0;
+  width: 280px;
+  background-color: #161b22;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  padding: 8px 0;
+  z-index: 1000;
+  color: #c9d1d9;
+  font-size: 14px;
+}
+
+.dropdown-header {
+  display: flex;
+}
+.dropdown-header-inner {
+  padding: 16px;
+}
+
+.dropdown-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.dropdown-username {
+  font-size: 12px;
+  color: #8b949e;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #2d333b;
+  margin: 4px 0;
+}
+
+.dropdown-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu-item button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  color: #c9d1d9;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-menu-item button:hover {
+  background-color: #21262d;
+  color: #fff;
+}
+
+.dropdown-icon {
+  margin-right: 8px;
+  fill: #c9d1d9;
+  width: 18px;
+  height: 18px;
+}
+
+/* 确保头像容器的定位上下文 */
+.bloglo-widget-wrapper {
+  position: relative;
+}
 </style>

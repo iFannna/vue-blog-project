@@ -93,13 +93,13 @@ const doLogin = async () => {
   }, 1000);
   
   try {
-    const result = await loginApi(loginForm.value);
-    if (result.code) {
+    const response = await loginApi(loginForm.value);
+    if (response.code) {
       ElMessage.success("登录成功");
-      localStorage.setItem("loginUser", JSON.stringify(result.data));
+      localStorage.setItem("loginUser", JSON.stringify(response.data));
       router.push("/");
     } else {
-      ElMessage.error(result.msg);
+      ElMessage.error(response.msg);
     }
   } catch (error) {
     ElMessage.error("登录失败，请检查网络连接");
