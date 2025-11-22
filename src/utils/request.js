@@ -1,6 +1,6 @@
 import axios from "axios";
 import router from "../router";
-import { refreshTokenApi } from "@/api/refresh"
+import { refreshTokenApi } from "@/api/login"
 import { ElMessage } from "element-plus";
 
 // 创建axios实例对象
@@ -22,7 +22,6 @@ request.interceptors.request.use(
     return config;
   },
   (error) => {
-    // 错误处理
     return Promise.reject(error);
   }
 );
@@ -34,7 +33,7 @@ request.interceptors.response.use(
   },
   (error) => {
     if (error.response) {
-      // 服务器响应401（未授权，Token过期等）
+      // 服务器响应401
       if (error.response.status === 401) {
         // 防止刷新token的请求本身返回401导致无限循环
         if (error.config.url === '/refresh-token') {
@@ -71,7 +70,7 @@ request.interceptors.response.use(
             return Promise.reject(refreshError);
           });
       } else {
-        ElMessage.error(`服务异常，状态码：${error.response.status}`);
+        ElMessage.error(`服务器异常`);
       }
     } else if (error.request) {
       // 请求发出去但未收到响应

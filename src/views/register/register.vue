@@ -1,11 +1,12 @@
 <script setup>
+// ===================== 导入模块 =====================
 import { ref, watch, nextTick, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { ElMessage, ElDialog } from "element-plus";
-import { registerApi } from "@/api/register";
-import { sendRegisterCodeApi } from "@/api/email";
+import { registerApi, sendRegisterCodeApi } from "@/api/register";
 
-// 注册表单数据
+// ===================== 响应式数据定义 =====================
+// 注册表单核心数据
 let registerForm = ref({
   username: "",
   email: "",
@@ -16,7 +17,7 @@ let registerForm = ref({
   captchaParams: "" // 阿里云验证码参数
 });
 
-// 错误提示信息
+// 表单错误提示信息
 let registerErrors = ref({
   username: "",
   email: "",
@@ -26,7 +27,7 @@ let registerErrors = ref({
   emailVerificationCode: ""
 });
 
-// 密码显示状态
+// 密码显示状态控制
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);
 
@@ -34,17 +35,23 @@ const showConfirmPassword = ref(false);
 const strengthMeterClass = ref("strength-meter");
 const strengthText = ref("密码强度");
 
-// 对话框相关状态
-const dialogVisible = ref(false); // 验证码对话框显示状态
-const countdown = ref(0); // 倒计时秒数
-const captcha = ref(null); // 验证码实例
-const captchaScriptLoaded = ref(false); // 验证码脚本加载状态
+// 验证码对话框与倒计时状态
+const dialogVisible = ref(false); 
+const countdown = ref(0); 
 
-// 主题切换
+// 阿里云验证码相关状态
+const captcha = ref(null); 
+const captchaScriptLoaded = ref(false); 
+const captchaVerified = ref(false); // 标记是否已通过首次校验
+const savedCaptchaParams = ref(""); // 复用首次校验通过的验证码参数
+
+// 主题切换状态
 const isDarkMode = ref(false);
 
+// ===================== 核心实例初始化 =====================
 const router = useRouter();
 
+// ===================== 基础工具方法 =====================
 // 切换密码显示/隐藏
 const togglePassword = () => {
   showPassword.value = !showPassword.value;
@@ -80,7 +87,8 @@ const checkPasswordStrength = (password) => {
   }
 };
 
-// 表单验证函数
+// ===================== 表单验证方法 =====================
+// 用户名验证
 const validateUsername = () => {
   const { username } = registerForm.value;
   if (!username) {
@@ -99,6 +107,7 @@ const validateUsername = () => {
   return true;
 };
 
+// 邮箱格式校验
 const validateEmail = () => {
   const { email } = registerForm.value;
   if (!email) {
@@ -114,6 +123,7 @@ const validateEmail = () => {
   return true;
 };
 
+// 密码格式校验
 const validatePassword = () => {
   const { password } = registerForm.value;
   
@@ -145,6 +155,7 @@ const validatePassword = () => {
   return true;
 };
 
+// 校验两次密码是否一致
 const validateConfirmPassword = () => {
   const { password, confirmPassword } = registerForm.value;
   if (!confirmPassword) {
@@ -159,6 +170,7 @@ const validateConfirmPassword = () => {
   return true;
 };
 
+// 校验是否同意服务条款
 const validateAgreeTerms = () => {
   const { agreeTerms } = registerForm.value;
   if (!agreeTerms) {
@@ -169,6 +181,7 @@ const validateAgreeTerms = () => {
   return true;
 };
 
+// 邮箱验证码验证
 const validateEmailCode = () => {
   const { emailVerificationCode } = registerForm.value;
   if (!emailVerificationCode) {
@@ -179,15 +192,18 @@ const validateEmailCode = () => {
   return true;
 };
 
+// ===================== 阿里云验证码相关方法 =====================
 // 初始化阿里云验证码
 const initCaptcha = () => {
   if (window.initAliyunCaptcha && captcha.value === null) {
     window.initAliyunCaptcha({
-      SceneId: "1h222nka", // 替换为你的实际SceneId
+      SceneId: "1h222nka", 
       mode: "popup",
       element: "#register-captcha-element",
-      button: "#get-code-button", // 与按钮id匹配
       success: async (captchaVerifyParam) => {
+        // 保存首次校验的状态和参数
+        captchaVerified.value = true;
+        savedCaptchaParams.value = captchaVerifyParam;
         registerForm.value.captchaParams = captchaVerifyParam;
         await sendRegisterCode();
       },
@@ -226,17 +242,55 @@ const loadCaptchaScript = () => {
   }
 };
 
+// 重置阿里云校验状态（如切换邮箱时调用）
+const resetCaptchaState = () => {
+  captchaVerified.value = false;
+  savedCaptchaParams.value = "";
+  registerForm.value.captchaParams = "";
+};
+
+// 手动触发阿里云验证码校验
+const triggerCaptchaVerify = async () => {
+  // 倒计时未结束则直接返回
+  if (countdown.value > 0) return;
+  // 先校验邮箱格式
+  if (!validateEmail()) return;
+
+  // 已通过首次校验，直接复用参数发送验证码
+  if (captchaVerified.value) {
+    registerForm.value.captchaParams = savedCaptchaParams.value;
+    await sendRegisterCode();
+    return;
+  }
+
+  // 未通过校验，触发阿里云滑块校验
+  if (captcha.value) {
+    // 调用阿里云验证码实例的显示方法（可选择verify/popup）
+    captcha.value.show(); 
+  } else {
+    ElMessage.warning("验证码组件加载中，请稍候");
+    // 重新初始化并延迟触发
+    initCaptcha();
+    setTimeout(() => {
+      captcha.value?.show();
+    }, 300);
+  }
+};
+
+// ===================== 验证码发送与倒计时 =====================
 // 发送邮箱验证码
 const sendRegisterCode = async () => {
   try {
     if (!validateEmail()) {
       return;
     }
-    
-    const response = await sendRegisterCodeApi({
+    // 优先使用保存的校验参数，保证复用
+    const requestParams = {
       email: registerForm.value.email,
-      captchaParams: registerForm.value.captchaParams
-    });
+      captchaParams: savedCaptchaParams.value || registerForm.value.captchaParams
+    };
+    
+    const response = await sendRegisterCodeApi(requestParams);
     
     if (response.code) {
       ElMessage.success(response.msg || "验证码已发送至邮箱，5分钟内有效");
@@ -260,6 +314,7 @@ const startCountdown = () => {
   }, 1000);
 };
 
+// ===================== 注册业务操作 =====================
 // 打开验证码对话框
 const openVerificationDialog = () => {
   const isUsernameValid = validateUsername();
@@ -298,8 +353,8 @@ const submitRegister = async () => {
   }
 };
 
-
-// 主题切换函数 - 真正的圆形扩散动画
+// ===================== 主题切换相关 =====================
+// 主题切换函数 - 圆形扩散动画
 let themeToggleTimer = null;
 const toggleTheme = async (event) => {
   if (themeToggleTimer) return;
@@ -367,13 +422,17 @@ const applyThemeChange = () => {
   }
 };
 
-// 页面导航
-const goToHome = () => {
-  router.push("/home");
-};
+// ===================== 页面导航 =====================
+// 前往登录页
 const goToLogin = () => {
   router.push("/login");
 };
+
+// ===================== 监听器 =====================
+// 监听邮箱变化，重置校验状态（邮箱变更后需重新校验）
+watch(() => registerForm.value.email, () => {
+  resetCaptchaState();
+});
 
 // 监听对话框显示状态，动态初始化/销毁验证码
 watch(() => dialogVisible.value, async (newVal) => {
@@ -391,11 +450,14 @@ watch(() => dialogVisible.value, async (newVal) => {
     if (captcha.value) {
       captcha.value.destroy();
       captcha.value = null;
+      // 如需每次打开对话框都重新校验，可取消下方注释
+      // resetCaptchaState();
     }
   }
 });
 
-// 页面加载时预加载验证码脚本
+// ===================== 生命周期钩子 =====================
+// 页面挂载时初始化
 onMounted(() => {
   loadCaptchaScript();
   
@@ -443,7 +505,6 @@ onMounted(() => {
       </div>
     </div>
 
-
     <!-- 注册卡片 -->
     <div class="register-card">
       <!-- 卡片头部 -->
@@ -473,9 +534,7 @@ onMounted(() => {
               </div>
             </div>
           </div>
-          
         </div>
-        
         <p class="register-subtitle">注册账户，开启您的创意之旅</p>
       </div>
 
@@ -632,10 +691,12 @@ onMounted(() => {
             @input="validateEmailCode"
             maxlength="6"
           >
+          
           <button
             id="get-code-button"
             class="get-code-btn"
             :disabled="countdown > 0"
+            @click="triggerCaptchaVerify"
           >
             {{ countdown > 0 ? `${countdown}s` : '获取验证码' }}
           </button>
@@ -957,18 +1018,6 @@ onMounted(() => {
   margin-bottom: 10px;
 }
 
-.register-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #333333;
-  margin: 0;
-  transition: color 0.3s ease;
-}
-
-[data-theme="dark"] .register-title {
-  color: #ffffff;
-}
-
 .register-subtitle {
   color: #94979e;
   font-size: 14px;
@@ -1266,7 +1315,6 @@ onMounted(() => {
   background: rgba(0, 0, 0, 0.5);
 }
 
-
 /* ==================== 前往登录链接 ==================== */
 .login-link {
   text-align: center;
@@ -1367,8 +1415,6 @@ onMounted(() => {
   font-size: 20px;
   font-weight: 600;
 }
-
-
 
 :deep(.verification-dialog .el-dialog__body) {
   padding: 30px;
@@ -1494,7 +1540,6 @@ onMounted(() => {
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
-
 }
 
 .get-code-btn:hover:not(:disabled) {
@@ -1585,7 +1630,6 @@ onMounted(() => {
     padding: 25px 20px;
     border-radius: 16px;
   }
-
 }
 
 @media (max-width: 768px) {

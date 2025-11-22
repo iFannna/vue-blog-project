@@ -83,180 +83,7 @@
           <div
             class="bloglo-header-widgets bloglo-header-element bloglo-widget-location-right"
           >
-            <!-- 社交联系方式图标 -->
-            <div
-              class="bloglo-header-widget__socials bloglo-header-widget bloglo-hide-mobile"
-            >
-              <div class="bloglo-widget-wrapper">
-                <nav class="bloglo-social-nav minimal-fill bloglo-large">
-                  <ul id="menu-social-menu-default" class="bloglo-socials-menu">
-                    <!-- 脸书 -->
-                    <li class="menu-item">
-                      <a href="">
-                        <span class="facebook">
-                          <svg
-                            class="bloglo-icon"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="32"
-                            viewBox="0 0 32 32"
-                          >
-                            <path
-                              d="M18.518 32.438V17.799h4.88l.751-5.693h-5.631V8.477c0-1.627.438-2.753 2.815-2.753h3.003V.657c-.5-.125-2.315-.25-4.379-.25-4.379 0-7.32 2.628-7.32 7.507v4.192H7.695v5.693h4.942v14.639h5.881z"
-                            />
-                          </svg>
-                          <svg
-                            class="bloglo-icon bottom-icon"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="32"
-                            viewBox="0 0 32 32"
-                          >
-                            <path
-                              d="M18.518 32.438V17.799h4.88l.751-5.693h-5.631V8.477c0-1.627.438-2.753 2.815-2.753h3.003V.657c-.5-.125-2.315-.25-4.379-.25-4.379 0-7.32 2.628-7.32 7.507v4.192H7.695v5.693h4.942v14.639h5.881z"
-                            />
-                          </svg>
-                        </span>
-                      </a>
-                    </li>
-                    <!-- 推特 -->
-                    <li class="menu-item">
-                      <a href="">
-                        <span class="twitter">
-                          <svg
-                            class="bloglo-icon"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="32"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M14.258 10.152 23.176 0h-2.113l-7.747 8.813L7.133 0H0l9.352 13.328L0 23.973h2.113l8.176-9.309 6.531 9.309h7.133zm-2.895 3.293-.949-1.328L2.875 1.56h3.246l6.086 8.523.945 1.328 7.91 11.078h-3.246zm0 0"
-                            />
-                          </svg>
-                          <svg
-                            class="bloglo-icon bottom-icon"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="32"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M14.258 10.152 23.176 0h-2.113l-7.747 8.813L7.133 0H0l9.352 13.328L0 23.973h2.113l8.176-9.309 6.531 9.309h7.133zm-2.895 3.293-.949-1.328L2.875 1.56h3.246l6.086 8.523.945 1.328 7.91 11.078h-3.246zm0 0"
-                            />
-                          </svg>
-                        </span>
-                      </a>
-                    </li>
-                    <!-- 纸飞机 -->
-                    <li class="menu-item">
-                      <a href="">
-                        <span class="telegram">
-                          <svg
-                            class="bloglo-icon"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="27"
-                            viewBox="0 0 32 27"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M24.512 26.372c.43.304.983.38 1.476.193.494-.188.857-.609.966-1.12C28.113 20 30.924 6.217 31.978 1.264a1.041 1.041 0 0 0-.347-1.01c-.293-.25-.7-.322-1.063-.187C24.786 2.378 8.694 8.816.516 12.155a1.06 1.06 0 0 0-.36 1.775c.262.248.637.355.995.283l6.378-1.522c.383-.093.782.028 1.05.318l4.16 4.495c.322.345.317.882-.01 1.221l-5.655 5.894c-.357.368-.416.928-.147 1.365.27.437.77.645 1.247.518l7.034-1.888c.39-.104.805.015 1.094.313l5.222 5.445z"
-                            />
-                          </svg>
-                          <svg
-                            class="bloglo-icon bottom-icon"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="27"
-                            viewBox="0 0 32 27"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M24.512 26.372c.43.304.983.38 1.476.193.494-.188.857-.609.966-1.12C28.113 20 30.924 6.217 31.978 1.264a1.041 1.041 0 0 0-.347-1.01c-.293-.25-.7-.322-1.063-.187C24.786 2.378 8.694 8.816.516 12.155a1.06 1.06 0 0 0-.36 1.775c.262.248.637.355.995.283l6.378-1.522c.383-.093.782.028 1.05.318l4.16 4.495c.322.345.317.882-.01 1.221l-5.655 5.894c-.357.368-.416.928-.147 1.365.27.437.77.645 1.247.518l7.034-1.888c.39-.104.805.015 1.094.313l5.222 5.445z"
-                            />
-                          </svg>
-                        </span>
-                      </a>
-                    </li>
-                    <!-- Ins -->
-                    <li class="menu-item">
-                      <a href="">
-                        <span class="instagram">
-                          <svg
-                            class="bloglo-icon"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="32"
-                            viewBox="0 0 32 32"
-                          >
-                            <path
-                              d="M16.016 3.284c4.317 0 4.755.063 6.444.125 1.627.063 2.44.313 3.003.5.751.313 1.314.688 1.814 1.189.563.563.938 1.126 1.189 1.814.25.626.5 1.439.563 3.003.063 1.751.125 2.19.125 6.444s-.063 4.755-.125 6.444c-.063 1.627-.313 2.44-.5 3.003-.313.751-.688 1.314-1.189 1.814-.563.563-1.126.938-1.814 1.189-.626.25-1.439.5-3.003.563-1.751.063-2.19.125-6.444.125s-4.755-.063-6.444-.125c-1.627-.063-2.44-.313-3.003-.5-.751-.313-1.314-.688-1.814-1.189-.563-.563-.938-1.126-1.189-1.814-.25-.626-.5-1.439-.563-3.003-.063-1.751-.125-2.19-.125-6.444s.063-4.755.125-6.444c.063-1.627.313-2.44.5-3.003.313-.751.688-1.314 1.189-1.814.563-.563 1.126-.938 1.814-1.189.626-.25 1.439-.5 3.003-.563 1.689-.063 2.127-.125 6.444-.125zM16.016.578c-4.38 0-4.88.063-6.632.125-1.689.063-2.878.313-3.942.688-1.064.375-1.939.938-2.815 1.814s-1.439 1.814-1.814 2.815c-.375 1.001-.563 2.19-.688 3.942C.063 11.136 0 11.636 0 16.016s.063 4.88.125 6.632c.063 1.689.313 2.878.688 3.942.375 1.064.938 1.939 1.814 2.815s1.814 1.439 2.815 1.814c1.001.375 2.19.563 3.942.688 1.751.063 2.252.125 6.632.125s4.88-.063 6.632-.125c1.689-.063 2.878-.313 3.942-.688 1.064-.375 1.939-.938 2.815-1.814s1.439-1.814 1.814-2.815c.375-1.001.563-2.19.688-3.942.063-1.751.125-2.252.125-6.632s-.063-4.88-.125-6.632c-.063-1.689-.313-2.878-.688-3.942-.375-1.064-.938-1.939-1.814-2.815s-1.814-1.439-2.815-1.814c-1.001-.375-2.19-.563-3.942-.688C20.896.641 20.396.578 16.016.578z"
-                            />
-                            <path
-                              d="M16.016 7.784c-4.568 0-8.232 3.665-8.232 8.232s3.665 8.232 8.232 8.232 8.232-3.665 8.232-8.232-3.665-8.232-8.232-8.232zm0 13.796c-3.065 0-5.564-2.499-5.564-5.564s2.499-5.564 5.564-5.564 5.564 2.499 5.564 5.564-2.499 5.564-5.564 5.564zM26.647 7.471a1.939 1.939 0 11-3.878 0 1.939 1.939 0 013.878 0z"
-                            />
-                          </svg>
-                          <svg
-                            class="bloglo-icon bottom-icon"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="32"
-                            viewBox="0 0 32 32"
-                          >
-                            <path
-                              d="M16.016 3.284c4.317 0 4.755.063 6.444.125 1.627.063 2.44.313 3.003.5.751.313 1.314.688 1.814 1.189.563.563.938 1.126 1.189 1.814.25.626.5 1.439.563 3.003.063 1.751.125 2.19.125 6.444s-.063 4.755-.125 6.444c-.063 1.627-.313 2.44-.5 3.003-.313.751-.688 1.314-1.189 1.814-.563.563-1.126.938-1.814 1.189-.626.25-1.439.5-3.003.563-1.751.063-2.19.125-6.444.125s-4.755-.063-6.444-.125c-1.627-.063-2.44-.313-3.003-.5-.751-.313-1.314-.688-1.814-1.189-.563-.563-.938-1.126-1.189-1.814-.25-.626-.5-1.439-.563-3.003-.063-1.751-.125-2.19-.125-6.444s.063-4.755.125-6.444c.063-1.627.313-2.44.5-3.003.313-.751.688-1.314 1.189-1.814.563-.563 1.126-.938 1.814-1.189.626-.25 1.439-.5 3.003-.563 1.689-.063 2.127-.125 6.444-.125zM16.016.578c-4.38 0-4.88.063-6.632.125-1.689.063-2.878.313-3.942.688-1.064.375-1.939.938-2.815 1.814s-1.439 1.814-1.814 2.815c-.375 1.001-.563 2.19-.688 3.942C.063 11.136 0 11.636 0 16.016s.063 4.88.125 6.632c.063 1.689.313 2.878.688 3.942.375 1.064.938 1.939 1.814 2.815s1.814 1.439 2.815 1.814c1.001.375 2.19.563 3.942.688 1.751.063 2.252.125 6.632.125s4.88-.063 6.632-.125c1.689-.063 2.878-.313 3.942-.688 1.064-.375 1.939-.938 2.815-1.814s1.439-1.814 1.814-2.815c.375-1.001.563-2.19.688-3.942.063-1.751.125-2.252.125-6.632s-.063-4.88-.125-6.632c-.063-1.689-.313-2.878-.688-3.942-.375-1.064-.938-1.939-1.814-2.815s-1.814-1.439-2.815-1.814c-1.001-.375-2.19-.563-3.942-.688C20.896.641 20.396.578 16.016.578z"
-                            />
-                            <path
-                              d="M16.016 7.784c-4.568 0-8.232 3.665-8.232 8.232s3.665 8.232 8.232 8.232 8.232-3.665 8.232-8.232-3.665-8.232-8.232-8.232zm0 13.796c-3.065 0-5.564-2.499-5.564-5.564s2.499-5.564 5.564-5.564 5.564 2.499 5.564 5.564-2.499 5.564-5.564 5.564zM26.647 7.471a1.939 1.939 0 11-3.878 0 1.939 1.939 0 013.878 0z"
-                            />
-                          </svg>
-                        </span>
-                      </a>
-                    </li>
-                    <!-- 油管 -->
-                    <li class="menu-item">
-                      <a href="">
-                        <span class="youtube">
-                          <svg
-                            class="bloglo-icon"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="32"
-                            viewBox="0 0 32 32"
-                          >
-                            <path
-                              d="M31.718 10.041s-.313-2.252-1.251-3.191c-1.251-1.314-2.628-1.314-3.253-1.376-4.442-.313-11.198-.313-11.198-.313s-6.757 0-11.198.313c-.626.063-2.002.063-3.253 1.376C.688 7.789.375 10.041.375 10.041S0 12.606 0 15.233v2.44c0 2.628.313 5.192.313 5.192s.313 2.252 1.251 3.191c1.251 1.314 2.878 1.251 3.629 1.376 2.628.313 10.84.376 10.84.376s6.82 0 11.198-.376c.626-.063 2.002-.063 3.253-1.376.938-.938 1.251-3.191 1.251-3.191s.313-2.565.313-5.192v-2.44c-.063-2.628-.375-5.192-.375-5.192zm-18.893 10.59V8.854l8.67 5.88-8.67 5.88z"
-                            />
-                          </svg>
-                          <svg
-                            class="bloglo-icon bottom-icon"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="32"
-                            height="32"
-                            viewBox="0 0 32 32"
-                          >
-                            <path
-                              d="M31.718 10.041s-.313-2.252-1.251-3.191c-1.251-1.314-2.628-1.314-3.253-1.376-4.442-.313-11.198-.313-11.198-.313s-6.757 0-11.198.313c-.626.063-2.002.063-3.253 1.376C.688 7.789.375 10.041.375 10.041S0 12.606 0 15.233v2.44c0 2.628.313 5.192.313 5.192s.313 2.252 1.251 3.191c1.251 1.314 2.878 1.251 3.629 1.376 2.628.313 10.84.376 10.84.376s6.82 0 11.198-.376c.626-.063 2.002-.063 3.253-1.376.938-.938 1.251-3.191 1.251-3.191s.313-2.565.313-5.192v-2.44c-.063-2.628-.375-5.192-.375-5.192zm-18.893 10.59V8.854l8.67 5.88-8.67 5.88z"
-                            />
-                          </svg>
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
+            
             <!-- 浅色/深色主题切换图标 -->
             <div
               class="bloglo-header-widget__darkmode bloglo-header-widget bloglo-all"
@@ -293,7 +120,7 @@
                       viewBox="0 0 32 32"
                     >
                       <path
-                        d="M28.962 26.499l-4.938-4.938c1.602-2.002 2.669-4.671 2.669-7.474 0-6.673-5.339-12.012-12.012-12.012S2.669 7.414 2.669 14.087a11.962 11.962 0 0012.012 12.012c2.803 0 5.472-1.067 7.474-2.669l4.938 4.938a1.6 1.6 0 002.335 0l-.466.531c.602-.602.602-1.601 0-2.4zm-14.281-3.736c-4.808 0-8.676-3.869-8.676-8.676s3.869-8.676 8.676-8.676 8.676 3.869 8.676 8.676-3.869 8.676-8.676 8.676z"
+                        d="M28.962 26.499l-4.938-4.938c1.602-2.002 2.669-4.671 2.669-7.474 0-6.673-5.339-12.012-12.012-12.012S2.669 7.414 2.669 14.087a11.962 11.962 0 0012.012 12.012c2.803 0 5.472-1.068 7.474-2.669l4.938 4.938a1.745 1.745 0 002.469 0 1.745 1.745 0 00-.6-2.869zm-14.281-3.469c-4.938 0-8.943-4.005-8.943-8.943s4.005-8.943 8.943-8.943 8.943 4.005 8.943 8.943-4.005 8.943-8.943 8.943z"
                       />
                     </svg>
                   </a>
@@ -366,138 +193,60 @@
                 </div>
               </div>
             </div>
-            <!-- 登录按钮/用户头像：未登录显示登录按钮，已登录显示头像 -->
+            <!-- 社交联系方式图标 -->
             <div
-              v-if="!userInfo"
+              class="bloglo-header-widget__socials bloglo-header-widget bloglo-hide-mobile"
+            >
+              <div class="bloglo-widget-wrapper">
+                <nav class="bloglo-social-nav minimal-fill bloglo-large">
+                  <ul id="menu-social-menu-default" class="bloglo-socials-menu">
+                    <!-- Github -->
+                    <li class="menu-item">
+                      <a href="">
+                        <span>
+                          <img
+                            src="https://java-ai-sau.oss-cn-beijing.aliyuncs.com/github.png"
+                            width="32"
+                            height="32"
+                            class="bloglo-icon"
+                          /><img
+                            src="https://java-ai-sau.oss-cn-beijing.aliyuncs.com/github.png"
+                            width="32"
+                            height="32"
+                            class="bloglo-icon bottom-icon"
+                          />
+                        </span>
+                      </a>
+                    </li>
+                    <!-- Gitee -->
+                    <li class="menu-item">
+                      <a href="">
+                        <span>
+                          <img
+                            src="https://java-ai-sau.oss-cn-beijing.aliyuncs.com/gitee.png"
+                            width="32"
+                            height="32"
+                            class="bloglo-icon"
+                          /><img
+                            src="https://java-ai-sau.oss-cn-beijing.aliyuncs.com/gitee.png"
+                            width="32"
+                            height="32"
+                            class="bloglo-icon bottom-icon"
+                          />
+                        </span>
+                      </a>
+                    </li>
+                    
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <!-- 订阅按钮 -->
+            <div
               class="bloglo-header-widget__button bloglo-header-widget bloglo-hide-mobile-tablet"
             >
               <div class="bloglo-widget-wrapper">
-                <a
-                  class="btn-small bloglo-btn login-btn"
-                  target="_self"
-                  href="/login"
-                  ><span>登录</span></a
-                >
-              </div>
-            </div>
-            <!-- 用户头像及下拉菜单 -->
-            <div
-              v-else
-              class="bloglo-header-widget__avatar bloglo-header-widget bloglo-all"
-            >
-              <div class="bloglo-widget-wrapper">
-                <!-- 头像容器：点击触发下拉菜单 -->
-                <div
-                  class="avatar-container"
-                  @click="toggleDropdown"
-                  @blur="isDropdownOpen = false"
-                  tabindex="0"
-                >
-                  <img
-                    :src="userInfo.avatar || defaultAvatar"
-                    alt="用户头像"
-                    class="user-avatar"
-                  />
-                </div>
-
-                <!-- 下拉菜单：默认隐藏，点击头像后显示 -->
-                <div v-if="isDropdownOpen" class="user-dropdown-menu">
-                  <!-- 头部信息 -->
-                  <div class="dropdown-header">
-                    <div class="dropdown-header-inner">
-                      <div class="dropdown-avatar-container">
-                      <img
-                        :src="userInfo.avatar || defaultAvatar"
-                        alt="用户头像"
-                        class="user-avatar"
-                      />
-                    </div>
-                    </div>
-                    <div class="dropdown-header-inner">
-                      <div class="dropdown-name">{{ userInfo.name }}</div>
-                      <div class="dropdown-username">
-                        {{ userInfo.username }}
-                      </div>
-                    </div>
-                  </div>
-                  <div class="dropdown-divider"></div>
-
-                  <!-- 菜单项列表 -->
-                  <ul class="dropdown-menu-list">
-                    <li class="dropdown-menu-item">
-                      <button @click="goToProfile">
-                        <svg
-                          class="dropdown-icon"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-                          />
-                        </svg>
-                        Profile
-                      </button>
-                    </li>
-
-                    <li class="dropdown-menu-item">
-                      <button @click="goToStars">
-                        <svg
-                          class="dropdown-icon"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-                          />
-                        </svg>
-                        Stars
-                      </button>
-                    </li>
-
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-menu-item">
-                      <button @click="goToSettings">
-                        <svg
-                          class="dropdown-icon"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
-                          />
-                        </svg>
-                        Settings
-                      </button>
-                    </li>
-                    <li class="dropdown-divider"></li>
-                    <li class="dropdown-menu-item">
-                      <button @click="logout">
-                        <svg
-                          class="dropdown-icon"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="M10 9h4V6h3l1 1l-1 1h-3v3zm10 11V4.98C19.94 4.4 19.11 4 18 4h-6v2h5.99l.01 14c0 1.1.9 2 2 2zM4 6h2v12H4zm4 3h2v2H8zm0-6h2v2H8zm0 9h2v2H8z"
-                          />
-                        </svg>
-                        Sign out
-                      </button>
-                    </li>
-                  </ul>
-                </div>
+                <a class="btn-small bloglo-btn login-btn"><span>订阅</span></a>
               </div>
             </div>
           </div>
@@ -508,18 +257,18 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
+
 const route = useRoute();
 const router = useRouter();
 const isDarkMode = ref(false);
 const userInfo = ref(null);
-const isDropdownOpen = ref(false); // 控制下拉菜单显示隐藏
-// 默认头像
+const isDropdownOpen = ref(false);
+
 const defaultAvatar =
   "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png";
 
-// 获取菜单样式类
 const getMenuItemClass = (path, isHome = false) => {
   const baseClasses = [
     "menu-item",
@@ -535,7 +284,6 @@ const getMenuItemClass = (path, isHome = false) => {
     );
   }
 
-  // 当前路由匹配时，添加高亮类名
   if (route.path === path) {
     baseClasses.push("current-menu-item", "current_page_item");
   }
@@ -543,41 +291,36 @@ const getMenuItemClass = (path, isHome = false) => {
   return baseClasses;
 };
 
-// 切换下拉菜单显示状态
-const toggleDropdown = (e) => {
-  e.stopPropagation(); // 阻止事件冒泡
+const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value;
 };
 
-// 主题切换函数 - 圆形扩散动画
+const closeDropdown = () => {
+  isDropdownOpen.value = false;
+};
+
 const toggleTheme = async (event) => {
   event.preventDefault();
   event.stopPropagation();
 
-  // 检查浏览器是否支持 View Transitions API
   if (!document.startViewTransition) {
     applyThemeChange();
     return;
   }
 
-  // 获取点击位置
   const x = event.clientX;
   const y = event.clientY;
 
-  // 计算到屏幕四个角的距离，取最大值作为扩散半径
   const endRadius = Math.hypot(
     Math.max(x, window.innerWidth - x),
     Math.max(y, window.innerHeight - y)
   );
 
-  // 启动 View Transition
   const transition = document.startViewTransition(async () => {
     applyThemeChange();
   });
 
-  // 等待过渡准备就绪，然后自定义动画
   transition.ready.then(() => {
-    // 为新页面添加圆形扩散动画
     const clipPath = [
       `circle(0px at ${x}px ${y}px)`,
       `circle(${endRadius}px at ${x}px ${y}px)`,
@@ -596,7 +339,6 @@ const toggleTheme = async (event) => {
   });
 };
 
-// 应用主题变更
 const applyThemeChange = () => {
   isDarkMode.value = !isDarkMode.value;
 
@@ -609,7 +351,6 @@ const applyThemeChange = () => {
   }
 };
 
-// 初始化用户信息
 const initUserInfo = () => {
   try {
     const loginUser = localStorage.getItem("loginUser");
@@ -622,59 +363,49 @@ const initUserInfo = () => {
   }
 };
 
-// 菜单项跳转逻辑
 const goToProfile = () => {
-  // 示例：router.push('/profile')
   console.log("前往个人主页");
   isDropdownOpen.value = false;
 };
-const goToRepositories = () => {
-  console.log("前往代码仓库");
-  isDropdownOpen.value = false;
-};
+
 const goToStars = () => {
   console.log("前往收藏");
   isDropdownOpen.value = false;
 };
-const goToGists = () => {
-  console.log("前往Gists");
-  isDropdownOpen.value = false;
-};
+
 const goToSettings = () => {
   console.log("前往设置");
   isDropdownOpen.value = false;
 };
 
-// 退出登录
 const logout = () => {
   localStorage.removeItem("loginUser");
   userInfo.value = null;
-  isDropdownOpen.value = false; // 关闭下拉菜单
+  isDropdownOpen.value = false;
 };
 
-// 初始化主题和用户信息
 onMounted(() => {
-  // 初始化主题
   const darkmode = localStorage.getItem("darkmode");
   isDarkMode.value = darkmode === "dark";
+
   if (isDarkMode.value) {
     document.documentElement.setAttribute("data-theme", "dark");
   } else {
     document.documentElement.setAttribute("data-theme", "light");
   }
 
-  // 初始化用户信息
   initUserInfo();
+  document.addEventListener("click", closeDropdown);
+});
 
-  // 点击文档其他区域关闭下拉菜单
-  document.addEventListener("click", () => {
-    isDropdownOpen.value = false;
-  });
+onUnmounted(() => {
+  document.removeEventListener("click", closeDropdown);
 });
 </script>
 
 <style scoped>
-/* 头像样式 */
+
+/* ========== 头像容器 ========== */
 .avatar-container {
   position: relative;
   width: 40px;
@@ -682,104 +413,155 @@ onMounted(() => {
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
-  border: 1px solid transparent;
-  transition: all 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 
-/* 亮光层：默认隐藏，无初始动画 */
-.avatar-container::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 255, 255, 0.6),
-    transparent
-  );
-  transform: rotate(45deg);
-  opacity: 0; /* 默认隐藏 */
-  z-index: 1;
-}
-
-/* hover 时触发：放大+一次性亮光动画 */
 .avatar-container:hover {
-  transform: scale(1.08);
-}
-.avatar-container:hover::after {
-  animation: lightFlash 1s ease-in-out; /* 一闪而过，速度可调 */
-}
-
-/* 一闪而过动画：扫过+快速消失 */
-@keyframes lightFlash {
-  0% {
-    transform: rotate(45deg) translateX(-100%);
-    opacity: 1;
-  } /* 开始显示 */
-  100% {
-    transform: rotate(45deg) translateX(100%);
-    opacity: 0;
-  } /* 结束隐藏 */
-}
-
-.dropdown-avatar-container {
-
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
+  opacity: 0.8;
 }
 
 .user-avatar {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: relative;
-  z-index: 0;
+  display: block;
 }
 
-/* 下拉菜单样式 */
+/* ========== 下拉菜单 - 更饱满的设计 ========== */
 .user-dropdown-menu {
   position: absolute;
-  top: 80%;
+  top: calc(100% + 10px);
   right: 0;
-  width: 280px;
-  background-color: #161b22;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  padding: 8px 0;
+  width: 320px;
+  border-radius: 16px;
+  padding: 12px;
   z-index: 1000;
-  color: #c9d1d9;
-  font-size: 14px;
+  animation: dropdownFadeIn 0.15s ease-out;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    Helvetica, Arial, sans-serif;
 }
 
+/* 浅色主题 */
+html:not([data-theme="dark"]) .user-dropdown-menu {
+  background-color: #ffffff;
+  box-shadow: 0 8px 24px rgba(140, 149, 159, 0.2);
+  border: 2px solid #d0d7de;
+}
+
+/* 深色主题 */
+html[data-theme="dark"] .user-dropdown-menu {
+  background-color: #161b22;
+  box-shadow: 0 16px 32px rgba(1, 4, 9, 0.85);
+  border: 2px solid #30363d;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== 头部信息区 ========== */
 .dropdown-header {
   display: flex;
+  align-items: flex-start;
+  padding: 14px;
+  gap: 14px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
-.dropdown-header-inner {
-  padding: 16px;
+
+html:not([data-theme="dark"]) .dropdown-header {
+  background-color: #f6f8fa;
+}
+
+html[data-theme="dark"] .dropdown-header {
+  background-color: #0d1117;
+}
+
+.dropdown-avatar-wrapper {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+html:not([data-theme="dark"]) .dropdown-avatar-wrapper {
+  border: 2px solid #d0d7de;
+}
+
+html[data-theme="dark"] .dropdown-avatar-wrapper {
+  border: 2px solid #30363d;
+}
+
+.dropdown-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dropdown-user-info {
+  flex: 1;
+  min-width: 0;
+  padding-top: 4px;
 }
 
 .dropdown-name {
   font-size: 16px;
   font-weight: 600;
-  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html:not([data-theme="dark"]) .dropdown-name {
+  color: #24292f;
+}
+
+html[data-theme="dark"] .dropdown-name {
+  color: #e6edf3;
 }
 
 .dropdown-username {
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html:not([data-theme="dark"]) .dropdown-username {
+  color: #57606a;
+}
+
+html[data-theme="dark"] .dropdown-username {
   color: #8b949e;
 }
 
+/* ========== 分割线 ========== */
 .dropdown-divider {
   height: 1px;
-  background-color: #2d333b;
-  margin: 4px 0;
+  margin: 10px 0;
 }
 
+html:not([data-theme="dark"]) .dropdown-divider {
+  background-color: #d0d7de;
+}
+
+html[data-theme="dark"] .dropdown-divider {
+  background-color: #21262d;
+}
+
+/* ========== 菜单列表 - 更大的字体和图标 ========== */
 .dropdown-menu-list {
   list-style: none;
   padding: 0;
@@ -790,28 +572,81 @@ onMounted(() => {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 8px 16px;
+  padding: 12px 14px;
   background: transparent;
   border: none;
-  color: #c9d1d9;
   text-align: left;
   cursor: pointer;
-  transition: background-color 0.2s;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  gap: 14px;
 }
 
-.dropdown-menu-item button:hover {
-  background-color: #21262d;
-  color: #fff;
+html:not([data-theme="dark"]) .dropdown-menu-item button {
+  color: #24292f;
 }
 
+html[data-theme="dark"] .dropdown-menu-item button {
+  color: #e6edf3;
+}
+
+/* Hover 效果 */
+html:not([data-theme="dark"]) .dropdown-menu-item button:hover {
+  background-color: #f6f8fa;
+}
+
+html[data-theme="dark"] .dropdown-menu-item button:hover {
+  background-color: #30363d;
+}
+
+/* 退出登录特殊样式 */
+html:not([data-theme="dark"]) .dropdown-menu-item button.logout-btn:hover {
+  background-color: #ffebe9;
+  color: #cf222e;
+}
+
+html[data-theme="dark"] .dropdown-menu-item button.logout-btn:hover {
+  background-color: rgba(248, 81, 73, 0.15);
+  color: #ff7b72;
+}
+
+/* ========== 图标 - 更大的尺寸 ========== */
 .dropdown-icon {
-  margin-right: 8px;
-  fill: #c9d1d9;
-  width: 18px;
-  height: 18px;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }
 
-/* 确保头像容器的定位上下文 */
+html:not([data-theme="dark"]) .dropdown-icon {
+  fill: #57606a;
+}
+
+html[data-theme="dark"] .dropdown-icon {
+  fill: #7d8590;
+}
+
+html:not([data-theme="dark"])
+  .dropdown-menu-item
+  button.logout-btn:hover
+  .dropdown-icon {
+  fill: #cf222e;
+}
+
+html[data-theme="dark"]
+  .dropdown-menu-item
+  button.logout-btn:hover
+  .dropdown-icon {
+  fill: #ff7b72;
+}
+
+.dropdown-menu-item button span {
+  flex: 1;
+}
+
+/* 确保父容器定位 */
 .bloglo-widget-wrapper {
   position: relative;
 }

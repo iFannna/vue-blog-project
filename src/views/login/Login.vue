@@ -263,7 +263,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
 /* ==================== 运动的几何图形背景 ==================== */
 .waves-background {
   position: fixed;
