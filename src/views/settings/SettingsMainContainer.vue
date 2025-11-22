@@ -19,7 +19,7 @@ const handleToggleSidebar = () => {
 </script>
 
 <template>
-  <div id="main" class="settings-main">
+  <div class="settings-main-wrapper">
     <div class="settings-container">
       <SettingsSidebar 
         :collapsed="sidebarCollapsed" 
@@ -33,13 +33,14 @@ const handleToggleSidebar = () => {
 </template>
 
 <style scoped>
-.settings-main {
+.settings-main-wrapper {
   width: 100%;
   margin: 0;
   padding: 0;
+  display: block;
+  box-sizing: border-box;
 }
 
-/* 主容器 */
 .settings-container {
   display: flex;
   width: 100%;
@@ -47,22 +48,22 @@ const handleToggleSidebar = () => {
   margin: 0;
   padding: 0;
   gap: 0;
+  box-sizing: border-box;
 }
 
-/* 右侧内容区域 */
 .settings-content {
   flex: 1;
   background: rgba(0, 0, 0, 0.02);
   padding: 0;
   margin: 0;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 :root[data-theme="dark"] .settings-content {
   background: rgba(0, 0, 0, 0.2);
 }
 
-/* 响应式设计 */
 @media (max-width: 768px) {
   .settings-container {
     flex-direction: column;

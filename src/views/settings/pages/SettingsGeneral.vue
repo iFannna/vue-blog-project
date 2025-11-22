@@ -73,6 +73,35 @@ const saveSettings = () => {
   margin: 0;
 }
 
+/* 浅色主题标题颜色 */
+:root[data-theme="light"] .content-title {
+  color: #333;
+}
+
+:root[data-theme="light"] .content-header {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 浅色主题标签颜色 */
+:root[data-theme="light"] .form-label {
+  color: #333;
+}
+
+/* 浅色主题下拉框颜色 */
+:root[data-theme="light"] .form-select {
+  color: #333;
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+:root[data-theme="light"] .form-select:focus {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme="light"] .form-actions {
+  border-top-color: rgba(0, 0, 0, 0.1);
+}
+
 .settings-form {
   max-width: 600px;
 }

@@ -1,11 +1,24 @@
 <script setup>
+import { onMounted, onUnmounted, nextTick } from 'vue';
 import SettingsHeader from "@/views/settings/SettingsHeader.vue";
 import SettingsMainContainer from "@/views/settings/SettingsMainContainer.vue";
 import WavesBackground from "@/components/WavesBackground.vue";
+
+onMounted(() => {
+  nextTick(() => {
+    document.body.classList.add('bloglo-no-sidebar');
+    document.body.classList.add('settings-page-active');
+  });
+});
+
+onUnmounted(() => {
+  document.body.classList.remove('bloglo-no-sidebar');
+  document.body.classList.remove('settings-page-active');
+});
 </script>
 
 <template>
-  <div id="page" class="hfeed site settings-page">
+  <div id="page" class="hfeed site settings-page-wrapper">
     <SettingsHeader />
     <SettingsMainContainer />
     <WavesBackground />
@@ -13,19 +26,16 @@ import WavesBackground from "@/components/WavesBackground.vue";
 </template>
 
 <style scoped>
-/* 设置页面整体样式 - 使用新配色 */
-.settings-page {
+.settings-page-wrapper {
   min-height: 100vh;
   background: #f5f5f5;
   transition: background 0.3s ease;
 }
 
-/* 暗色主题 */
-:root[data-theme="dark"] .settings-page {
+:root[data-theme="dark"] .settings-page-wrapper {
   background: #3a3a3a;
 }
 
-/* View Transitions API 支持 */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -38,5 +48,35 @@ import WavesBackground from "@/components/WavesBackground.vue";
 
 ::view-transition-new(root) {
   z-index: 999;
+}
+</style>
+
+<style>
+/* 全局样式：彻底隔离设置页面，防止任何全局CSS干扰 */
+body.settings-page-active .settings-page-wrapper {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* 隐藏传统侧边栏 */
+body.settings-page-active #secondary,
+body.settings-page-active aside:not(.settings-sidebar) {
+  display: none !important;
+}
+
+/* 重置所有可能影响布局的全局样式 */
+body.settings-page-active .settings-main-wrapper,
+body.settings-page-active .settings-container {
+  display: flex !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+body.settings-page-active .settings-main-wrapper {
+  display: block !important;
 }
 </style>
