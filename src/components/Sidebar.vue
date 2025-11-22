@@ -291,7 +291,7 @@ onMounted(async () => {
       >
         <div class="h4 widget-title">功能</div>
         <ul>
-          <li><a href="/setting">设置</a></li>
+          <li><a href="/settings">设置</a></li>
           <li><a href="/login">登录</a></li>
           <li><a href="/logout">退出</a></li>
         </ul>
