@@ -12,8 +12,18 @@ const formatPublishTime = (dateStr) => {
   const date = new Date(dateStr);
   // 定义英文月份名称
   const monthNames = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
   const month = monthNames[date.getMonth()];
   const day = String(date.getDate()).padStart(2, "0");
@@ -56,36 +66,49 @@ onMounted(async () => {
               class="bloglo-footer-widget bloglo-widget bloglo-entry widget widget_block"
             >
               <div class="h4 widget-title">精品文选</div>
-              <ul class="has-dates has-author" v-if="mostStarArticles.length">
-                <li v-for="article in mostStarArticles" :key="article.id">
-                  <div class="wp-block-latest-posts__featured-image alignleft">
-                    <a :href="article.url">
-                      <img
-                        loading="lazy"
-                        decoding="async"
-                        width="150"
-                        height="150"
-                        :src="article.coverImage"
-                        class="attachment-thumbnail size-thumbnail wp-post-image"
-                        style="max-width: 75px; max-height: 75px"
-                      />
+              <div class="wp-widget-group__inner-blocks">
+                <ul
+                  class="wp-block-latest-posts__list has-dates has-author wp-block-latest-posts"
+                  v-if="mostStarArticles.length"
+                >
+                  <li v-for="article in mostStarArticles" :key="article.id">
+                    <div
+                      class="wp-block-latest-posts__featured-image alignleft"
+                    >
+                      <a :href="article.url">
+                        <img
+                          loading="lazy"
+                          decoding="async"
+                          width="150"
+                          height="150"
+                          :src="article.coverImage"
+                          class="attachment-thumbnail size-thumbnail wp-post-image square-thumb"
+                          style="max-width: 75px; max-height: 75px"
+                        />
+                      </a>
+                    </div>
+                    <a
+                      class="wp-block-latest-posts__post-title"
+                      :href="article.url"
+                    >
+                      {{ article.title }}
                     </a>
-                  </div>
-                  <a class="wp-block-latest-posts__post-title" :href="article.url">
-                    {{ article.title }}
-                  </a>
-                  <div class="wp-block-latest-posts__post-author">
-                    by {{ article.authorName }}
-                  </div>
-                  <div
-                    class="wp-block-latest-posts__post-date"
-                  >{{ formatPublishTime(article.publishAt) }}
-                  </div>
-                </li>
-              </ul>
-              <!-- 无数据时的占位提示 -->
-              <div class="no-data" v-else style="color: #999; padding: 10px 0;">
-                暂无文章
+                    <div class="wp-block-latest-posts__post-author">
+                      by {{ article.authorName }}
+                    </div>
+                    <div class="wp-block-latest-posts__post-date">
+                      {{ formatPublishTime(article.publishAt) }}
+                    </div>
+                  </li>
+                </ul>
+                <!-- 无数据时的占位提示 -->
+                <div
+                  class="no-data"
+                  v-else
+                  style="color: #999; padding: 10px 0"
+                >
+                  暂无文章
+                </div>
               </div>
             </div>
           </div>
@@ -99,39 +122,49 @@ onMounted(async () => {
             >
               <div class="h4 widget-title">编辑精选</div>
               <div class="wp-widget-group__inner-blocks">
-                <ul class="has-dates has-author" v-if="mostShareArticles.length">
-                  <li v-for="article in mostShareArticles" :key="article.id">
-                    <div
-                      class="wp-block-latest-posts__featured-image alignleft"
-                    >
-                      <a :href="article.url">
-                        <img
-                          loading="lazy"
-                          decoding="async"
-                          width="150"
-                          height="150"
-                          :src="article.coverImage"
-                          class="attachment-thumbnail size-thumbnail wp-post-image"
-                          style="max-width: 75px; max-height: 75px"
-                          
-                        />
+                <div class="wp-widget-group__inner-blocks">
+                  <ul
+                    class="wp-block-latest-posts__list has-dates has-author wp-block-latest-posts"
+                    v-if="mostShareArticles.length"
+                  >
+                    <li v-for="article in mostShareArticles" :key="article.id">
+                      <div
+                        class="wp-block-latest-posts__featured-image alignleft"
+                      >
+                        <a :href="article.url">
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            width="150"
+                            height="150"
+                            :src="article.coverImage"
+                            class="attachment-thumbnail size-thumbnail wp-post-image square-thumb"
+                            style="max-width: 75px; max-height: 75px"
+                          />
+                        </a>
+                      </div>
+                      <a
+                        class="wp-block-latest-posts__post-title"
+                        :href="article.url"
+                      >
+                        {{ article.title }}
                       </a>
-                    </div>
-                    <a class="wp-block-latest-posts__post-title" :href="article.url">
-                      {{ article.title }}
-                    </a>
-                    <div class="wp-block-latest-posts__post-author">
-                      by {{ article.authorName }}
-                    </div>
-                    <div
-                      class="wp-block-latest-posts__post-date"
-                    >{{ formatPublishTime(article.publishAt) }}
-                    </div>
-                  </li>
-                </ul>
-                <!-- 无数据时的占位提示 -->
-                <div class="no-data" v-else style="color: #999; padding: 10px 0;">
-                  暂无文章
+                      <div class="wp-block-latest-posts__post-author">
+                        by {{ article.authorName }}
+                      </div>
+                      <div class="wp-block-latest-posts__post-date">
+                        {{ formatPublishTime(article.publishAt) }}
+                      </div>
+                    </li>
+                  </ul>
+                  <!-- 无数据时的占位提示 -->
+                  <div
+                    class="no-data"
+                    v-else
+                    style="color: #999; padding: 10px 0"
+                  >
+                    暂无文章
+                  </div>
                 </div>
               </div>
             </div>

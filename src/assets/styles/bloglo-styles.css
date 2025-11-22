@@ -4853,6 +4853,14 @@ body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile) #bloglo-header-inner
     background-color: rgba(0, 0, 0, 0.18);
     object-fit: cover;
 }
+/* 新增：统一把侧边栏热点小图、精品文选、编辑精选等小封面固定为 1:1 方形并裁切 */
+.square-thumb,
+.bloglo-sidebar-widget .wp-block-latest-posts__featured-image.alignleft img.square-thumb,
+.bloglo-footer-widget .wp-block-latest-posts__featured-image img.square-thumb,
+.bloglo-widget .attachment-thumbnail.size-thumbnail.square-thumb {
+  aspect-ratio: 1 / 1;       
+  object-fit: cover;         
+}
 
 .bloglo-blog-layout-1 .bloglo-article .entry-thumb-image .entry-media {
     margin-top: 0;

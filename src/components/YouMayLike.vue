@@ -89,7 +89,7 @@ onMounted(() => {
                             width="1024"
                             height="731"
                             :src="article.coverImage"
-                            class="attachment-large size-large wp-post-image"
+                            class="attachment-large size-large wp-post-image square-thumb"
                             loading="lazy"
                             :alt="article.title"
                           />

@@ -25,6 +25,14 @@ const formatPublishTime = (timeStr) => {
   return `${month} ${day}, ${year}`;
 };
 
+// 新增：滚动到页面顶部（平滑滚动）
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "auto" // 平滑滚动，若需要立即滚动可改为 'auto'
+  });
+};
+
 // 获取文章列表数据
 const getArticleList = async () => {
   try {
@@ -42,6 +50,7 @@ const getArticleList = async () => {
 const handlePrevPage = () => {
   if (currentPage.value > 1) {
     currentPage.value--;
+    scrollToTop(); // 调用滚动到顶部函数
     getArticleList();
   }
 };
@@ -49,12 +58,14 @@ const handlePrevPage = () => {
 const handleNextPage = () => {
   if (currentPage.value < totalPages.value) {
     currentPage.value++;
+    scrollToTop(); // 调用滚动到顶部函数
     getArticleList();
   }
 };
 
 const handlePageChange = (page) => {
   currentPage.value = page;
+  scrollToTop(); // 调用滚动到顶部函数
   getArticleList();
 };
 

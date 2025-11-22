@@ -176,7 +176,7 @@ onMounted(async () => {
               {{ hotArticles[0].title }}
             </a>
             <div class="wp-block-latest-posts__post-author">by {{ hotArticles[0].authorName }}</div>
-            <div class="wp-block-latest-posts__post-date">{{ hotArticles[0].publishAt }}</div>
+            <div class="wp-block-latest-posts__post-date">{{ formatPublishTime(hotArticles[0].publishAt) }}</div>
           </li>
         </ul>
         <p v-else>暂无热门文章</p>
@@ -196,7 +196,7 @@ onMounted(async () => {
                   width="150"
                   height="150"
                   :src="article.coverImage"
-                  class="attachment-thumbnail size-thumbnail wp-post-image"
+                  class="attachment-thumbnail size-thumbnail wp-post-image square-thumb"
                   :alt="article.title"
                   style="max-width: 75px; max-height: 75px"
                 />
