@@ -8,14 +8,15 @@ const userInfo = ref({
   username: "iFannna",
   signature: "Tell us a little bit about yourself",
   bio: "Tell us a little bit about yourself",
-  avatar: "https://java-ai-sau.oss-cn-beijing.aliyuncs.com/2025/04/312b700a-e1c7-42bf-aa23-5db8dc7121a6.jpg",
+  avatar:
+    "https://java-ai-sau.oss-cn-beijing.aliyuncs.com/2025/04/312b700a-e1c7-42bf-aa23-5db8dc7121a6.jpg",
   socialLinks: [
     { id: 1, url: "", placeholder: "Link to social profile 1" },
     { id: 2, url: "", placeholder: "Link to social profile 2" },
     { id: 3, url: "", placeholder: "Link to social profile 3" },
-    { id: 4, url: "", placeholder: "Link to social profile 4" }
+    { id: 4, url: "", placeholder: "Link to social profile 4" },
   ],
-  address: ""
+  address: "",
 });
 
 // 保存设置
@@ -53,11 +54,19 @@ onMounted(() => {
       <div class="form-row">
         <div class="form-group form-group-large">
           <label class="form-label">昵称</label>
-          <input
-            type="text"
-            v-model="userInfo.nickname"
-            class="form-input"
-          />
+          <input type="text" v-model="userInfo.nickname" class="form-input" />
+          <label class="form-label">个性签名</label>
+          <textarea
+            v-model="userInfo.signature"
+            class="form-textarea"
+            rows="3"
+          ></textarea>
+          <label class="form-label">个人介绍</label>
+          <textarea
+            v-model="userInfo.bio"
+            class="form-textarea"
+            rows="3"
+          ></textarea>
         </div>
 
         <div class="form-group avatar-group">
@@ -65,30 +74,26 @@ onMounted(() => {
           <div class="avatar-upload">
             <img :src="userInfo.avatar" alt="Avatar" class="avatar-preview" />
             <button class="avatar-edit-btn" @click="uploadAvatar">
-              ✏️ 编辑
+              <svg
+                width="16"
+                height="16"
+                fill="none"
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                style="display: inline-block; vertical-align: text-bottom"
+              >
+                <path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  d="M14.515.456a1.555 1.555 0 00-2.2 0L6.58 6.19a1.556 1.556 0 00-.396.673l-.825 2.89a.667.667 0 00.824.824l2.89-.826c.254-.072.485-.209.672-.396l5.735-5.734a1.556 1.556 0 000-2.2l-.965-.965zm-1.257.942a.222.222 0 01.314 0l.965.966a.222.222 0 010 .314L13.415 3.8l-1.28-1.28 1.123-1.122zm-2.065 2.066l1.279 1.279-3.67 3.67a.221.221 0 01-.096.056l-1.736.496.496-1.736c.01-.036.03-.07.057-.096l3.67-3.67zM1.639 4.778a2.25 2.25 0 012.25-2.25h3.154a.75.75 0 000-1.5H3.889a3.75 3.75 0 00-3.75 3.75v7.333a3.75 3.75 0 003.75 3.75h7.333a3.75 3.75 0 003.75-3.75V8.445a.75.75 0 00-1.5 0v3.666a2.25 2.25 0 01-2.25 2.25H3.889a2.25 2.25 0 01-2.25-2.25V4.778z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              编辑
             </button>
           </div>
         </div>
-      </div>
-
-      <!-- 个性签名 -->
-      <div class="form-group">
-        <label class="form-label">个性签名</label>
-        <textarea
-          v-model="userInfo.signature"
-          class="form-textarea"
-          rows="3"
-        ></textarea>
-      </div>
-
-      <!-- 个人介绍 -->
-      <div class="form-group">
-        <label class="form-label">个人介绍</label>
-        <textarea
-          v-model="userInfo.bio"
-          class="form-textarea"
-          rows="3"
-        ></textarea>
       </div>
 
       <!-- 社交账号 -->
@@ -100,7 +105,23 @@ onMounted(() => {
             :key="link.id"
             class="social-link-item"
           >
-            <span class="link-icon">🔗</span>
+            <div class="link-icon">
+              <svg
+                title="Social account"
+                aria-label="Social account"
+                role="img"
+                height="16"
+                viewBox="0 0 16 16"
+                version="1.1"
+                width="16"
+                data-view-component="true"
+                class="octicon octicon-link"
+              >
+                <path
+                  d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"
+                />
+              </svg>
+            </div>
             <input
               type="text"
               v-model="link.url"
@@ -215,8 +236,6 @@ onMounted(() => {
 }
 
 .avatar-preview {
-  width: 160px;
-  height: 160px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid rgba(255, 255, 255, 0.2);

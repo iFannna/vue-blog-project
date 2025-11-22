@@ -1,26 +1,17 @@
 <script setup>
 import SettingsHeader from "@/views/settings/SettingsHeader.vue";
 import SettingsMainContainer from "@/views/settings/SettingsMainContainer.vue";
+import WavesBackground from "@/components/WavesBackground.vue";
 </script>
 
 <template>
-  <div id="page" class="settings-page hfeed site">
+  <div id="page" class="hfeed site">
     <SettingsHeader />
     <SettingsMainContainer />
+    <WavesBackground />
   </div>
 </template>
 
 <style scoped>
-.settings-page {
-  min-height: 100vh;
-  background: var(--bloglo-white, #ffffff);
-  color: var(--bloglo-secondary, #232323);
-  margin: 0;
-  padding: 0;
-}
-
-/* 暗色主题适配 */
-[data-theme="dark"] .settings-page {
-  background: #1a202c;
-}
+/* 移除原有的 settings-page 特定样式，使用与主页一致的样式 */
 </style>
