@@ -39,7 +39,7 @@ const handleToggleSidebar = () => {
   padding: 0;
 }
 
-/* 主容器 - 移除左右边距和最大宽度 */
+/* 主容器 */
 .settings-container {
   display: flex;
   width: 100%;
@@ -49,13 +49,17 @@ const handleToggleSidebar = () => {
   gap: 0;
 }
 
-/* 右侧内容区域 - 移除内边距和边距 */
+/* 右侧内容区域 */
 .settings-content {
   flex: 1;
-  background: rgba(26, 32, 44, 0.3);
+  background: rgba(0, 0, 0, 0.02);
   padding: 0;
   margin: 0;
   overflow-y: auto;
+}
+
+:root[data-theme="dark"] .settings-content {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 /* 响应式设计 */

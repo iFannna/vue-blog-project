@@ -86,7 +86,7 @@ onMounted(() => {
                 <path
                   fill="currentColor"
                   fill-rule="evenodd"
-                  d="M14.515.456a1.555 1.555 0 00-2.2 0L6.58 6.19a1.556 1.556 0 00-.396.673l-.825 2.89a.667.667 0 00.824.824l2.89-.826c.254-.072.485-.209.672-.396l5.735-5.734a1.556 1.556 0 000-2.2l-.965-.965zm-1.257.942a.222.222 0 01.314 0l.965.966a.222.222 0 010 .314L13.415 3.8l-1.28-1.28 1.123-1.122zm-2.065 2.066l1.279 1.279-3.67 3.67a.221.221 0 01-.096.056l-1.736.496.496-1.736c.01-.036.03-.07.057-.096l3.67-3.67zM1.639 4.778a2.25 2.25 0 012.25-2.25h3.154a.75.75 0 000-1.5H3.889a3.75 3.75 0 00-3.75 3.75v7.333a3.75 3.75 0 003.75 3.75h7.333a3.75 3.75 0 003.75-3.75V8.445a.75.75 0 00-1.5 0v3.666a2.25 2.25 0 01-2.25 2.25H3.889a2.25 2.25 0 01-2.25-2.25V4.778z"
+                  d="M14.515.456a1.555 1.555 0 00-2.2 0L6.58 6.19a1.556 1.556 0 00-.396.673l-.825 2.89a.667.667 0 00.824.824l2.89-.826c.254-.072.485-.209.672-.396l5.735-5.734a1.556 1.556 0 000-2.2L14.515.456z"
                   clip-rule="evenodd"
                 ></path>
               </svg>
@@ -118,7 +118,7 @@ onMounted(() => {
                 class="octicon octicon-link"
               >
                 <path
-                  d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"
+                  d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0 0-2.83 2.002 2.002 0 0 0-2.83 0l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"
                 />
               </svg>
             </div>
@@ -171,6 +171,15 @@ onMounted(() => {
   margin: 0;
 }
 
+/* 浅色主题标题颜色 */
+:root[data-theme="light"] .content-title {
+  color: #333;
+}
+
+:root[data-theme="light"] .content-header {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
 /* 表单样式 */
 .settings-form {
   max-width: 900px;
@@ -203,6 +212,11 @@ onMounted(() => {
   margin-bottom: 0.8rem;
 }
 
+/* 浅色主题标签颜色 */
+:root[data-theme="light"] .form-label {
+  color: #333;
+}
+
 .form-input,
 .form-textarea {
   width: 100%;
@@ -215,11 +229,29 @@ onMounted(() => {
   transition: all 0.3s ease;
 }
 
+/* 浅色主题输入框颜色 */
+:root[data-theme="light"] .form-input,
+:root[data-theme="light"] .form-textarea {
+  color: #333;
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+:root[data-theme="light"] .form-input::placeholder,
+:root[data-theme="light"] .form-textarea::placeholder {
+  color: #999;
+}
+
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
   border-color: var(--bloglo-primary, #0554f2);
   background: rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme="light"] .form-input:focus,
+:root[data-theme="light"] .form-textarea:focus {
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .form-textarea {
@@ -241,6 +273,10 @@ onMounted(() => {
   border: 3px solid rgba(255, 255, 255, 0.2);
 }
 
+:root[data-theme="light"] .avatar-preview {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
 .avatar-edit-btn {
   padding: 0.6rem 1.5rem;
   background: rgba(255, 255, 255, 0.1);
@@ -252,9 +288,20 @@ onMounted(() => {
   transition: all 0.3s ease;
 }
 
+:root[data-theme="light"] .avatar-edit-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #333;
+}
+
 .avatar-edit-btn:hover {
   background: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.3);
+}
+
+:root[data-theme="light"] .avatar-edit-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.25);
 }
 
 /* 社交链接 */
@@ -275,11 +322,19 @@ onMounted(() => {
   color: rgba(255, 255, 255, 0.6);
 }
 
+:root[data-theme="light"] .link-icon {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 /* 保存按钮 */
 .form-actions {
   margin-top: 3rem;
   padding-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="light"] .form-actions {
+  border-top-color: rgba(0, 0, 0, 0.1);
 }
 
 .btn-save {

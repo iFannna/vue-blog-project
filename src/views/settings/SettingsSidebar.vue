@@ -222,15 +222,20 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* 左侧边栏 - 参考主页样式优化 */
+/* 左侧边栏 */
 .settings-sidebar {
   width: 320px;
   flex-shrink: 0;
-  background: linear-gradient(135deg, rgba(26, 32, 44, 0.5) 0%, rgba(26, 32, 44, 0.7) 100%);
-  backdrop-filter: blur(10px);
+  background: #ffffff;
   padding: 2rem 1.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   overflow-y: auto;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* 暗色主题 */
+:root[data-theme="dark"] .settings-sidebar {
+  background: #2a2a2a;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -239,17 +244,21 @@ onMounted(() => {
 }
 
 .settings-sidebar::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05);
   border-radius: 3px;
+}
+
+:root[data-theme="dark"] .settings-sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .settings-sidebar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 3px;
 }
 
-.settings-sidebar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+:root[data-theme="dark"] .settings-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .settings-sidebar.collapsed {
@@ -262,24 +271,30 @@ onMounted(() => {
   padding: 1rem;
 }
 
-/* 用户信息卡片 - 优化样式 */
+/* 用户信息卡片 */
 .user-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: #f9f9f9;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 2rem;
   display: flex;
   gap: 1rem;
   align-items: flex-start;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+:root[data-theme="dark"] .user-card {
+  background: #3a3a3a;
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .user-card:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background: #f0f0f0;
+}
+
+:root[data-theme="dark"] .user-card:hover {
+  background: #404040;
 }
 
 .user-avatar {
@@ -288,13 +303,12 @@ onMounted(() => {
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
 }
 
-.user-card:hover .user-avatar {
-  border-color: var(--bloglo-primary, #0554f2);
-  transform: scale(1.05);
+:root[data-theme="dark"] .user-avatar {
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .user-info {
@@ -305,40 +319,56 @@ onMounted(() => {
 .user-nickname {
   font-size: 1.6rem;
   font-weight: 600;
-  color: #fff;
+  color: #333;
   margin: 0 0 0.3rem 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+:root[data-theme="dark"] .user-nickname {
+  color: #fff;
+}
+
 .user-username {
   font-size: 1.3rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: #666;
   margin: 0 0 0.5rem 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+:root[data-theme="dark"] .user-username {
+  color: #aaa;
+}
+
 .user-account-type {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: #999;
   margin: 0;
   font-weight: 500;
 }
 
-/* 导航菜单 - 优化样式 */
+:root[data-theme="dark"] .user-account-type {
+  color: #888;
+}
+
+/* 导航菜单 */
 .sidebar-nav {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.03) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  background: #f9f9f9;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
   padding: 1.2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme="dark"] .sidebar-nav {
+  background: #3a3a3a;
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-section {
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.5rem;
 }
 
 .nav-section:last-child {
@@ -347,25 +377,15 @@ onMounted(() => {
 
 .section-title {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: #999;
   text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  margin: 0 0 1rem 0.8rem;
-  font-weight: 700;
-  position: relative;
-  padding-left: 0.8rem;
+  letter-spacing: 0.05rem;
+  margin: 0 0 0.8rem 0.8rem;
+  font-weight: 600;
 }
 
-.section-title::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 14px;
-  background: var(--bloglo-primary, #0554f2);
-  border-radius: 2px;
+:root[data-theme="dark"] .section-title {
+  color: #888;
 }
 
 .nav-list {
@@ -374,90 +394,53 @@ onMounted(() => {
   margin: 0;
 }
 
+/* 简化的 hover 效果 */
 .nav-item {
   display: flex;
   align-items: center;
-  padding: 1rem 1.2rem;
-  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 0.4rem;
-  position: relative;
-  overflow: hidden;
+  transition: all 0.2s ease;
+  color: #666;
+  margin-bottom: 0.3rem;
 }
 
-.nav-item::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 0;
-  height: 100%;
-  background: linear-gradient(90deg, var(--bloglo-primary, #0554f2) 0%, transparent 100%);
-  transition: width 0.3s ease;
-  z-index: 0;
-}
-
-.nav-item:hover::before {
-  width: 100%;
+:root[data-theme="dark"] .nav-item {
+  color: #ccc;
 }
 
 .nav-item:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.05);
+  color: #333;
+}
+
+:root[data-theme="dark"] .nav-item:hover {
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  transform: translateX(4px);
-  box-shadow: 0 2px 8px rgba(5, 84, 242, 0.2);
 }
 
 .nav-item.active {
-  background: linear-gradient(135deg, var(--bloglo-primary, #0554f2) 0%, #0443c9 100%);
+  background: #0554f2;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(5, 84, 242, 0.4);
-  font-weight: 600;
-}
-
-.nav-item.active::before {
-  width: 100%;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  font-weight: 500;
 }
 
 /* SVG 图标样式 */
 .nav-icon {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   margin-right: 1rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  position: relative;
-  z-index: 1;
 }
 
 .nav-icon :deep(svg) {
   width: 100%;
   height: 100%;
   stroke: currentColor;
-  transition: all 0.3s ease;
-}
-
-.nav-item:hover .nav-icon :deep(svg) {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 4px currentColor);
-}
-
-.nav-item.active .nav-icon :deep(svg) {
-  animation: iconPulse 2s ease-in-out infinite;
-}
-
-@keyframes iconPulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
 }
 
 .settings-sidebar.collapsed .nav-icon {
@@ -470,13 +453,6 @@ onMounted(() => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  position: relative;
-  z-index: 1;
-  transition: all 0.3s ease;
-}
-
-.nav-item:hover .nav-label {
-  letter-spacing: 0.02em;
 }
 
 /* 响应式设计 */
@@ -484,63 +460,15 @@ onMounted(() => {
   .settings-sidebar {
     width: 100%;
     border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  :root[data-theme="dark"] .settings-sidebar {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .settings-sidebar.collapsed {
     width: 100%;
   }
-}
-
-/* 暗色主题优化 */
-[data-theme="dark"] .settings-sidebar {
-  background: linear-gradient(135deg, rgba(17, 24, 39, 0.6) 0%, rgba(17, 24, 39, 0.8) 100%);
-}
-
-[data-theme="dark"] .user-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.03) 100%);
-}
-
-[data-theme="dark"] .sidebar-nav {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
-}
-
-/* 浅色主题 */
-[data-theme="light"] .settings-sidebar {
-  background: linear-gradient(135deg, rgba(249, 250, 251, 0.95) 0%, rgba(243, 244, 246, 0.98) 100%);
-  border-right: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-[data-theme="light"] .user-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(249, 250, 251, 0.9) 100%);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-[data-theme="light"] .user-nickname,
-[data-theme="light"] .nav-item {
-  color: rgba(0, 0, 0, 0.85);
-}
-
-[data-theme="light"] .user-username {
-  color: rgba(0, 0, 0, 0.6);
-}
-
-[data-theme="light"] .user-account-type,
-[data-theme="light"] .section-title {
-  color: rgba(0, 0, 0, 0.45);
-}
-
-[data-theme="light"] .sidebar-nav {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 250, 251, 0.8) 100%);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-[data-theme="light"] .nav-item:hover {
-  background: rgba(5, 84, 242, 0.08);
-  color: var(--bloglo-primary, #0554f2);
-}
-
-[data-theme="light"] .user-avatar {
-  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 </style>
