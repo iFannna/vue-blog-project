@@ -6,8 +6,8 @@ import { ElMessage } from "element-plus";
 const userInfo = ref({
   nickname: "SAu",
   username: "iFannna",
-  signature: "Tell us a little bit about yourself",
-  bio: "Tell us a little bit about yourself",
+  signature: "编辑个签，展示我的独特态度。",
+  bio: "介绍一下自己吧",
   avatar:
     "https://java-ai-sau.oss-cn-beijing.aliyuncs.com/2025/04/312b700a-e1c7-42bf-aa23-5db8dc7121a6.jpg",
   socialLinks: [
