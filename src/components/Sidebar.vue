@@ -53,7 +53,7 @@ onMounted(async () => {
   <aside
     id="secondary"
     class="widget-area bloglo-sidebar-container"
-    role="complementary"
+    
   >
     <div class="bloglo-sidebar-inner">
       <!--个人信息-->

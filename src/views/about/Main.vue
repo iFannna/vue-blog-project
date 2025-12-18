@@ -3,8 +3,7 @@
   <div id="primary" class="content-area">
     <main id="content" class="site-content">
       <article
-        id="post-720"
-        class="post-720 page type-page status-publish hentry"
+        class=" page type-page status-publish hentry"
       >
         <div class="entry-content bloglo-entry">
           <div

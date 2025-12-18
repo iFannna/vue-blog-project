@@ -4,4 +4,4 @@ import request from '@/utils/request';
 export const registerApi = (data) => request.post('/register', data);
 
 // 发送注册验证码
-export const sendRegisterCodeApi = (data) => request.post('/send-register-code', data);
+export const sendRegisterCodeApi = (params) => request.get('/send-register-code', { params });

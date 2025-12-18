@@ -14,7 +14,7 @@ let registerForm = ref({
   confirmPassword: "",
   agreeTerms: false,
   emailVerificationCode: "", // 邮箱验证码
-  captchaParams: "" // 阿里云验证码参数
+  captchaParams: "", // 阿里云验证码参数
 });
 
 // 表单错误提示信息
@@ -24,7 +24,7 @@ let registerErrors = ref({
   password: "",
   confirmPassword: "",
   agreeTerms: "",
-  emailVerificationCode: ""
+  emailVerificationCode: "",
 });
 
 // 密码显示状态控制
@@ -36,12 +36,12 @@ const strengthMeterClass = ref("strength-meter");
 const strengthText = ref("密码强度");
 
 // 验证码对话框与倒计时状态
-const dialogVisible = ref(false); 
-const countdown = ref(0); 
+const dialogVisible = ref(false);
+const countdown = ref(0);
 
 // 阿里云验证码相关状态
-const captcha = ref(null); 
-const captchaScriptLoaded = ref(false); 
+const captcha = ref(null);
+const captchaScriptLoaded = ref(false);
 const captchaVerified = ref(false); // 标记是否已通过首次校验
 const savedCaptchaParams = ref(""); // 复用首次校验通过的验证码参数
 
@@ -126,30 +126,30 @@ const validateEmail = () => {
 // 密码格式校验
 const validatePassword = () => {
   const { password } = registerForm.value;
-  
+
   if (!password) {
     registerErrors.value.password = "请输入密码";
     return false;
   }
-  
+
   if (password.length < 6 || password.length > 18) {
     registerErrors.value.password = "密码长度必须在6-18位之间";
     return false;
   }
-  
+
   const allowedCharsRegex = /^[@#$%&*a-zA-Z0-9]+$/;
   if (!allowedCharsRegex.test(password)) {
     registerErrors.value.password = "密码只能包含字母、数字及 @#$%&*";
     return false;
   }
-  
+
   const hasLetter = /[a-zA-Z]/.test(password);
   const hasDigit = /\d/.test(password);
   if (!hasLetter || !hasDigit) {
     registerErrors.value.password = "密码必须包含至少一个字母和一个数字";
     return false;
   }
-  
+
   checkPasswordStrength(password);
   registerErrors.value.password = "";
   return true;
@@ -197,7 +197,7 @@ const validateEmailCode = () => {
 const initCaptcha = () => {
   if (window.initAliyunCaptcha && captcha.value === null) {
     window.initAliyunCaptcha({
-      SceneId: "1h222nka", 
+      SceneId: "1h222nka",
       mode: "popup",
       element: "#register-captcha-element",
       success: async (captchaVerifyParam) => {
@@ -216,7 +216,7 @@ const initCaptcha = () => {
       slideStyle: {
         width: 360,
         height: 40,
-      }
+      },
     });
   } else if (!window.initAliyunCaptcha) {
     // 若脚本未加载完成，延迟重试
@@ -227,14 +227,15 @@ const initCaptcha = () => {
 // 加载阿里云验证码脚本
 const loadCaptchaScript = () => {
   if (!document.querySelector('script[src*="AliyunCaptcha.js"]')) {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://o.alicdn.com/captcha-frontend/aliyunCaptcha/AliyunCaptcha.js';
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src =
+      "https://o.alicdn.com/captcha-frontend/aliyunCaptcha/AliyunCaptcha.js";
     script.onload = () => {
       captchaScriptLoaded.value = true;
     };
     script.onerror = () => {
-      ElMessage.error('验证码加载失败，请刷新页面重试');
+      ElMessage.error("验证码加载失败，请刷新页面重试");
     };
     document.head.appendChild(script);
   } else {
@@ -266,7 +267,7 @@ const triggerCaptchaVerify = async () => {
   // 未通过校验，触发阿里云滑块校验
   if (captcha.value) {
     // 调用阿里云验证码实例的显示方法（可选择verify/popup）
-    captcha.value.show(); 
+    captcha.value.show();
   } else {
     ElMessage.warning("验证码组件加载中，请稍候");
     // 重新初始化并延迟触发
@@ -287,11 +288,13 @@ const sendRegisterCode = async () => {
     // 优先使用保存的校验参数，保证复用
     const requestParams = {
       email: registerForm.value.email,
-      captchaParams: savedCaptchaParams.value || registerForm.value.captchaParams
+      captchaParams:
+        savedCaptchaParams.value || registerForm.value.captchaParams,
     };
-    
+
+    // 适配后端GET请求，参数通过query传递
     const response = await sendRegisterCodeApi(requestParams);
-    
+
     if (response.code) {
       ElMessage.success(response.msg || "验证码已发送至邮箱，5分钟内有效");
       startCountdown();
@@ -323,10 +326,18 @@ const openVerificationDialog = () => {
   const isConfirmPasswordValid = validateConfirmPassword();
   const isAgreeTermsValid = validateAgreeTerms();
 
-  if (!(isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && isAgreeTermsValid)) {
+  if (
+    !(
+      isUsernameValid &&
+      isEmailValid &&
+      isPasswordValid &&
+      isConfirmPasswordValid &&
+      isAgreeTermsValid
+    )
+  ) {
     return;
   }
-  
+
   dialogVisible.value = true;
 };
 
@@ -335,10 +346,18 @@ const submitRegister = async () => {
   if (!validateEmailCode()) {
     return;
   }
-  
+
   try {
-    const response = await registerApi(registerForm.value);
-    
+    // 构造符合后端RegisterDTO的参数（过滤多余字段）
+    const registerData = {
+      username: registerForm.value.username,
+      password: registerForm.value.password,
+      email: registerForm.value.email,
+      emailVerificationCode: registerForm.value.emailVerificationCode,
+    };
+
+    const response = await registerApi(registerData);
+
     if (response.code) {
       ElMessage.success("注册成功！即将跳转到登录页面");
       dialogVisible.value = false;
@@ -358,10 +377,10 @@ const submitRegister = async () => {
 let themeToggleTimer = null;
 const toggleTheme = async (event) => {
   if (themeToggleTimer) return;
-  
+
   event.preventDefault();
   event.stopPropagation();
-  
+
   // 检查浏览器是否支持 View Transitions API
   if (!document.startViewTransition) {
     applyThemeChange();
@@ -388,21 +407,21 @@ const toggleTheme = async (event) => {
     // 为新页面添加圆形扩散动画
     const clipPath = [
       `circle(0px at ${x}px ${y}px)`,
-      `circle(${endRadius}px at ${x}px ${y}px)`
+      `circle(${endRadius}px at ${x}px ${y}px)`,
     ];
 
     document.documentElement.animate(
       {
-        clipPath: clipPath
+        clipPath: clipPath,
       },
       {
         duration: 800,
-        easing: 'ease-in-out',
-        pseudoElement: '::view-transition-new(root)'
+        easing: "ease-in-out",
+        pseudoElement: "::view-transition-new(root)",
       }
     );
   });
-  
+
   // 防抖处理
   themeToggleTimer = setTimeout(() => {
     themeToggleTimer = null;
@@ -430,37 +449,43 @@ const goToLogin = () => {
 
 // ===================== 监听器 =====================
 // 监听邮箱变化，重置校验状态（邮箱变更后需重新校验）
-watch(() => registerForm.value.email, () => {
-  resetCaptchaState();
-});
+watch(
+  () => registerForm.value.email,
+  () => {
+    resetCaptchaState();
+  }
+);
 
 // 监听对话框显示状态，动态初始化/销毁验证码
-watch(() => dialogVisible.value, async (newVal) => {
-  if (newVal) {
-    // 确保验证码脚本已加载
-    if (!captchaScriptLoaded.value) {
-      loadCaptchaScript();
-    }
-    // 等待DOM更新完成
-    await nextTick();
-    // 初始化验证码
-    initCaptcha();
-  } else {
-    // 销毁验证码实例
-    if (captcha.value) {
-      captcha.value.destroy();
-      captcha.value = null;
-      // 如需每次打开对话框都重新校验，可取消下方注释
-      // resetCaptchaState();
+watch(
+  () => dialogVisible.value,
+  async (newVal) => {
+    if (newVal) {
+      // 确保验证码脚本已加载
+      if (!captchaScriptLoaded.value) {
+        loadCaptchaScript();
+      }
+      // 等待DOM更新完成
+      await nextTick();
+      // 初始化验证码
+      initCaptcha();
+    } else {
+      // 销毁验证码实例
+      if (captcha.value) {
+        captcha.value.destroy();
+        captcha.value = null;
+        // 如需每次打开对话框都重新校验，可取消下方注释
+        // resetCaptchaState();
+      }
     }
   }
-});
+);
 
 // ===================== 生命周期钩子 =====================
 // 页面挂载时初始化
 onMounted(() => {
   loadCaptchaScript();
-  
+
   // 初始化主题
   const darkmode = localStorage.getItem("darkmode");
   isDarkMode.value = darkmode === "dark";
@@ -539,8 +564,8 @@ onMounted(() => {
       </div>
 
       <!-- 阿里云验证码预留元素 -->
-      <div id="register-captcha-element" style="display: none;"></div>
-      
+      <div id="register-captcha-element" style="display: none"></div>
+
       <!-- 注册表单 -->
       <form @submit.prevent="openVerificationDialog">
         <!-- 用户名输入 -->
@@ -555,7 +580,7 @@ onMounted(() => {
               @blur="validateUsername"
               @input="validateUsername"
               maxlength="12"
-            >
+            />
           </div>
           <div class="error-message" v-if="registerErrors.username">
             {{ registerErrors.username }}
@@ -573,7 +598,7 @@ onMounted(() => {
               class="custom-input"
               @blur="validateEmail"
               @input="validateEmail"
-            >
+            />
           </div>
           <div class="error-message" v-if="registerErrors.email">
             {{ registerErrors.email }}
@@ -587,12 +612,15 @@ onMounted(() => {
             <input
               :type="showPassword ? 'text' : 'password'"
               v-model="registerForm.password"
-              @input="checkPasswordStrength(registerForm.password); validatePassword()"
+              @input="
+                checkPasswordStrength(registerForm.password);
+                validatePassword();
+              "
               @blur="validatePassword"
               placeholder="请输入密码"
               class="custom-input"
               maxlength="18"
-            >
+            />
             <button
               type="button"
               class="toggle-password"
@@ -624,13 +652,15 @@ onMounted(() => {
               placeholder="请再次输入密码"
               class="custom-input"
               maxlength="18"
-            >
+            />
             <button
               type="button"
               class="toggle-password"
               @click="toggleConfirmPassword"
             >
-              <i :class="showConfirmPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+              <i
+                :class="showConfirmPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
+              ></i>
             </button>
           </div>
           <div class="error-message" v-if="registerErrors.confirmPassword">
@@ -672,7 +702,7 @@ onMounted(() => {
       title="邮箱验证"
       :width="440"
       :close-on-click-modal="true"
-      :show-close=false
+      :show-close="false"
       center
       draggable
       class="verification-dialog"
@@ -681,7 +711,7 @@ onMounted(() => {
         <div class="dialog-icon">
           <i class="fas fa-envelope"></i>
         </div>
-        
+
         <div class="verification-input-group">
           <input
             type="text"
@@ -690,23 +720,23 @@ onMounted(() => {
             class="verification-input"
             @input="validateEmailCode"
             maxlength="6"
-          >
-          
+          />
+
           <button
             id="get-code-button"
             class="get-code-btn"
             :disabled="countdown > 0"
             @click="triggerCaptchaVerify"
           >
-            {{ countdown > 0 ? `${countdown}s` : '获取验证码' }}
+            {{ countdown > 0 ? `${countdown}s` : "获取验证码" }}
           </button>
         </div>
-        
+
         <div class="error-message" v-if="registerErrors.emailVerificationCode">
           {{ registerErrors.emailVerificationCode }}
         </div>
       </div>
-      
+
       <template #footer>
         <div class="dialog-footer">
           <button class="dialog-btn cancel-btn" @click="dialogVisible = false">
@@ -720,7 +750,6 @@ onMounted(() => {
     </ElDialog>
   </div>
 </template>
-
 <style scoped>
 /* ==================== 运动的几何图形背景 ==================== */
 .waves-background {
@@ -1453,7 +1482,8 @@ onMounted(() => {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(252, 102, 104, 0.4);
   }
@@ -1615,11 +1645,11 @@ onMounted(() => {
   .register-title {
     font-size: 24px;
   }
-  
+
   .register-page-wrapper {
     background: #fff9f3;
   }
-  
+
   [data-theme="dark"] .register-page-wrapper {
     background: #333333;
   }

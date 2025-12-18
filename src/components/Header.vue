@@ -77,6 +77,9 @@
               <li :class="getMenuItemClass('/contact')">
                 <router-link to="/contact"><span>联系</span></router-link>
               </li>
+              <li :class="getMenuItemClass('/settings')">
+                <router-link to="/settings"><span>设置</span></router-link>
+              </li>
             </ul>
           </nav>
           <!-- 顶部右侧小组件 -->

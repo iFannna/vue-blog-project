@@ -279,6 +279,8 @@ onMounted(async () => {
                 rel="noopener noreferrer"
                 >赣ICP备2025076466号-1</a
               >
+              ——
+              <a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010802006648" rel="noreferrer" target="_blank" data-v-4896eafd="">渝公网安备50010802006648号</a>
             </div>
           </div>
         </div>
