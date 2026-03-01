@@ -23,7 +23,7 @@ html body {
   margin-bottom: 0;
 }
 
-body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile)
+body:not(.bloglo-is-mobile)
   #bloglo-header-inner
   .bloglo-nav
   > ul
@@ -32,13 +32,13 @@ body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile)
   padding: 0.4rem 1.4rem 0.4rem;
 }
 
-body.bloglo-blog-horizontal .bloglo-article:not(.format-quote) .entry-meta {
+.bloglo-article:not(.format-quote) .entry-meta {
   margin-top: 1.6rem;
 }
 
-body .navigation .nav-links .bloglo-animate-arrow,
-body .navigation .nav-links .page-numbers,
-body .page-links > span {
+.navigation .nav-links .bloglo-animate-arrow,
+.navigation .nav-links .page-numbers,
+.page-links > span {
   background-color: transparent;
 }
 
@@ -59,7 +59,7 @@ body .page-links > span {
 
 .entry-footer .bloglo-btn.btn-text-1,
 .wp-block-search .wp-block-search__button,
-body .bloglo-btn:not(.btn-text-1) {
+.bloglo-btn:not(.btn-text-1) {
   line-height: 1.8;
   border-radius: 7px !important;
   transform: translate(0px, 0px) !important;
@@ -70,44 +70,44 @@ body .bloglo-btn:not(.btn-text-1) {
 
 .entry-footer .bloglo-btn.btn-text-1:active,
 .wp-block-search .wp-block-search__button:active,
-body .bloglo-btn:not(.btn-text-1):active,
+.bloglo-btn:not(.btn-text-1):active,
 .entry-footer .bloglo-btn.btn-text-1:hover,
 .wp-block-search .wp-block-search__button:hover,
-body .bloglo-btn:not(.btn-text-1):hover {
+.bloglo-btn:not(.btn-text-1):hover {
   color: #fff;
   transform: translateY(-2px) !important;
   box-shadow: 0 10px 18px 0 var(--bloglo-primary_09) !important;
 }
 
-body .navigation .nav-links .page-numbers:not(.prev, .next).current,
-body .navigation .nav-links .page-numbers:hover button,
-body.using-keyboard .navigation .nav-links .page-numbers:focus button,
-body .navigation .nav-links .page-numbers:not(.prev, .next):hover,
-body.using-keyboard
+.navigation .nav-links .page-numbers:not(.prev, .next).current,
+.navigation .nav-links .page-numbers:hover button,
+.using-keyboard .navigation .nav-links .page-numbers:focus button,
+.navigation .nav-links .page-numbers:not(.prev, .next):hover,
+.using-keyboard
   .navigation
   .nav-links
   .page-numbers:not(.prev, .next):focus,
-body .page-links a:hover span,
-body.using-keyboard .page-links a:focus span,
-body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile)
+.page-links a:hover span,
+.using-keyboard .page-links a:focus span,
+body:not(.bloglo-is-mobile)
   #bloglo-header-inner
   .bloglo-nav
   > ul
   > li.current-menu-item
   > a,
-body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile)
+body:not(.bloglo-is-mobile)
   #bloglo-header-inner
   .bloglo-nav
   > ul
   > li.current_page_item
   > a,
-body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile)
+body:not(.bloglo-is-mobile)
   #bloglo-header-inner
   .bloglo-nav
   > ul
   > li
   > a:hover,
-body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile).using-keyboard
+body:not(.bloglo-is-mobile).using-keyboard
   #bloglo-header-inner
   .bloglo-nav
   > ul
@@ -119,7 +119,7 @@ body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile).using-keyboard
 
 .entry-footer .bloglo-btn.btn-text-1:active,
 .wp-block-search .wp-block-search__button:active,
-body .bloglo-btn:not(.btn-text-1):active {
+.bloglo-btn:not(.btn-text-1):active {
   transform: translateY(0px) !important;
 }
 
@@ -279,8 +279,8 @@ html[data-theme="dark"]
   border-radius: 0.8rem;
 }
 
-body .pyml-slide-item .pyml-slider-backgrounds .pyml-slide-bg,
-body .wp-block-latest-posts__featured-image {
+.pyml-slide-item .pyml-slider-backgrounds .pyml-slide-bg,
+.wp-block-latest-posts__featured-image {
   border: 0.1rem solid rgba(39, 39, 39, 0.75);
   border-radius: 0.8rem;
   box-shadow: 2px 2px 3px 0px rgba(93, 112, 234, 0.1);

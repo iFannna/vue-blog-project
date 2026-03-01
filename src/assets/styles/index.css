@@ -24,21 +24,14 @@ img:is([sizes="auto" i], [sizes^="auto," i]) {
   gap: 0.5em;
 }
 
-body .is-layout-flex {
-  display: flex;
-}
-
 .is-layout-flex {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
 
 .is-layout-flex > :is(*, div) {
   margin: 0;
-}
-
-body {
-  display: grid;
 }
 
 .is-layout-grid > :is(*, div) {

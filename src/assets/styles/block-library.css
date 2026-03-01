@@ -2623,7 +2623,7 @@ html.has-modal-open {
     text-transform: uppercase
 }
 
-body.rtl .has-drop-cap:not(:focus):first-letter {
+.rtl .has-drop-cap:not(:focus):first-letter {
     float: none;
     margin-left: .1em
 }

@@ -3501,12 +3501,12 @@ body:not(.bloglo-layout__boxed) .bloglo_section_extra .alignfull, body:not(.blog
     max-width: var(--bloglo-screen-width, 100vw);
 }
 
-body.bloglo-layout__boxed .bloglo_section_extra .alignfull, body.bloglo-layout__boxed .bloglo_section_extra .bloglo-fw-section, body.bloglo-layout__boxed.bloglo-no-sidebar .entry-content .alignfull, body.bloglo-layout__boxed.bloglo-no-sidebar .bloglo-fw-section {
+.bloglo-layout__boxed .bloglo_section_extra .alignfull, .bloglo-layout__boxed .bloglo_section_extra .bloglo-fw-section, .bloglo-layout__boxed.bloglo-no-sidebar .entry-content .alignfull, .bloglo-layout__boxed.bloglo-no-sidebar .bloglo-fw-section {
     margin-left: -10rem;
     margin-right: -10rem;
 }
 
-body.bloglo-layout__boxed-separated:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .elementor-section.elementor-section-stretched, body.bloglo-layout__boxed-separated:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .entry-content .alignfull, body.bloglo-layout__boxed-separated:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .bloglo-fw-section {
+.bloglo-layout__boxed-separated:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .elementor-section.elementor-section-stretched, .bloglo-layout__boxed-separated:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .entry-content .alignfull, .bloglo-layout__boxed-separated:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .bloglo-fw-section {
     left: 0 !important;
     width: auto !important;
     max-width: unset;
@@ -4507,7 +4507,7 @@ html body #bloglo-header-inner .bloglo-nav > ul > li > a > span > span.descripti
     padding: 0.6rem 1.4rem;
 }
 
-body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li > a:hover, body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile).using-keyboard #bloglo-header-inner .bloglo-nav > ul > li > a:focus, body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li.menu-item-has-children:hover > a, body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile).using-keyboard #bloglo-header-inner .bloglo-nav > ul > li.menu-item-has-children:focus > a, body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li.current-menu-item > a, body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li.current-menu-ancestor > a, body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li.page_item_has_children:hover > a, body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li.current_page_item > a, body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li.current_page_ancestor > a, body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile) #bloglo-topbar .bloglo-nav > ul > li > a:hover, body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile).using-keyboard #bloglo-topbar .bloglo-nav > ul > li > a:focus, body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile) #bloglo-topbar .bloglo-nav > ul > li.menu-item-has-children:hover > a, body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile) #bloglo-topbar .bloglo-nav > ul > li.current-menu-item > a, body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile) #bloglo-topbar .bloglo-nav > ul > li.current-menu-ancestor > a {
+body:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li > a:hover, body:not(.bloglo-is-mobile).using-keyboard #bloglo-header-inner .bloglo-nav > ul > li > a:focus, body:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li.menu-item-has-children:hover > a, body:not(.bloglo-is-mobile).using-keyboard #bloglo-header-inner .bloglo-nav > ul > li.menu-item-has-children:focus > a, body:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li.current-menu-item > a, body:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li.current-menu-ancestor > a, body:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li.page_item_has_children:hover > a, body:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li.current_page_item > a, body:not(.bloglo-is-mobile) #bloglo-header-inner .bloglo-nav > ul > li.current_page_ancestor > a, body:not(.bloglo-is-mobile) #bloglo-topbar .bloglo-nav > ul > li > a:hover, body:not(.bloglo-is-mobile).using-keyboard #bloglo-topbar .bloglo-nav > ul > li > a:focus, body:not(.bloglo-is-mobile) #bloglo-topbar .bloglo-nav > ul > li.menu-item-has-children:hover > a, body:not(.bloglo-is-mobile) #bloglo-topbar .bloglo-nav > ul > li.current-menu-item > a, body:not(.bloglo-is-mobile) #bloglo-topbar .bloglo-nav > ul > li.current-menu-ancestor > a {
     background-color: var(--bloglo-primary);
     color: #fff;
 }
@@ -6526,7 +6526,7 @@ body.bloglo-menu-animation-squarebox:not(.bloglo-is-mobile) #bloglo-header-inner
     background-attachment: fixed;
 }
 
-body.author .author-box {
+.author .author-box {
     margin-bottom: 4rem;
     margin-top: 0;
 }
@@ -7878,7 +7878,7 @@ button.bloglo-hamburger {
 }
 
 @media screen and (min-width: 769px) and (max-width: 960px) {
-    .bloglo-has-sidebar:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .elementor-section.elementor-section-stretched, .bloglo-has-sidebar:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .entry-content .alignfull, .bloglo-has-sidebar:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .bloglo-fw-section, body.bloglo-layout__boxed-separated:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .elementor-section.elementor-section-stretched, body.bloglo-layout__boxed-separated:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .entry-content .alignfull, body.bloglo-layout__boxed-separated:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .bloglo-fw-section {
+    .bloglo-has-sidebar:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .elementor-section.elementor-section-stretched, .bloglo-has-sidebar:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .entry-content .alignfull, .bloglo-has-sidebar:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .bloglo-fw-section, .bloglo-layout__boxed-separated:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .elementor-section.elementor-section-stretched, .bloglo-layout__boxed-separated:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .entry-content .alignfull, .bloglo-layout__boxed-separated:not(.page-template-template-bloglo-fullwidth):not(.page-template-elementor_header_footer) #page .bloglo-fw-section {
         max-width: unset;
         margin-left: -5rem !important;
         margin-right: -5rem !important;
