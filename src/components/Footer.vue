@@ -266,11 +266,6 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.bilibili-text {
-  margin-top: 0.3rem;
-  margin-left: 0.5rem;
-  color: #e87299;
-}
 /* ==================== 深色主题适配 ==================== */
 
 /* 页脚背景 - 使用更高优先级 */

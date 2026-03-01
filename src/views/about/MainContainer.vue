@@ -12,6 +12,3 @@ import PrimaryContent from "@/views/about/Main.vue";
 import Breadcrumbs from "@/components/Breadcrumbs.vue";
 </script>
 
-<style scoped>
-
-</style>

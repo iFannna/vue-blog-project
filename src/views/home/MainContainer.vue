@@ -14,6 +14,3 @@ import Sidebar from "@/components/Sidebar.vue";
 import YouMayLike from "@/components/YouMayLike.vue";
 </script>
 
-<style scoped>
-
-</style>

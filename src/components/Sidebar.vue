@@ -289,9 +289,6 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.icons-container {
-  margin-top: 1rem;
-}
 .icon-container {
   transition: transform 0.3s ease;
   display: inline-block; /* 修复图标间距问题 */

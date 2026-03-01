@@ -66,15 +66,4 @@ import { ref, onMounted } from "vue";
 </template>
 
 <style scoped>
-.icons-container {
-  margin-top: 1rem;
-}
-.icon-container {
-  transition: transform 0.3s ease;
-  display: inline-block;
-  margin: 0 4px;
-}
-.icon-container:hover {
-  transform: scale(1.1);
-}
 </style>
