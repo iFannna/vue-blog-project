@@ -27,12 +27,14 @@ const recentUsers = ref([
 
 <template>
   <div class="settings-panel">
-    <div class="panel-header">
-      <h2 class="panel-title">数据统计</h2>
-      <p class="panel-desc">查看网站访问量、热门文章等统计数据</p>
-    </div>
+    <!-- 统一命名为entry-header，保持结构一致性 -->
+    <header class="entry-header">
+      <h2 class="entry-title">数据统计</h2>
+      
+    </header>
 
-    <div class="panel-body">
+    <!-- 统一命名为entry-content -->
+    <div class="entry-content">
       <!-- 数据概览 -->
       <div class="stats-grid">
         <div class="stat-card">
@@ -112,55 +114,66 @@ const recentUsers = ref([
 </template>
 
 <style scoped>
+/* 基础样式和已有页面保持统一 */
 .settings-panel { padding: 0; }
 
-.panel-header {
-  padding: 24px 32px;
-  border-bottom: 1px solid var(--bloglo-border-color, #e2e8f0);
+/* 头部样式统一：padding、边框、字体大小/颜色 */
+.entry-header {
+  padding: 2.5rem 3rem;
+  border-bottom: 0.1rem solid rgba(190, 190, 190, 0.3);
 }
 
-.panel-title {
-  margin: 0 0 8px 0;
-  font-size: 1.5rem;
+.entry-title {
+  margin: 0 0 0.8rem 0;
+  font-size: 2.4rem;
   font-weight: 600;
-  color: var(--bloglo-headings-color, #1e293b);
+  color: var(--bloglo-secondary, #232323);
 }
 
-.panel-desc {
+.entry-desc {
   margin: 0;
-  color: var(--bloglo-text-color, #64748b);
-  font-size: 0.9375rem;
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
-.panel-body { padding: 32px; }
+/* 内容区域样式统一 */
+.entry-content { 
+  padding: 3rem; 
+}
 
-/* 数据概览 */
+/* 数据概览：尺寸单位改为rem，背景/圆角统一 */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 32px;
+  gap: 1.6rem;
+  margin-bottom: 3rem;
 }
 
 .stat-card {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 20px;
-  background: var(--bloglo-secondary-bg, #f8fafc);
-  border-radius: 10px;
+  gap: 1.6rem;
+  padding: 2rem;
+  background: rgba(190, 190, 190, 0.1);
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
+  transition: 0.3s;
+}
+
+.stat-card:hover {
+  background: rgba(190, 190, 190, 0.15);
 }
 
 .stat-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
+  font-size: 2rem;
 }
 
+/* 保留功能色，仅调整尺寸 */
 .stat-icon.views { background: #dbeafe; color: #2563eb; }
 .stat-icon.today { background: #dcfce7; color: #16a34a; }
 .stat-icon.articles { background: #fef3c7; color: #d97706; }
@@ -171,49 +184,63 @@ const recentUsers = ref([
 .stat-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.4rem;
 }
 
 .stat-value {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: var(--bloglo-headings-color, #1e293b);
+  color: var(--bloglo-secondary, #232323);
 }
 
 .stat-label {
-  font-size: 0.8125rem;
-  color: var(--bloglo-text-color, #64748b);
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
-/* 热门文章 */
-.section { margin-bottom: 32px; }
-.section:last-child { margin-bottom: 0; }
+/* 区块样式统一：间距、标题样式 */
+.section { 
+  margin-bottom: 3rem; 
+}
+.section:last-child { 
+  margin-bottom: 0; 
+}
 
 .section-title {
-  margin: 0 0 16px 0;
-  font-size: 1.125rem;
+  margin: 0 0 2rem 0;
+  font-size: 1.8rem;
   font-weight: 600;
-  color: var(--bloglo-headings-color, #1e293b);
+  color: var(--bloglo-secondary, #232323);
 }
 
-.hot-list { display: flex; flex-direction: column; gap: 10px; }
+/* 热门文章列表样式统一 */
+.hot-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1.5rem;
+}
 
 .hot-item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 16px;
-  background: var(--bloglo-secondary-bg, #f8fafc);
-  border-radius: 8px;
+  gap: 1.4rem;
+  padding: 1.8rem 2rem;
+  background: rgba(190, 190, 190, 0.1);
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
+  transition: 0.3s;
+}
+
+.hot-item:hover {
+  background: rgba(190, 190, 190, 0.15);
 }
 
 .hot-rank {
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
-  background: #e2e8f0;
-  color: #64748b;
-  font-size: 0.75rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
+  background: rgba(190, 190, 190, 0.2);
+  color: #94a3b8;
+  font-size: 1.2rem;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -221,63 +248,98 @@ const recentUsers = ref([
 }
 
 .hot-rank.top {
-  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  background: var(--bloglo-primary);
   color: #fff;
 }
 
-.hot-info { flex: 1; display: flex; justify-content: space-between; align-items: center; }
+.hot-info { 
+  flex: 1; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
 
 .hot-title {
+  font-size: 1.7rem;
   font-weight: 500;
-  color: var(--bloglo-headings-color, #1e293b);
+  color: var(--bloglo-secondary, #232323);
 }
 
 .hot-stats {
   display: flex;
-  gap: 16px;
-  font-size: 0.8125rem;
-  color: var(--bloglo-text-color, #64748b);
+  gap: 1.6rem;
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
-.hot-stats i { margin-right: 4px; }
+.hot-stats i { 
+  margin-right: 0.4rem; 
+}
 
-/* 最近用户 */
-.recent-users { display: flex; flex-direction: column; gap: 10px; }
+/* 最近用户列表样式统一 */
+.recent-users { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1.5rem;
+}
 
 .user-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  background: var(--bloglo-secondary-bg, #f8fafc);
-  border-radius: 8px;
+  gap: 1.2rem;
+  padding: 1.8rem 2rem;
+  background: rgba(190, 190, 190, 0.1);
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
+  transition: 0.3s;
+}
+
+.user-item:hover {
+  background: rgba(190, 190, 190, 0.15);
 }
 
 .user-avatar {
-  width: 32px;
-  height: 32px;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .user-name {
   flex: 1;
+  font-size: 1.7rem;
   font-weight: 500;
-  color: var(--bloglo-headings-color, #1e293b);
+  color: var(--bloglo-secondary, #232323);
 }
 
 .user-time {
-  font-size: 0.8125rem;
-  color: var(--bloglo-text-color, #94a3b8);
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
+/* 响应式设计和已有页面保持一致，断点逻辑优化 */
 @media (max-width: 768px) {
-  .panel-header, .panel-body { padding: 20px; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .entry-header, .entry-content { 
+    padding: 2rem; 
+  }
+  .stats-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+  }
+  .hot-item, .user-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .hot-info {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .stats-grid { grid-template-columns: 1fr; }
+  .stats-grid { 
+    grid-template-columns: 1fr; 
+  }
 }
-
 </style>

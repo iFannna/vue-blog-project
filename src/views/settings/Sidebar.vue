@@ -16,7 +16,7 @@ const userMenus = [
 
 const adminMenus = [
   { key: "content", label: "内容管理" },
-  { key: "comments", label: "评论审核" },
+  { key: "comments", label: "评论管理" },
   { key: "users", label: "用户管理" },
   { key: "site", label: "网站设置" },
   { key: "statistics", label: "数据统计" },

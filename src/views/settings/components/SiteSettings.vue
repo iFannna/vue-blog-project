@@ -26,12 +26,14 @@ const handleSave = () => {
 
 <template>
   <div class="settings-panel">
-    <div class="panel-header">
-      <h2 class="panel-title">网站设置</h2>
-      <p class="panel-desc">配置网站基本信息和SEO设置</p>
-    </div>
+    <!-- 统一命名为entry-header，保持结构一致性 -->
+    <header class="entry-header">
+      <h2 class="entry-title">网站设置</h2>
+      
+    </header>
 
-    <div class="panel-body">
+    <!-- 统一命名为entry-content -->
+    <div class="entry-content">
       <!-- 基本信息 -->
       <div class="section">
         <h3 class="section-title">基本信息</h3>
@@ -96,45 +98,52 @@ const handleSave = () => {
           <textarea v-model="seoForm.description" class="form-textarea" rows="2"></textarea>
         </div>
         <div class="form-group">
-          <label class="form-label">关键词（用逗号分隔）</label>
-          <input type="text" v-model="seoForm.keywords" class="form-input" />
+          <label class="form-label">关键词</label>
+          <input type="text" v-model="seoForm.keywords" class="form-input" placeholder="英文逗号分隔多个关键词"/>
         </div>
       </div>
     </div>
 
-    <div class="panel-footer">
-      <button class="btn btn-primary" @click="handleSave">保存设置</button>
+    <!-- 统一命名为entry-footer -->
+    <div class="entry-footer">
+      <button class="btn-small bloglo-btn" @click="handleSave">保存设置</button>
     </div>
   </div>
 </template>
 
 <style scoped>
+/* 基础样式和已有页面保持统一 */
 .settings-panel { padding: 0; }
 
-.panel-header {
-  padding: 24px 32px;
-  border-bottom: 1px solid var(--bloglo-border-color, #e2e8f0);
+/* 头部样式统一：padding、边框、字体大小/颜色 */
+.entry-header {
+  padding: 2.5rem 3rem;
+  border-bottom: 0.1rem solid rgba(190, 190, 190, 0.3);
 }
 
-.panel-title {
-  margin: 0 0 8px 0;
-  font-size: 1.5rem;
+.entry-title {
+  margin: 0 0 0.8rem 0;
+  font-size: 2.4rem;
   font-weight: 600;
-  color: var(--bloglo-headings-color, #1e293b);
+  color: var(--bloglo-secondary, #232323);
 }
 
-.panel-desc {
+.entry-desc {
   margin: 0;
-  color: var(--bloglo-text-color, #64748b);
-  font-size: 0.9375rem;
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
-.panel-body { padding: 32px; }
+/* 内容区域样式统一 */
+.entry-content { 
+  padding: 3rem; 
+}
 
+/* 区块样式统一：间距、边框、标题样式 */
 .section {
-  margin-bottom: 32px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid var(--bloglo-border-color, #e2e8f0);
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 0.1rem solid rgba(190, 190, 190, 0.3);
 }
 
 .section:last-child {
@@ -144,95 +153,123 @@ const handleSave = () => {
 }
 
 .section-title {
-  margin: 0 0 16px 0;
-  font-size: 1.125rem;
+  margin: 0 0 2rem 0;
+  font-size: 1.8rem;
   font-weight: 600;
-  color: var(--bloglo-headings-color, #1e293b);
+  color: var(--bloglo-secondary, #232323);
 }
 
+/* 表单行样式适配rem单位 */
 .form-row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 2rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 0.8rem;
+  margin-bottom: 1.6rem;
 }
 
 .form-label {
-  font-size: 0.9375rem;
+  font-size: 1.7rem;
   font-weight: 500;
-  color: var(--bloglo-headings-color, #374151);
+  color: var(--bloglo-secondary, #232323);
 }
 
+/* 表单输入框样式统一：尺寸、边框、圆角、聚焦效果 */
 .form-input,
 .form-textarea {
-  padding: 10px 14px;
-  border: 1px solid var(--bloglo-border-color, #e2e8f0);
-  border-radius: 8px;
-  font-size: 0.9375rem;
-  color: var(--bloglo-headings-color, #1e293b);
-  background: var(--bloglo-input-bg, #fff);
+  padding: 1rem 1.4rem;
+  border: 0.2rem solid rgba(190, 190, 190, 0.3);
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
+  font-size: 1.5rem;
+  color: var(--bloglo-secondary, #232323);
+  background: #fff;
+  transition: 0.3s;
 }
 
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: var(--bloglo-primary, #2563eb);
+  border-color: var(--bloglo-primary, #FC6668);
+
 }
 
 .form-textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 8rem;
 }
 
+/* 上传区域样式适配统一风格 */
 .upload-area {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 24px;
-  border: 2px dashed var(--bloglo-border-color, #e2e8f0);
-  border-radius: 8px;
-  color: var(--bloglo-text-color, #94a3b8);
+  gap: 0.8rem;
+  padding: 2.4rem;
+  border: 0.2rem dashed rgba(190, 190, 190, 0.3);
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
+  color: #94a3b8;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s;
 }
 
 .upload-area:hover {
-  border-color: var(--bloglo-primary, #2563eb);
-  color: var(--bloglo-primary, #2563eb);
+  border-color: var(--bloglo-primary, #FC6668);
+  color: var(--bloglo-primary, #FC6668);
 }
 
-.upload-area i { font-size: 1.5rem; }
+.upload-area i { 
+  font-size: 2rem; 
+}
 
-.panel-footer {
-  padding: 20px 32px;
-  border-top: 1px solid var(--bloglo-border-color, #e2e8f0);
+.upload-area span {
+  font-size: 1.5rem;
+}
+
+/* 底部样式统一：padding、边框、布局 */
+.entry-footer {
+  padding: 2.5rem 3rem;
+  border-top: 0.1rem solid rgba(190, 190, 190, 0.3);
   display: flex;
   justify-content: flex-end;
 }
 
-.btn {
-  padding: 10px 24px;
+/* 按钮样式和已有页面完全统一 */
+.btn-small {
+  padding: 0.8rem 2rem;
+  min-height: 4rem;
+}
+
+.bloglo-btn {
   border: none;
-  border-radius: 8px;
-  font-size: 0.9375rem;
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
+  font-size: 1.5rem;
   font-weight: 500;
   cursor: pointer;
+  background: var(--bloglo-primary, #FC6668);
+  color: #fff;
+  transition: 0.3s;
 }
 
-.btn-primary { background: var(--bloglo-primary, #2563eb); color: #fff; }
-.btn-primary:hover { background: #1d4ed8; }
+.bloglo-btn:hover {
+  background: #e55557;
+}
 
+/* 响应式设计和已有页面保持一致 */
 @media (max-width: 768px) {
-  .panel-header, .panel-body, .panel-footer { padding: 20px; }
-  .form-row { grid-template-columns: 1fr; }
+  .entry-header, .entry-content, .entry-footer { 
+    padding: 2rem; 
+  }
+  .form-row { 
+    grid-template-columns: 1fr; 
+  }
+  .upload-area {
+    padding: 1.8rem;
+  }
 }
-
 </style>

@@ -12,12 +12,14 @@ const searchKeyword = ref("");
 
 <template>
   <div class="settings-panel">
-    <div class="panel-header">
-      <h2 class="panel-title">用户管理</h2>
-      <p class="panel-desc">管理网站用户，查看用户信息</p>
-    </div>
+    <!-- 统一命名为entry-header，保持结构一致性 -->
+    <header class="entry-header">
+      <h2 class="entry-title">用户管理</h2>
+      
+    </header>
 
-    <div class="panel-body">
+    <!-- 统一命名为entry-content -->
+    <div class="entry-content">
       <!-- 搜索栏 -->
       <div class="search-bar">
         <div class="search-input-wrapper">
@@ -53,7 +55,7 @@ const searchKeyword = ref("");
           </span>
           <span class="col-status">
             <span :class="['status-tag', user.status]">
-              {{ user.status === 'active' ? '正常' : '已封禁' }}
+              {{ user.status === 'active' ? '正常' : '封禁' }}
             </span>
           </span>
           <span class="col-time">{{ user.registerTime }}</span>
@@ -73,96 +75,111 @@ const searchKeyword = ref("");
 </template>
 
 <style scoped>
+/* 基础样式和已有页面保持统一 */
 .settings-panel { padding: 0; }
 
-.panel-header {
-  padding: 24px 32px;
-  border-bottom: 1px solid var(--bloglo-border-color, #e2e8f0);
+/* 头部样式统一：padding、边框、字体大小/颜色 */
+.entry-header {
+  padding: 2.5rem 3rem;
+  border-bottom: 0.1rem solid rgba(190, 190, 190, 0.3);
 }
 
-.panel-title {
-  margin: 0 0 8px 0;
-  font-size: 1.5rem;
+.entry-title {
+  margin: 0 0 0.8rem 0;
+  font-size: 2.4rem;
   font-weight: 600;
-  color: var(--bloglo-headings-color, #1e293b);
+  color: var(--bloglo-secondary, #232323);
 }
 
-.panel-desc {
+.entry-desc {
   margin: 0;
-  color: var(--bloglo-text-color, #64748b);
-  font-size: 0.9375rem;
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
-.panel-body { padding: 32px; }
+/* 内容区域样式统一 */
+.entry-content { 
+  padding: 3rem; 
+}
 
-/* 搜索栏 */
-.search-bar { margin-bottom: 24px; }
+/* 搜索栏样式适配整体风格 */
+.search-bar { 
+  margin-bottom: 2rem; 
+}
 
 .search-input-wrapper {
   position: relative;
-  max-width: 400px;
+  max-width: 40rem;
 }
 
 .search-input-wrapper i {
   position: absolute;
-  left: 14px;
+  left: 1.4rem;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--bloglo-text-color, #94a3b8);
+  color: #94a3b8;
+  font-size: 1.5rem;
 }
 
 .search-input {
   width: 100%;
-  padding: 10px 14px 10px 40px;
-  border: 1px solid var(--bloglo-border-color, #e2e8f0);
-  border-radius: 8px;
-  font-size: 0.9375rem;
-  color: var(--bloglo-headings-color, #1e293b);
-  background: var(--bloglo-input-bg, #fff);
+  padding: 1rem 1.4rem 1rem 4rem;
+  border: 0.2rem solid rgba(190, 190, 190, 0.3);
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
+  font-size: 1.5rem;
+  color: var(--bloglo-secondary, #232323);
+  
+  transition: 0.3s;
 }
 
 .search-input:focus {
   outline: none;
-  border-color: var(--bloglo-primary, #2563eb);
+  border-color: var(--bloglo-primary, #FC6668);
+
 }
 
-/* 用户表格 */
+/* 用户表格样式统一：间距、背景、圆角、内边距 */
 .user-table {
-  border: 1px solid var(--bloglo-border-color, #e2e8f0);
-  border-radius: 8px;
+  border: 0.1rem solid rgba(190, 190, 190, 0.3);
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
   overflow: hidden;
 }
 
 .table-header {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 80px;
-  gap: 16px;
-  padding: 12px 20px;
-  background: var(--bloglo-secondary-bg, #f8fafc);
-  font-size: 0.8125rem;
+  grid-template-columns: 2fr 1fr 1fr 1fr 8rem;
+  gap: 1.6rem;
+  padding: 1.2rem 2rem;
+  background: rgba(190, 190, 190, 0.1);
+  font-size: 1.5rem;
   font-weight: 600;
-  color: var(--bloglo-text-color, #64748b);
+  color: #94a3b8;
   text-transform: uppercase;
 }
 
 .table-row {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 80px;
-  gap: 16px;
-  padding: 14px 20px;
+  grid-template-columns: 2fr 1fr 1fr 1fr 8rem;
+  gap: 1.6rem;
+  padding: 1.8rem 2rem;
   align-items: center;
-  border-top: 1px solid var(--bloglo-border-color, #e2e8f0);
+  border-top: 0.1rem solid rgba(190, 190, 190, 0.3);
+  transition: 0.3s;
+}
+
+.table-row:hover {
+  background: rgba(190, 190, 190, 0.05);
 }
 
 .col-user {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 1.2rem;
 }
 
 .user-avatar {
-  width: 36px;
-  height: 36px;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -170,32 +187,34 @@ const searchKeyword = ref("");
 .user-info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0.2rem;
 }
 
 .user-name {
   font-weight: 500;
-  color: var(--bloglo-headings-color, #1e293b);
+  font-size: 1.7rem;
+  color: var(--bloglo-secondary, #232323);
 }
 
 .user-email {
-  font-size: 0.8125rem;
-  color: var(--bloglo-text-color, #64748b);
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
+/* 标签样式适配rem单位，保留功能色 */
 .role-tag {
-  padding: 4px 10px;
+  padding: 0.4rem 1rem;
   background: #e0f2fe;
   color: #0284c7;
-  border-radius: 4px;
-  font-size: 0.75rem;
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
+  font-size: 1.2rem;
   font-weight: 500;
 }
 
 .status-tag {
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 0.75rem;
+  padding: 0.4rem 1rem;
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
+  font-size: 1.2rem;
   font-weight: 500;
 }
 
@@ -210,21 +229,26 @@ const searchKeyword = ref("");
 }
 
 .col-time {
-  font-size: 0.875rem;
-  color: var(--bloglo-text-color, #64748b);
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
-.col-action { display: flex; justify-content: center; }
+.col-action { 
+  display: flex; 
+  justify-content: center; 
+}
 
+/* 操作按钮样式适配整体尺寸体系，保留原有功能色 */
 .btn-action {
-  width: 32px;
-  height: 32px;
+  width: 4rem;
+  height: 4rem;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.3s;
 }
 
 .btn-action.ban {
@@ -232,19 +256,73 @@ const searchKeyword = ref("");
   color: #dc2626;
 }
 
-.btn-action.ban:hover { background: #fecaca; }
+.btn-action.ban:hover { 
+  background: #fecaca; 
+}
 
 .btn-action.unban {
   background: #dcfce7;
   color: #16a34a;
 }
 
-.btn-action.unban:hover { background: #bbf7d0; }
-
-.empty {
-  text-align: center;
-  padding: 40px;
-  color: var(--bloglo-text-color, #94a3b8);
+.btn-action.unban:hover { 
+  background: #bbf7d0; 
 }
 
+/* 空状态样式统一 */
+.empty {
+  text-align: center;
+  padding: 4rem;
+  color: #94a3b8;
+  font-size: 1.5rem;
+}
+
+/* 响应式设计和已有页面保持一致 */
+@media (max-width: 768px) {
+  .entry-header, .entry-content { 
+    padding: 2rem; 
+  }
+  /* 移动端表格改为纵向布局，适配小屏幕 */
+  .table-header {
+    display: none;
+  }
+  .table-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  .col-user {
+    width: 100%;
+  }
+  .col-role, .col-status, .col-time {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+  }
+  .col-role::before {
+    content: "角色：";
+    font-weight: 600;
+    color: #94a3b8;
+  }
+  .col-status::before {
+    content: "状态：";
+    font-weight: 600;
+    color: #94a3b8;
+  }
+  .col-time::before {
+    content: "注册时间：";
+    font-weight: 600;
+    color: #94a3b8;
+  }
+  .col-action {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .search-input-wrapper {
+    max-width: 100%;
+  }
+}
 </style>

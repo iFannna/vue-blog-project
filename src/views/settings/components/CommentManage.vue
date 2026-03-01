@@ -2,19 +2,18 @@
 import { ref, computed } from "vue";
 
 const comments = ref([
-  { id: 1, author: "张三", content: "这篇文章写得很好！", article: "Vue3 详解", time: "2小时前", status: "pending" },
-  { id: 2, author: "李四", content: "学到了很多", article: "SpringBoot 入门", time: "1天前", status: "pending" },
+  { id: 1, author: "张三", content: "这篇文章写得很好！", article: "Vue3 详解", time: "2小时前", status: "approved" },
+  { id: 2, author: "李四", content: "学到了很多", article: "SpringBoot 入门", time: "1天前", status: "approved" },
   { id: 3, author: "王五", content: "期待更多内容", article: "Redis 缓存", time: "3天前", status: "approved" },
   { id: 4, author: "赵六", content: "这是垃圾评论", article: "Vue3 详解", time: "5天前", status: "reported" },
 ]);
 
 const tabs = [
-  { key: "pending", label: "待审核" },
-  { key: "approved", label: "已通过" },
+  { key: "approved", label: "已发布" },
   { key: "reported", label: "被举报" },
 ];
 
-const activeTab = ref("pending");
+const activeTab = ref("approved");
 
 const filteredComments = computed(() => {
   return comments.value.filter(c => c.status === activeTab.value);
@@ -23,12 +22,14 @@ const filteredComments = computed(() => {
 
 <template>
   <div class="settings-panel">
-    <div class="panel-header">
-      <h2 class="panel-title">评论审核</h2>
-      <p class="panel-desc">审核和管理用户评论</p>
-    </div>
+    <!-- 统一命名为entry-header，保持结构一致性 -->
+    <header class="entry-header">
+      <h2 class="entry-title">评论管理</h2>
+      
+    </header>
 
-    <div class="panel-body">
+    <!-- 统一命名为entry-content -->
+    <div class="entry-content">
       <div class="tabs">
         <button
           v-for="tab in tabs"
@@ -43,7 +44,7 @@ const filteredComments = computed(() => {
       <div class="comment-list">
         <div v-for="comment in filteredComments" :key="comment.id" class="comment-item">
           <div class="comment-avatar">
-            <img src="https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png" alt="" />
+            <img src="https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png" alt="用户头像" />
           </div>
           <div class="comment-content">
             <div class="comment-header">
@@ -57,10 +58,8 @@ const filteredComments = computed(() => {
             </div>
           </div>
           <div class="comment-actions">
-            <button class="btn-action approve" title="通过">
-              <i class="fa-solid fa-check"></i>
-            </button>
-            <button class="btn-action reject" title="拒绝">
+            
+            <button class="btn-action delete" title="删除">
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
@@ -72,131 +71,180 @@ const filteredComments = computed(() => {
 </template>
 
 <style scoped>
+/* 基础样式和已有页面保持统一 */
 .settings-panel { padding: 0; }
 
-.panel-header {
-  padding: 24px 32px;
-  border-bottom: 1px solid var(--bloglo-border-color, #e2e8f0);
+/* 头部样式统一：padding、边框、字体大小/颜色 */
+.entry-header {
+  padding: 2.5rem 3rem;
+  border-bottom: 0.1rem solid rgba(190, 190, 190, 0.3);
 }
 
-.panel-title {
-  margin: 0 0 8px 0;
-  font-size: 1.5rem;
+.entry-title {
+  margin: 0 0 0.8rem 0;
+  font-size: 2.4rem;
   font-weight: 600;
-  color: var(--bloglo-headings-color, #1e293b);
+  color: var(--bloglo-secondary, #232323);
 }
 
-.panel-desc {
+.entry-desc {
   margin: 0;
-  color: var(--bloglo-text-color, #64748b);
-  font-size: 0.9375rem;
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
-.panel-body { padding: 32px; }
+/* 内容区域样式统一 */
+.entry-content { 
+  padding: 3rem; 
+}
 
+/* 标签栏样式适配整体风格 */
 .tabs {
   display: flex;
-  gap: 8px;
-  margin-bottom: 24px;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  
+  padding-bottom: 1.6rem;
 }
 
 .tab-btn {
-  padding: 8px 16px;
+  padding: 0.8rem 2rem;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
   background: transparent;
-  color: var(--bloglo-text-color, #64748b);
-  font-size: 0.9375rem;
+  color: #94a3b8;
+  font-size: 1.5rem;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-.tab-btn:hover { background: var(--bloglo-secondary-bg, #f1f5f9); }
-.tab-btn.active { background: var(--bloglo-primary, #2563eb); color: #fff; }
+.tab-btn:hover { 
+  background: rgba(190, 190, 190, 0.1); 
+}
 
-.comment-list { display: flex; flex-direction: column; gap: 12px; }
+/* 激活态样式和主色统一 */
+.tab-btn.active {
+  background: var(--bloglo-primary, #FC6668);
+  color: #fff;
+}
+
+/* 评论列表样式统一：间距、背景、圆角、内边距 */
+.comment-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1.5rem;
+}
 
 .comment-item {
   display: flex;
-  gap: 14px;
-  padding: 16px 20px;
-  background: var(--bloglo-secondary-bg, #f8fafc);
-  border-radius: 8px;
+  gap: 1.4rem;
+  padding: 1.8rem 2rem;
+  background: rgba(190, 190, 190, 0.1);
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
+  align-items: flex-start;
 }
 
 .comment-avatar img {
-  width: 40px;
-  height: 40px;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.comment-content { flex: 1; min-width: 0; }
+.comment-content { 
+  flex: 1; 
+  min-width: 0; 
+}
 
 .comment-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 6px;
+  gap: 1.2rem;
+  margin-bottom: 0.6rem;
 }
 
 .comment-author {
   font-weight: 500;
-  color: var(--bloglo-headings-color, #1e293b);
+  font-size: 1.7rem;
+  color: var(--bloglo-secondary, #232323);
 }
 
 .comment-time {
-  font-size: 0.8125rem;
-  color: var(--bloglo-text-color, #94a3b8);
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
 .comment-text {
-  margin: 0 0 8px 0;
-  color: var(--bloglo-text-color, #475569);
-  font-size: 0.9375rem;
+  margin: 0 0 0.8rem 0;
+  color: var(--bloglo-secondary, #232323);
+  font-size: 1.7rem;
 }
 
 .comment-article {
-  font-size: 0.8125rem;
-  color: var(--bloglo-text-color, #64748b);
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
-.comment-article i { margin-right: 4px; }
+.comment-article i { 
+  margin-right: 0.4rem; 
+}
 
-.comment-actions { display: flex; gap: 8px; align-items: flex-start; }
+.comment-actions { 
+  display: flex; 
+  gap: 0.8rem; 
+  align-items: flex-start; 
+}
 
+/* 操作按钮样式适配整体尺寸体系，保留原有功能色 */
 .btn-action {
-  width: 32px;
-  height: 32px;
+  width: 4rem;
+  height: 4rem;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.3s;
 }
 
-.btn-action.approve {
-  background: #dcfce7;
-  color: #16a34a;
-}
 
-.btn-action.approve:hover {
-  background: #bbf7d0;
-}
 
-.btn-action.reject {
+.btn-action.delete {
   background: #fee2e2;
   color: #dc2626;
 }
 
-.btn-action.reject:hover {
+.btn-action.delete:hover {
   background: #fecaca;
 }
 
+/* 空状态样式统一 */
 .empty {
   text-align: center;
-  padding: 40px;
-  color: var(--bloglo-text-color, #94a3b8);
+  padding: 4rem;
+  color: #94a3b8;
+  font-size: 1.5rem;
 }
 
+/* 响应式设计和已有页面保持一致 */
+@media (max-width: 768px) {
+  .entry-header, .entry-content { 
+    padding: 2rem; 
+  }
+  .comment-item { 
+    flex-direction: column; 
+    gap: 1.5rem; 
+  }
+  .comment-actions {
+    align-self: flex-end;
+  }
+  .tabs {
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
 </style>

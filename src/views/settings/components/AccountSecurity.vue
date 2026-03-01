@@ -21,7 +21,6 @@ const handleChangePassword = () => {
   <div class="settings-panel">
     <header class="entry-header">
       <h2 class="entry-title">账户安全</h2>
-      <p class="entry-desc">管理你的密码和账户安全设置</p>
     </header>
 
     <div class="entry-content">
@@ -42,7 +41,8 @@ const handleChangePassword = () => {
             <input type="password" v-model="passwordForm.confirmPassword" class="form-input" placeholder="请再次输入新密码" />
           </div>
         </div>
-        <button class="bloglo-btn btn-small" @click="handleChangePassword">
+       
+        <button class="btn-small bloglo-btn" @click="handleChangePassword">
           <span>更新密码</span>
         </button>
       </div>
@@ -59,18 +59,10 @@ const handleChangePassword = () => {
                 <span class="bind-status bound">user@example.com</span>
               </div>
             </div>
-            <button class="bloglo-btn btn-small btn-outline">更换</button>
+           
+            <button class="btn-small bloglo-btn">更换</button>
           </div>
-          <div class="bind-item">
-            <div class="bind-info">
-              <i class="fa-solid fa-mobile-screen"></i>
-              <div class="bind-details">
-                <span class="bind-name">手机号</span>
-                <span class="bind-status unbound">未绑定</span>
-              </div>
-            </div>
-            <button class="bloglo-btn btn-small">绑定</button>
-          </div>
+          
           <div class="bind-item">
             <div class="bind-info">
               <i class="fa-brands fa-github"></i>
@@ -79,44 +71,8 @@ const handleChangePassword = () => {
                 <span class="bind-status unbound">未绑定</span>
               </div>
             </div>
-            <button class="bloglo-btn btn-small">绑定</button>
-          </div>
-          <div class="bind-item">
-            <div class="bind-info">
-              <i class="fa-brands fa-weixin" style="color: #07c160;"></i>
-              <div class="bind-details">
-                <span class="bind-name">微信</span>
-                <span class="bind-status unbound">未绑定</span>
-              </div>
-            </div>
-            <button class="bloglo-btn btn-small">绑定</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 安全设置 -->
-      <div class="section">
-        <h3 class="section-title">安全设置</h3>
-        <div class="toggle-list">
-          <div class="toggle-item">
-            <div class="toggle-info">
-              <span class="toggle-name">两步验证</span>
-              <span class="toggle-desc">登录时需要额外验证码</span>
-            </div>
-            <label class="toggle-switch">
-              <input type="checkbox" />
-              <span class="slider"></span>
-            </label>
-          </div>
-          <div class="toggle-item">
-            <div class="toggle-info">
-              <span class="toggle-name">登录通知</span>
-              <span class="toggle-desc">新设备登录时发送邮件通知</span>
-            </div>
-            <label class="toggle-switch">
-              <input type="checkbox" checked />
-              <span class="slider"></span>
-            </label>
+           
+            <button class="btn-small bloglo-btn">绑定</button>
           </div>
         </div>
       </div>
@@ -137,12 +93,6 @@ const handleChangePassword = () => {
   font-size: 2.4rem;
   font-weight: 600;
   color: var(--bloglo-secondary, #232323);
-}
-
-.entry-desc {
-  margin: 0;
-  color: #666;
-  font-size: 1.5rem;
 }
 
 .entry-content { padding: 3rem; }
@@ -199,33 +149,9 @@ const handleChangePassword = () => {
   border-color: var(--bloglo-primary, #FC6668);
 }
 
-.bloglo-btn {
-  background: var(--bloglo-primary, #FC6668);
-  color: #fff;
-  border-color: var(--bloglo-primary, #FC6668);
-  font-size: 1.4rem;
-}
-
-.bloglo-btn:hover {
-  background: var(--bloglo-secondary, #232323);
-  border-color: var(--bloglo-secondary, #232323);
-}
-
 .btn-small {
   padding: 0.8rem 2rem;
   min-height: 4rem;
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--bloglo-secondary, #232323);
-  border-color: rgba(190, 190, 190, 0.5);
-}
-
-.btn-outline:hover {
-  background: var(--bloglo-primary, #FC6668);
-  border-color: var(--bloglo-primary, #FC6668);
-  color: #fff;
 }
 
 /* 绑定列表 */
@@ -249,79 +175,20 @@ const handleChangePassword = () => {
   color: var(--bloglo-primary, #FC6668);
 }
 
-.bind-details { display: flex; flex-direction: column; gap: 0.3rem; }
-
 .bind-name {
+  margin-right: 1rem;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   color: var(--bloglo-secondary, #232323);
 }
 
-.bind-status { font-size: 1.3rem; }
-.bind-status.bound { color: #22c55e; }
+.bind-status { font-size: 1.7rem; }
+.bind-status.bound { color: var(--bloglo-secondary, #232323)}
 .bind-status.unbound { color: #94a3b8; }
-
-/* 开关列表 */
-.toggle-list { display: flex; flex-direction: column; gap: 1.5rem; }
-
-.toggle-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.8rem 2rem;
-  background: rgba(190, 190, 190, 0.1);
-  border-radius: var(--bloglo-normal-radius, 0.3rem);
-}
-
-.toggle-info { display: flex; flex-direction: column; gap: 0.3rem; }
-
-.toggle-name {
-  font-weight: 500;
-  font-size: 1.5rem;
-  color: var(--bloglo-secondary, #232323);
-}
-
-.toggle-desc {
-  font-size: 1.3rem;
-  color: #666;
-}
-
-.toggle-switch {
-  position: relative;
-  width: 5rem;
-  height: 2.6rem;
-}
-
-.toggle-switch input { opacity: 0; width: 0; height: 0; }
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  inset: 0;
-  background: #cbd5e1;
-  border-radius: 2.6rem;
-  transition: 0.3s;
-}
-
-.slider::before {
-  position: absolute;
-  content: "";
-  height: 2rem;
-  width: 2rem;
-  left: 0.3rem;
-  bottom: 0.3rem;
-  background: white;
-  border-radius: 50%;
-  transition: 0.3s;
-}
-
-.toggle-switch input:checked + .slider { background: var(--bloglo-primary, #FC6668); }
-.toggle-switch input:checked + .slider::before { transform: translateX(2.4rem); }
 
 @media (max-width: 768px) {
   .entry-header, .entry-content { padding: 2rem; }
   .form-row { grid-template-columns: 1fr; }
-  .bind-item, .toggle-item { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .bind-item { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
 }
-
 </style>

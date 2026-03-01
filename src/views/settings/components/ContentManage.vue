@@ -31,19 +31,22 @@ const switchTab = (key) => {
 
 <template>
   <div class="settings-panel">
-    <div class="panel-header">
+    <!-- 统一命名为entry-header，保持结构一致性 -->
+    <header class="entry-header">
       <div class="header-top">
         <div>
-          <h2 class="panel-title">内容管理</h2>
-          <p class="panel-desc">管理你的文章、分类和标签</p>
+          <h2 class="entry-title">内容管理</h2>
+          
         </div>
-        <button class="btn btn-primary">
-          <i class="fa-solid fa-plus"></i> 新建文章
+        <!-- 按钮样式和通知设置的bloglo-btn统一 -->
+        <button class="bloglo-btn btn-small">
+          新建文章
         </button>
       </div>
-    </div>
+    </header>
 
-    <div class="panel-body">
+    <!-- 统一命名为entry-content -->
+    <div class="entry-content">
       <div class="tabs">
         <button
           v-for="tab in tabs"
@@ -77,118 +80,183 @@ const switchTab = (key) => {
 </template>
 
 <style scoped>
+/* 基础样式和已有页面保持统一 */
 .settings-panel { padding: 0; }
 
-.panel-header {
-  padding: 24px 32px;
-  border-bottom: 1px solid var(--bloglo-border-color, #e2e8f0);
+/* 头部样式统一：padding、边框、字体、布局 */
+.entry-header {
+  padding: 2.5rem 3rem;
+  border-bottom: 0.1rem solid rgba(190, 190, 190, 0.3);
 }
 
 .header-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  width: 100%;
 }
 
-.panel-title {
-  margin: 0 0 8px 0;
-  font-size: 1.5rem;
+.entry-title {
+  font-size: 2.4rem;
   font-weight: 600;
-  color: var(--bloglo-headings-color, #1e293b);
+  color: var(--bloglo-secondary, #232323);
 }
 
-.panel-desc {
-  margin: 0;
-  color: var(--bloglo-text-color, #64748b);
-  font-size: 0.9375rem;
+
+
+/* 按钮样式和通知设置的bloglo-btn完全统一 */
+.btn-small {
+  padding: 0.8rem 2rem;
+  min-height: 4rem;
 }
 
-.btn {
+.bloglo-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
+  gap: 0.6rem;
   border: none;
-  border-radius: 6px;
-  font-size: 0.875rem;
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
+  font-size: 1.5rem;
   font-weight: 500;
   cursor: pointer;
+  background: var(--bloglo-primary, #FC6668);
+  color: #fff;
+  transition: 0.3s;
 }
 
-.btn-primary { background: var(--bloglo-primary, #2563eb); color: #fff; }
-.btn-primary:hover { background: #1d4ed8; }
+.bloglo-btn:hover {
+  background: #e55557;
+}
 
-.panel-body { padding: 32px; }
+/* 内容区域样式统一 */
+.entry-content { 
+  padding: 3rem; 
+}
 
+/* 标签栏样式适配整体风格 */
 .tabs {
   display: flex;
-  gap: 8px;
-  margin-bottom: 24px;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  
+  padding-bottom: 1.6rem;
 }
 
 .tab-btn {
-  padding: 8px 16px;
+  padding: 0.8rem 2rem;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
   background: transparent;
-  color: var(--bloglo-text-color, #64748b);
-  font-size: 0.9375rem;
+  color: #94a3b8;
+  font-size: 1.5rem;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-.tab-btn:hover { background: var(--bloglo-secondary-bg, #f1f5f9); }
-.tab-btn.active { background: var(--bloglo-primary, #2563eb); color: #fff; }
+.tab-btn:hover { 
+  background: rgba(190, 190, 190, 0.1); 
+}
 
-.article-list { display: flex; flex-direction: column; gap: 12px; }
+/* 激活态样式和主色统一 */
+.tab-btn.active {
+  background: var(--bloglo-primary, #FC6668);
+  color: #fff;
+}
+
+/* 文章列表样式统一：间距、背景、圆角、内边距 */
+.article-list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1.5rem;
+}
 
 .article-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
-  background: var(--bloglo-secondary-bg, #f8fafc);
-  border-radius: 8px;
+  padding: 1.8rem 2rem;
+  background: rgba(190, 190, 190, 0.1);
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
 }
 
-.article-info { flex: 1; min-width: 0; }
+.article-info { 
+  flex: 1; 
+  min-width: 0; 
+}
 
 .article-title {
-  margin: 0 0 8px 0;
-  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.7rem;
   font-weight: 500;
-  color: var(--bloglo-headings-color, #1e293b);
+  color: var(--bloglo-secondary, #232323);
 }
 
 .article-meta {
   display: flex;
-  gap: 16px;
-  font-size: 0.8125rem;
-  color: var(--bloglo-text-color, #64748b);
+  gap: 1.6rem;
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
-.article-meta i { margin-right: 4px; }
+.article-meta i { 
+  margin-right: 0.4rem; 
+}
 
-.article-actions { display: flex; gap: 8px; }
+.article-actions { 
+  display: flex; 
+  gap: 0.8rem; 
+}
 
+/* 图标按钮样式适配整体风格 */
 .btn-icon {
-  width: 32px;
-  height: 32px;
+  width: 4rem;
+  height: 4rem;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
   background: transparent;
-  color: var(--bloglo-text-color, #64748b);
+  color: #94a3b8;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .btn-icon:hover {
-  background: var(--bloglo-border-color, #e2e8f0);
-  color: var(--bloglo-primary, #2563eb);
+  background: rgba(190, 190, 190, 0.2);
+  color: var(--bloglo-primary, #FC6668);
 }
 
+/* 空状态样式统一 */
 .empty {
   text-align: center;
-  padding: 40px;
-  color: var(--bloglo-text-color, #94a3b8);
+  padding: 4rem;
+  color: #94a3b8;
+  font-size: 1.5rem;
 }
 
+/* 响应式设计和已有页面保持一致 */
+@media (max-width: 768px) {
+  .entry-header, .entry-content { 
+    padding: 2rem; 
+  }
+  .article-item { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 1.5rem; 
+  }
+  .header-top {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  .bloglo-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .tabs {
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
 </style>

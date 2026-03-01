@@ -33,7 +33,7 @@ const handleSave = () => {
       <div class="form-section">
         <div class="form-group">
           <label class="form-label">昵称</label>
-          <input type="text" v-model="form.nickname" class="form-input" placeholder="SAu" />
+          <input type="text" v-model="form.nickname" class="form-input" placeholder="请输入昵称" />
         </div>
 
         <div class="form-group">
@@ -43,7 +43,7 @@ const handleSave = () => {
 
         <div class="form-group">
           <label class="form-label">位置</label>
-          <input type="text" v-model="form.location" class="form-input" placeholder="" />
+          <input type="text" v-model="form.location" class="form-input" placeholder="现在的位置" />
         </div>
       </div>
 
@@ -52,12 +52,12 @@ const handleSave = () => {
         <div class="avatar-container">
           <div class="avatar-preview">
             <img :src="userInfo?.avatar || defaultAvatar" alt="头像" />
-            <!-- 编辑按钮 -->
-            <button class="edit-avatar-btn" @click="handleAvatarChange">
-              <i class="fa-solid fa-pen"></i>
-              <span>编辑</span>
-            </button>
           </div>
+          <!-- 关键修改1：编辑按钮从avatar-preview内部移出，放到同级 -->
+          <button class="edit-avatar-btn" @click="handleAvatarChange">
+            <i class="fa-solid fa-pen"></i>
+            <span>编辑</span>
+          </button>
         </div>
       </div>
     </div>
@@ -152,8 +152,7 @@ const handleSave = () => {
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
-  position: relative; 
-
+  /* 关键修改2：移除这里的position: relative，避免影响按钮定位 */
 }
 
 .avatar-preview img {
@@ -170,18 +169,16 @@ const handleSave = () => {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(68, 68, 68, 0.8);
   color: #fff;
   border: none;
-  border-radius: 20px; /* 圆角按钮 */
+  border-radius: 15px;
   padding: 0.6rem 1.2rem;
   cursor: pointer;
   font-size: 1.4rem;
   transition: background 0.2s ease;
-}
-
-.edit-avatar-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
+  /* 关键修改3：增加z-index确保按钮在头像上方显示 */
+  z-index: 10;
 }
 
 .edit-avatar-btn i {
@@ -203,7 +200,7 @@ const handleSave = () => {
     width: 100%;
   }
   .avatar-preview {
-    width: 180px; /* 移动端适当缩小，但仍大于200px的80% */
+    width: 180px; 
     height: 180px;
   }
 }

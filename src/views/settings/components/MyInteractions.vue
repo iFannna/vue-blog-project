@@ -27,12 +27,14 @@ const tabs = [
 
 <template>
   <div class="settings-panel">
-    <div class="panel-header">
-      <h2 class="panel-title">我的互动</h2>
-      <p class="panel-desc">查看你的评论、点赞和收藏记录</p>
-    </div>
+    <!-- 统一命名为entry-header，和通知设置保持一致 -->
+    <header class="entry-header">
+      <h2 class="entry-title">我的互动</h2>
+      
+    </header>
 
-    <div class="panel-body">
+    <!-- 统一命名为entry-content -->
+    <div class="entry-content">
       <div class="tabs">
         <button
           v-for="tab in tabs"
@@ -70,7 +72,7 @@ const tabs = [
               <span>{{ item.time }}</span>
             </div>
           </div>
-          <button class="btn-icon"><i class="fa-solid fa-heart" style="color: #ef4444;"></i></button>
+          <button class="btn-icon"><i class="fa-solid fa-heart" style="color: var(--bloglo-primary, #FC6668);"></i></button>
         </div>
         <div v-if="likes.length === 0" class="empty">暂无点赞记录</div>
       </div>
@@ -85,7 +87,7 @@ const tabs = [
               <span>{{ item.time }}</span>
             </div>
           </div>
-          <button class="btn-icon"><i class="fa-solid fa-bookmark" style="color: #f59e0b;"></i></button>
+          <button class="btn-icon"><i class="fa-solid fa-bookmark" style="color: var(--bloglo-primary, #FC6668);"></i></button>
         </div>
         <div v-if="favorites.length === 0" class="empty">暂无收藏记录</div>
       </div>
@@ -94,121 +96,167 @@ const tabs = [
 </template>
 
 <style scoped>
+/* 基础样式和通知设置保持统一 */
 .settings-panel { padding: 0; }
 
-.panel-header {
-  padding: 24px 32px;
-  border-bottom: 1px solid var(--bloglo-border-color, #e2e8f0);
+/* 头部样式统一：padding、边框、字体大小/颜色 */
+.entry-header {
+  padding: 2.5rem 3rem;
+  border-bottom: 0.1rem solid rgba(190, 190, 190, 0.3);
 }
 
-.panel-title {
-  margin: 0 0 8px 0;
-  font-size: 1.5rem;
+.entry-title {
+  margin: 0 0 0.8rem 0;
+  font-size: 2.4rem;
   font-weight: 600;
-  color: var(--bloglo-headings-color, #1e293b);
+  color: var(--bloglo-secondary, #232323);
 }
 
-.panel-desc {
+.entry-desc {
   margin: 0;
-  color: var(--bloglo-text-color, #64748b);
-  font-size: 0.9375rem;
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
-.panel-body { padding: 32px; }
+/* 内容区域样式统一 */
+.entry-content { 
+  padding: 3rem; 
+}
 
+/* 标签栏样式调整，适配整体风格 */
 .tabs {
   display: flex;
-  gap: 8px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid var(--bloglo-border-color, #e2e8f0);
-  padding-bottom: 16px;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  
+  padding-bottom: 1.6rem;
 }
 
 .tab-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
+  gap: 0.8rem;
+  padding: 0.8rem 2rem;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
   background: transparent;
-  color: var(--bloglo-text-color, #64748b);
-  font-size: 0.9375rem;
+  color: #94a3b8;
+  font-size: 1.5rem;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-.tab-btn:hover { background: var(--bloglo-secondary-bg, #f1f5f9); }
+.tab-btn:hover { 
+  background: rgba(190, 190, 190, 0.1); 
+}
 
+/* 激活态样式和通知设置的主色统一 */
 .tab-btn.active {
-  background: var(--bloglo-primary, #2563eb);
+  background: var(--bloglo-primary, #FC6668);
   color: #fff;
 }
 
 .tab-count {
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1.5rem;
+  font-size: 1.2rem;
   background: rgba(255, 255, 255, 0.2);
 }
 
-.tab-btn:not(.active) .tab-count { background: var(--bloglo-secondary-bg, #e2e8f0); }
+.tab-btn:not(.active) .tab-count { 
+  background: rgba(190, 190, 190, 0.1); 
+  color: #94a3b8;
+}
 
-.list { display: flex; flex-direction: column; gap: 12px; }
+/* 列表样式统一：间距、背景、圆角、内边距 */
+.list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1.5rem;
+}
 
 .list-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 18px;
-  background: var(--bloglo-secondary-bg, #f8fafc);
-  border-radius: 8px;
+  padding: 1.8rem 2rem;
+  background: rgba(190, 190, 190, 0.1);
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
 }
 
-.item-content { flex: 1; min-width: 0; }
+.item-content { 
+  flex: 1; 
+  min-width: 0; 
+}
 
 .comment-text {
-  margin: 0 0 6px 0;
+  margin: 0 0 0.5rem 0;
   font-style: italic;
-  color: var(--bloglo-headings-color, #1e293b);
+  font-size: 1.7rem;
+  color: var(--bloglo-secondary, #232323);
 }
 
 .item-title {
-  margin: 0 0 6px 0;
-  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.7rem;
   font-weight: 500;
-  color: var(--bloglo-headings-color, #1e293b);
+  color: var(--bloglo-secondary, #232323);
 }
 
 .item-meta {
   display: flex;
-  gap: 16px;
-  font-size: 0.8125rem;
-  color: var(--bloglo-text-color, #64748b);
+  gap: 1.6rem;
+  font-size: 1.5rem;
+  color: #94a3b8;
 }
 
 .item-stat {
   display: flex;
   align-items: center;
-  gap: 6px;
-  color: var(--bloglo-text-color, #64748b);
-  font-size: 0.875rem;
+  gap: 0.6rem;
+  color: #94a3b8;
+  font-size: 1.5rem;
 }
 
+/* 图标按钮样式适配整体风格 */
 .btn-icon {
-  width: 32px;
-  height: 32px;
+  width: 4rem;
+  height: 4rem;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--bloglo-normal-radius, 0.3rem);
   background: transparent;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-.btn-icon:hover { background: var(--bloglo-border-color, #e2e8f0); }
+.btn-icon:hover { 
+  background: rgba(190, 190, 190, 0.2); 
+}
 
+/* 空状态样式统一 */
 .empty {
   text-align: center;
-  padding: 40px;
-  color: var(--bloglo-text-color, #94a3b8);
+  padding: 4rem;
+  color: #94a3b8;
+  font-size: 1.5rem;
 }
 
+/* 响应式设计和通知设置保持一致 */
+@media (max-width: 768px) {
+  .entry-header, .entry-content { 
+    padding: 2rem; 
+  }
+  .list-item { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 1.5rem; 
+  }
+  .tabs {
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    flex: 1;
+    justify-content: center;
+  }
+}
 </style>
