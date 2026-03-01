@@ -1228,44 +1228,6 @@ onMounted(() => {
   }
 }
 
-/* ==================== 分割线 ==================== */
-.divider {
-  text-align: center;
-  margin: 25px 0 20px;
-  position: relative;
-  color: #b2bec3;
-  font-size: 13px;
-}
-
-[data-theme="dark"] .divider {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.divider:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: #ffe7d2;
-  z-index: 1;
-}
-
-[data-theme="dark"] .divider:before {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.divider span {
-  background: rgba(255, 255, 255, 0.85);
-  position: relative;
-  z-index: 2;
-}
-
-[data-theme="dark"] .divider span {
-  background: rgba(0, 0, 0, 0.5);
-}
-
 /* ==================== 前往登录链接 ==================== */
 .login-link {
   text-align: center;
@@ -1413,33 +1375,6 @@ onMounted(() => {
     transform: scale(1.05);
     box-shadow: 0 0 0 10px rgba(252, 102, 104, 0);
   }
-}
-
-.dialog-tip {
-  font-size: 14px;
-  color: #666;
-  margin: 10px 0 5px;
-}
-
-[data-theme="dark"] .dialog-tip {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.dialog-email {
-  font-size: 16px;
-  font-weight: 600;
-  color: #fc6668;
-  margin: 5px 0;
-}
-
-.dialog-hint {
-  font-size: 12px;
-  color: #999;
-  margin: 5px 0 25px;
-}
-
-[data-theme="dark"] .dialog-hint {
-  color: rgba(255, 255, 255, 0.5);
 }
 
 .verification-input-group {

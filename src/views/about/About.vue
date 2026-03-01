@@ -25,5 +25,3 @@ onUnmounted(() => {
     </div>
 </template>
 
-<style>
-</style>

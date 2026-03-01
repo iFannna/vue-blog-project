@@ -15,5 +15,3 @@ import WavesBackground from "@/components/WavesBackground.vue";
     </div>
 </template>
 
-<style>
-</style>
