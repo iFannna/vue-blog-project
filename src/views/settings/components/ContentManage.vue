@@ -191,9 +191,4 @@ const switchTab = (key) => {
   color: var(--bloglo-text-color, #94a3b8);
 }
 
-[data-theme="dark"] .panel-header { border-color: #334155; }
-[data-theme="dark"] .panel-title { color: #f1f5f9; }
-[data-theme="dark"] .article-item { background: #1e293b; }
-[data-theme="dark"] .article-title { color: #f1f5f9; }
-[data-theme="dark"] .btn-icon:hover { background: #475569; }
 </style>

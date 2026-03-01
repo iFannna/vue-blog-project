@@ -97,5 +97,7 @@ const defaultAvatar = "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568
   color: var(--bloglo-primary, #FC6668);
   font-weight: 600;
 }
-
+#secondary {
+    width: 25%;
+}
 </style>

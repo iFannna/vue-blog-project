@@ -210,9 +210,4 @@ const handleSave = () => {
 .btn-primary { background: var(--bloglo-primary, #2563eb); color: #fff; }
 .btn-primary:hover { background: #1d4ed8; }
 
-[data-theme="dark"] .panel-header, [data-theme="dark"] .panel-footer { border-color: #334155; }
-[data-theme="dark"] .panel-title, [data-theme="dark"] .section-title { color: #f1f5f9; }
-[data-theme="dark"] .toggle-item { background: #1e293b; }
-[data-theme="dark"] .toggle-name { color: #e2e8f0; }
-[data-theme="dark"] .slider { background: #475569; }
 </style>

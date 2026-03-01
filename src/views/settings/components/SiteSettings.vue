@@ -235,9 +235,4 @@ const handleSave = () => {
   .form-row { grid-template-columns: 1fr; }
 }
 
-[data-theme="dark"] .panel-header, [data-theme="dark"] .section, [data-theme="dark"] .panel-footer { border-color: #334155; }
-[data-theme="dark"] .panel-title, [data-theme="dark"] .section-title { color: #f1f5f9; }
-[data-theme="dark"] .form-label { color: #e2e8f0; }
-[data-theme="dark"] .form-input, [data-theme="dark"] .form-textarea { background: #1e293b; border-color: #334155; color: #f1f5f9; }
-[data-theme="dark"] .upload-area { border-color: #334155; }
 </style>

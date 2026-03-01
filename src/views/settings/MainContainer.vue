@@ -18,5 +18,10 @@ const activeMenu = ref("profile");
 <style scoped>
 .bloglo-container {
   margin: 0;
+  max-width: none !important;
+}
+#primary {
+    max-width: 70%;
+    margin-left: 4%;
 }
 </style>

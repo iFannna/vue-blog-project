@@ -280,10 +280,4 @@ const recentUsers = ref([
   .stats-grid { grid-template-columns: 1fr; }
 }
 
-[data-theme="dark"] .panel-header { border-color: #334155; }
-[data-theme="dark"] .panel-title, [data-theme="dark"] .section-title { color: #f1f5f9; }
-[data-theme="dark"] .stat-card, [data-theme="dark"] .hot-item, [data-theme="dark"] .user-item { background: #1e293b; }
-[data-theme="dark"] .stat-value { color: #f1f5f9; }
-[data-theme="dark"] .hot-title, [data-theme="dark"] .user-name { color: #f1f5f9; }
-[data-theme="dark"] .hot-rank { background: #334155; }
 </style>

@@ -258,27 +258,5 @@ const handleSave = () => {
   }
 }
 
-/* 深色模式 */
-[data-theme="dark"] .entry-header,
-[data-theme="dark"] .entry-footer,
-[data-theme="dark"] .avatar-section {
-  border-color: rgba(255, 255, 255, 0.1);
-}
 
-[data-theme="dark"] .entry-title,
-[data-theme="dark"] .form-label {
-  color: #f1f5f9;
-}
-
-[data-theme="dark"] .entry-desc,
-[data-theme="dark"] .avatar-tips p {
-  color: #94a3b8;
-}
-
-[data-theme="dark"] .form-input,
-[data-theme="dark"] .form-textarea {
-  background: rgba(30, 41, 59, 0.8);
-  border-color: rgba(255, 255, 255, 0.1);
-  color: #f1f5f9;
-}
 </style>

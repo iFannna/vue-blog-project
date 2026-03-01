@@ -247,11 +247,4 @@ const searchKeyword = ref("");
   color: var(--bloglo-text-color, #94a3b8);
 }
 
-[data-theme="dark"] .panel-header { border-color: #334155; }
-[data-theme="dark"] .panel-title { color: #f1f5f9; }
-[data-theme="dark"] .search-input { background: #1e293b; border-color: #334155; color: #f1f5f9; }
-[data-theme="dark"] .user-table { border-color: #334155; }
-[data-theme="dark"] .table-header { background: #1e293b; }
-[data-theme="dark"] .table-row { border-color: #334155; }
-[data-theme="dark"] .user-name { color: #f1f5f9; }
 </style>

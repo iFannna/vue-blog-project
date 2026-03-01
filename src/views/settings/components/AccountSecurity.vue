@@ -324,11 +324,4 @@ const handleChangePassword = () => {
   .bind-item, .toggle-item { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
 }
 
-/* 深色模式 */
-[data-theme="dark"] .entry-header, [data-theme="dark"] .section { border-color: rgba(255, 255, 255, 0.1); }
-[data-theme="dark"] .entry-title, [data-theme="dark"] .section-title, [data-theme="dark"] .form-label, [data-theme="dark"] .bind-name, [data-theme="dark"] .toggle-name { color: #f1f5f9; }
-[data-theme="dark"] .entry-desc, [data-theme="dark"] .toggle-desc { color: #94a3b8; }
-[data-theme="dark"] .form-input { background: rgba(30, 41, 59, 0.8); border-color: rgba(255, 255, 255, 0.1); color: #f1f5f9; }
-[data-theme="dark"] .bind-item, [data-theme="dark"] .toggle-item { background: rgba(30, 41, 59, 0.5); }
-[data-theme="dark"] .slider { background: #475569; }
 </style>
