@@ -1,0 +1,46 @@
+/* 全局样式入口文件 */
+
+/* WordPress 块编辑器样式 */
+@import './block-library.css';
+
+/* 页面整体样式及背景 */
+@import './child-style.css';
+
+/* 主题核心样式 */
+@import './bloglo-styles.css';
+
+/* 布局/动态样式 */
+@import './bloglo-dynamic-styles.css';
+
+/* View Transitions 动画样式 */
+@import './view-transitions.css';
+
+/* 布局工具类 */
+img:is([sizes="auto" i], [sizes^="auto," i]) {
+  contain-intrinsic-size: 3000px 1500px;
+}
+
+:where(.is-layout-flex) {
+  gap: 0.5em;
+}
+
+body .is-layout-flex {
+  display: flex;
+}
+
+.is-layout-flex {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.is-layout-flex > :is(*, div) {
+  margin: 0;
+}
+
+body {
+  display: grid;
+}
+
+.is-layout-grid > :is(*, div) {
+  margin: 0;
+}
