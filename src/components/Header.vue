@@ -260,13 +260,16 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useUserStore } from "@/stores/user";
+import { useTheme } from "@/composables/useTheme";
 
 const route = useRoute();
 const router = useRouter();
-const isDarkMode = ref(false);
-const userInfo = ref(null);
+const userStore = useUserStore();
+const { isDarkMode, toggleTheme } = useTheme();
+const userInfo = computed(() => userStore.userInfo);
 const isDropdownOpen = ref(false);
 
 const defaultAvatar =
@@ -302,70 +305,6 @@ const closeDropdown = () => {
   isDropdownOpen.value = false;
 };
 
-const toggleTheme = async (event) => {
-  event.preventDefault();
-  event.stopPropagation();
-
-  if (!document.startViewTransition) {
-    applyThemeChange();
-    return;
-  }
-
-  const x = event.clientX;
-  const y = event.clientY;
-
-  const endRadius = Math.hypot(
-    Math.max(x, window.innerWidth - x),
-    Math.max(y, window.innerHeight - y)
-  );
-
-  const transition = document.startViewTransition(async () => {
-    applyThemeChange();
-  });
-
-  transition.ready.then(() => {
-    const clipPath = [
-      `circle(0px at ${x}px ${y}px)`,
-      `circle(${endRadius}px at ${x}px ${y}px)`,
-    ];
-
-    document.documentElement.animate(
-      {
-        clipPath: clipPath,
-      },
-      {
-        duration: 1000,
-        easing: "ease-in-out",
-        pseudoElement: "::view-transition-new(root)",
-      }
-    );
-  });
-};
-
-const applyThemeChange = () => {
-  isDarkMode.value = !isDarkMode.value;
-
-  if (isDarkMode.value) {
-    document.documentElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("darkmode", "dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("darkmode", "light");
-  }
-};
-
-const initUserInfo = () => {
-  try {
-    const loginUser = localStorage.getItem("loginUser");
-    if (loginUser) {
-      userInfo.value = JSON.parse(loginUser);
-    }
-  } catch (error) {
-    console.error("获取用户信息失败:", error);
-    userInfo.value = null;
-  }
-};
-
 const goToProfile = () => {
   console.log("前往个人主页");
   isDropdownOpen.value = false;
@@ -382,22 +321,11 @@ const goToSettings = () => {
 };
 
 const logout = () => {
-  localStorage.removeItem("loginUser");
-  userInfo.value = null;
+  userStore.clearUserInfo();
   isDropdownOpen.value = false;
 };
 
 onMounted(() => {
-  const darkmode = localStorage.getItem("darkmode");
-  isDarkMode.value = darkmode === "dark";
-
-  if (isDarkMode.value) {
-    document.documentElement.setAttribute("data-theme", "dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-  }
-
-  initUserInfo();
   document.addEventListener("click", closeDropdown);
 });
 

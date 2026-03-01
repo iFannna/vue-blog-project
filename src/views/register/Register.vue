@@ -4,6 +4,7 @@ import { ref, watch, nextTick, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { ElMessage, ElDialog } from "element-plus";
 import { registerApi, sendRegisterCodeApi } from "@/api/register";
+import { useTheme } from "@/composables/useTheme";
 
 // ===================== 响应式数据定义 =====================
 // 注册表单核心数据
@@ -46,7 +47,7 @@ const captchaVerified = ref(false); // 标记是否已通过首次校验
 const savedCaptchaParams = ref(""); // 复用首次校验通过的验证码参数
 
 // 主题切换状态
-const isDarkMode = ref(false);
+const { isDarkMode, toggleTheme } = useTheme();
 
 // ===================== 核心实例初始化 =====================
 const router = useRouter();
@@ -372,75 +373,6 @@ const submitRegister = async () => {
   }
 };
 
-// ===================== 主题切换相关 =====================
-// 主题切换函数 - 圆形扩散动画
-let themeToggleTimer = null;
-const toggleTheme = async (event) => {
-  if (themeToggleTimer) return;
-
-  event.preventDefault();
-  event.stopPropagation();
-
-  // 检查浏览器是否支持 View Transitions API
-  if (!document.startViewTransition) {
-    applyThemeChange();
-    return;
-  }
-
-  // 获取点击位置
-  const x = event.clientX;
-  const y = event.clientY;
-
-  // 计算到屏幕四个角的距离，取最大值作为扩散半径
-  const endRadius = Math.hypot(
-    Math.max(x, window.innerWidth - x),
-    Math.max(y, window.innerHeight - y)
-  );
-
-  // 启动 View Transition
-  const transition = document.startViewTransition(async () => {
-    applyThemeChange();
-  });
-
-  // 等待过渡准备就绪，然后自定义动画
-  transition.ready.then(() => {
-    // 为新页面添加圆形扩散动画
-    const clipPath = [
-      `circle(0px at ${x}px ${y}px)`,
-      `circle(${endRadius}px at ${x}px ${y}px)`,
-    ];
-
-    document.documentElement.animate(
-      {
-        clipPath: clipPath,
-      },
-      {
-        duration: 800,
-        easing: "ease-in-out",
-        pseudoElement: "::view-transition-new(root)",
-      }
-    );
-  });
-
-  // 防抖处理
-  themeToggleTimer = setTimeout(() => {
-    themeToggleTimer = null;
-  }, 800);
-};
-
-// 应用主题变更
-const applyThemeChange = () => {
-  isDarkMode.value = !isDarkMode.value;
-
-  if (isDarkMode.value) {
-    document.documentElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("darkmode", "dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("darkmode", "light");
-  }
-};
-
 // ===================== 页面导航 =====================
 // 前往登录页
 const goToLogin = () => {
@@ -485,16 +417,6 @@ watch(
 // 页面挂载时初始化
 onMounted(() => {
   loadCaptchaScript();
-
-  // 初始化主题
-  const darkmode = localStorage.getItem("darkmode");
-  isDarkMode.value = darkmode === "dark";
-
-  if (isDarkMode.value) {
-    document.documentElement.setAttribute("data-theme", "dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-  }
 });
 </script>
 

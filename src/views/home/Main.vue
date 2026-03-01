@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import { queryArticlePageApi } from "@/api/article";
+import { formatPublishTime } from "@/utils/formatDate";
 
 // 响应式数据定义
 const currentPage = ref(1); // 当前页码
@@ -10,20 +11,6 @@ const total = ref(0); // 总文章数
 
 // 计算总页数
 const totalPages = computed(() => Math.ceil(total.value / pageSize.value));
-
-// 格式化时间：将 2025-11-12 11:20:00 转为 July 24, 2023 格式
-const formatPublishTime = (timeStr) => {
-  if (!timeStr) return "";
-  const date = new Date(timeStr);
-  const monthMap = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  const month = monthMap[date.getMonth()];
-  const day = date.getDate();
-  const year = date.getFullYear();
-  return `${month} ${day}, ${year}`;
-};
 
 // 新增：滚动到页面顶部（平滑滚动）
 const scrollToTop = () => {

@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { getMostLikeArticlesApi } from "@/api/article";
+import { formatPublishTime } from "@/utils/formatDate";
 
 // 存储最受欢迎文章列表
 const mostLikeArticles = ref([]);
@@ -8,21 +9,6 @@ const mostLikeArticles = ref([]);
 const loading = ref(false);
 // 空数据提示
 const emptyTip = ref("暂无推荐文章");
-
-// 日期格式化函数
-const formatPublishTime = (dateStr) => {
-  if (!dateStr) return "";
-  const date = new Date(dateStr);
-  // 月份英文映射
-  const monthMap = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  const month = monthMap[date.getMonth()];
-  const day = date.getDate().toString().padStart(2, "0");
-  const year = date.getFullYear();
-  return `${month} ${day}, ${year}`;
-};
 
 /**
  * 获取最受欢迎文章数据

@@ -3,24 +3,12 @@ import { ref, onMounted } from "vue";
 import { getTagsApi } from "@/api/tag";
 import { getCategoriesApi } from "@/api/category";
 import { getHotArticlesApi } from "@/api/article";
+import { formatPublishTime } from "@/utils/formatDate";
 
 // 定义响应式数据存储接口返回数据
 const hotArticles = ref([]); // 热门文章列表
 const tags = ref([]); // 标签列表
 const categories = ref([]); // 分类列表
-
-const formatPublishTime = (timeStr) => {
-  if (!timeStr) return "";
-  const date = new Date(timeStr);
-  const monthMap = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  const month = monthMap[date.getMonth()];
-  const day = date.getDate();
-  const year = date.getFullYear();
-  return `${month} ${day}, ${year}`;
-};
 
 // 页面挂载后请求数据
 onMounted(async () => {

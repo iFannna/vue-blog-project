@@ -1,28 +1,34 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "@/views/home/Home.vue";
-import AboutView from "@/views/about/About.vue";
-import LoginView from "@/views/login/Login.vue";
-import RegisterView from "@/views/register/Register.vue";
-import SettingsView from "@/views/settings/Settings.vue";
-import ArticleEditorView from "../views/editor/ArticleEditor.vue";
-// import SettingsProfile from "@/views/settings/pages/SettingsProfile.vue";
-// import SettingsGeneral from "@/views/settings/pages/SettingsGeneral.vue";
-// import SettingsNotifications from "@/views/settings/pages/SettingsNotifications.vue";
+import { useUserStore } from "@/stores/user";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: "/", component: HomeView },
-    { path: "/about", component: AboutView },
-    { path: "/login", component: LoginView },
-    { path: "/register", component: RegisterView },
+    { path: "/", component: () => import("@/views/home/Home.vue") },
+    { path: "/about", component: () => import("@/views/about/About.vue") },
+    { path: "/login", component: () => import("@/views/login/Login.vue") },
+    { path: "/register", component: () => import("@/views/register/Register.vue") },
     {
       path: "/settings",
-      component: SettingsView,
-      
+      component: () => import("@/views/settings/Settings.vue"),
+      meta: { requiresAuth: true },
     },
-    { path: "/post-new", component: ArticleEditorView },
-  ]
+    {
+      path: "/post-new",
+      component: () => import("@/views/editor/ArticleEditor.vue"),
+      meta: { requiresAuth: true },
+    },
+    { path: "/:pathMatch(.*)*", component: () => import("@/views/NotFound.vue") },
+  ],
+});
+
+router.beforeEach((to) => {
+  if (to.meta.requiresAuth) {
+    const userStore = useUserStore();
+    if (!userStore.userInfo) {
+      return { path: "/login" };
+    }
+  }
 });
 
 export default router;
