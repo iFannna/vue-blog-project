@@ -22,6 +22,7 @@ const activeMenu = ref("profile");
 }
 #primary {
     max-width: 70%;
-    margin-left: 4%;
+    margin-left: 2%;
+    margin-right: 3%;
 }
 </style>
