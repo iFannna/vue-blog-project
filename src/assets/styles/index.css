@@ -6,9 +6,6 @@
 /* 页面整体样式及背景 */
 @import './child-style.css';
 
-/* 主题核心样式 */
-@import './bloglo-styles.css';
-
 /* 布局/动态样式 */
 @import './bloglo-dynamic-styles.css';
 
@@ -35,10 +32,6 @@ body .is-layout-flex {
 
 .is-layout-flex > :is(*, div) {
   margin: 0;
-}
-
-body {
-  display: grid;
 }
 
 .is-layout-grid > :is(*, div) {
