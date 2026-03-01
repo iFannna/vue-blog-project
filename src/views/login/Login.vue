@@ -1,8 +1,10 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { loginApi } from "@/api/login";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
+import { useTheme } from "@/composables/useTheme";
+import { useUserStore } from "@/stores/user";
 
 let loginForm = ref({
   account: "",
@@ -11,77 +13,10 @@ let loginForm = ref({
 });
 const showPassword = ref(false);
 const router = useRouter();
+const userStore = useUserStore();
 
 // 主题切换
-const isDarkMode = ref(false);
-
-// 主题切换函数 - 真正的圆形扩散动画
-let themeToggleTimer = null;
-const toggleTheme = async (event) => {
-  if (themeToggleTimer) return;
-  
-  event.preventDefault();
-  event.stopPropagation();
-  
-  // 检查浏览器是否支持 View Transitions API
-  if (!document.startViewTransition) {
-    applyThemeChange();
-    return;
-  }
-
-  // 获取点击位置
-  const x = event.clientX;
-  const y = event.clientY;
-
-  // 计算到屏幕四个角的距离，取最大值作为扩散半径
-  const endRadius = Math.hypot(
-    Math.max(x, window.innerWidth - x),
-    Math.max(y, window.innerHeight - y)
-  );
-
-  // 启动 View Transition
-  const transition = document.startViewTransition(async () => {
-    applyThemeChange();
-  });
-
-  // 等待过渡准备就绪，然后自定义动画
-  transition.ready.then(() => {
-    // 为新页面添加圆形扩散动画
-    const clipPath = [
-      `circle(0px at ${x}px ${y}px)`,
-      `circle(${endRadius}px at ${x}px ${y}px)`
-    ];
-
-    document.documentElement.animate(
-      {
-        clipPath: clipPath
-      },
-      {
-        duration: 800,
-        easing: 'ease-in-out',
-        pseudoElement: '::view-transition-new(root)'
-      }
-    );
-  });
-  
-  // 防抖处理
-  themeToggleTimer = setTimeout(() => {
-    themeToggleTimer = null;
-  }, 800);
-};
-
-// 应用主题变更
-const applyThemeChange = () => {
-  isDarkMode.value = !isDarkMode.value;
-
-  if (isDarkMode.value) {
-    document.documentElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("darkmode", "dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("darkmode", "light");
-  }
-};
+const { isDarkMode, toggleTheme } = useTheme();
 
 // 登录逻辑 - 添加防抖
 let loginTimer = null;
@@ -96,7 +31,7 @@ const doLogin = async () => {
     const response = await loginApi(loginForm.value);
     if (response.code) {
       ElMessage.success("登录成功");
-      localStorage.setItem("loginUser", JSON.stringify(response.data));
+      userStore.setUserInfo(response.data);
       router.push("/");
     } else {
       ElMessage.error(response.msg);
@@ -125,18 +60,6 @@ const goToRegister = () => {
 const goToHome = () => {
   router.push("/");
 };
-
-// 初始化主题
-onMounted(() => {
-  const darkmode = localStorage.getItem("darkmode");
-  isDarkMode.value = darkmode === "dark";
-
-  if (isDarkMode.value) {
-    document.documentElement.setAttribute("data-theme", "dark");
-  } else {
-    document.documentElement.setAttribute("data-theme", "light");
-  }
-});
 </script>
 
 <template>

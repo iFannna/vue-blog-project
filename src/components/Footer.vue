@@ -1,35 +1,11 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { getMostStarArticlesApi, getMostShareArticlesApi } from "@/api/article";
+import { formatPublishTime } from "@/utils/formatDate";
 
 // 定义响应式数据存储接口返回的文章列表
 const mostStarArticles = ref([]); // 最星标文章
 const mostShareArticles = ref([]); // 最分享文章
-
-// 日期格式化函数
-const formatPublishTime = (dateStr) => {
-  if (!dateStr) return "";
-  const date = new Date(dateStr);
-  // 定义英文月份名称
-  const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const month = monthNames[date.getMonth()];
-  const day = String(date.getDate()).padStart(2, "0");
-  const year = date.getFullYear();
-  return `${month} ${day}, ${year}`;
-};
 
 // 页面挂载后调用接口获取数据
 onMounted(async () => {
