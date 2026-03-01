@@ -1,17 +1,19 @@
+<script setup>
+import { ref } from "vue";
+import PrimaryContent from "@/views/settings/Main.vue";
+import SettingsSidebar from "@/views/settings/Sidebar.vue";
+
+const activeMenu = ref("profile");
+</script>
+
 <template>
   <div id="main" class="site-main">
     <div class="bloglo-container">
-      <SettingsSidebar />
-      <PrimaryContent />
+      <SettingsSidebar v-model:activeMenu="activeMenu" />
+      <PrimaryContent v-model:activeMenu="activeMenu" />
     </div>
   </div>
 </template>
-
-<script setup>
-import PrimaryContent from "@/views/settings/Main.vue";
-import SettingsSidebar from "@/views/settings/Sidebar.vue";
-import Breadcrumbs from "@/components/Breadcrumbs.vue";
-</script>
 
 <style scoped>
 .bloglo-container {
