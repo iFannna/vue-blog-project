@@ -40,30 +40,4 @@ const componentMap = {
 </template>
 
 <style scoped>
-.content-area {
-  padding-right: 0 !important;
-}
-
-.settings-content-wrapper {
-  background: var(--bloglo-card-bg, #fff);
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  min-height: 500px;
-  overflow: hidden;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-[data-theme="dark"] .settings-content-wrapper {
-  background: rgba(30, 41, 59, 0.8);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
 </style>
